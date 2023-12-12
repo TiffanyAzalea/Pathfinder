@@ -2,6 +2,6 @@ package com.fastfour.pathfinderbackend.exception;
 
 public class UserNotFoundException extends RuntimeException{
     public UserNotFoundException(Long id){
-        super("Could not find user with id " + id);
+        super("We could not find the requested user");
     }
 }
