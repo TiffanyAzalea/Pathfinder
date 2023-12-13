@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -9,21 +10,15 @@ export default function Navbar() {
           <Link className="navbar-brand" to="/">
             Pathfinder
           </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          {/* <Link className="btn btn-outline-light" to="/adduser">
-            Add User
-          </Link> */}
+          <div class="btn-group dropstart">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Menu
+            </button>
+            <ul class="dropdown-menu">
+              <li><Link className="dropdown-item" to="/">Home</Link></li>
+              <li><Link className="dropdown-item" to="/adduser">Create Account</Link></li>
+            </ul>
+          </div>
         </div>
       </nav>
     </div>
