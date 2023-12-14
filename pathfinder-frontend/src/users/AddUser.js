@@ -6,14 +6,14 @@ export default function AddUser() {
   let navigate = useNavigate();
 
   const [user, setUser] = useState({
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     username: "",
     password: "",
     email: ""
   });
 
-  const { firstname, lastname, username, password, email } = user;
+  const { firstName, lastName, username, password, email } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -33,33 +33,33 @@ export default function AddUser() {
 
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3">
-              <label htmlFor="Name" className="form-label">
+              <label htmlFor="firstName" className="form-label">
                 First Name
               </label>
               <input
                 type={"text"}
                 className="form-control"
                 placeholder="First name here"
-                name="firstname"
-                value={firstname}
+                name="firstName"
+                value={firstName}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="Name" className="form-label">
+              <label htmlFor="lastName" className="form-label">
                 Last Name
               </label>
               <input
                 type={"text"}
                 className="form-control"
                 placeholder="Last name here"
-                name="lastname"
-                value={lastname}
+                name="lastName"
+                value={lastName}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="Username" className="form-label">
+              <label htmlFor="username" className="form-label">
                 Username
               </label>
               <input
@@ -72,7 +72,7 @@ export default function AddUser() {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="Name" className="form-label">
+              <label htmlFor="password" className="form-label">
                 Password
               </label>
               <input
@@ -85,7 +85,7 @@ export default function AddUser() {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="Email" className="form-label">
+              <label htmlFor="email" className="form-label">
                 E-mail
               </label>
               <input
