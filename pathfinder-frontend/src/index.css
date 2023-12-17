@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.close-icon {
+  cursor: pointer;
+  color: #333; /* Customize the color as needed */
+  margin-top: 10px;
+}

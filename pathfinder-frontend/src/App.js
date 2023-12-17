@@ -6,8 +6,11 @@ import Navbar from './layout/Navbar';
 import NavbarBS from './layout/NavbarBS';
 import Home from './pages/Home';
 import AddUser from './users/AddUser';
+import EditUser from './users/EditUser';
+import React from 'react';
 
 function App() {
+  
   return (
     <div className="App">
       <BrowserRouter>
@@ -15,6 +18,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/adduser" element={<AddUser />} />
+        <Route exact path="/edituser" element={<EditUser />} />
       </Routes>
       </BrowserRouter>
     </div>
