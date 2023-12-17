@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+//Edit User
 
 export default function EditUser() {
   let navigate = useNavigate();
@@ -26,13 +27,6 @@ export default function EditUser() {
     navigate("/");
   };
 
-  const YourComponent = () => {
-    const handleClose = () => {
-      // Add your close logic here
-      console.log('Close button clicked!');
-    };
-  }
-  
   return (
     <div className="container">
     <div className="row">
