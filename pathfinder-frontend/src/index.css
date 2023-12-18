@@ -53,3 +53,10 @@ code {
 .mapboxgl-popup {
   max-width: 200px;
 }
+
+.close-icon {
+  cursor: pointer;
+  color: #333;
+  /* Customize the color as needed */
+  margin-top: 10px;
+}

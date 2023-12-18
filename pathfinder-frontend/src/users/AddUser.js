@@ -28,9 +28,11 @@ export default function AddUser() {
   return (
     <div className="container">
       <div className="row">
+      
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
+        
           <h2 className="text-center m-4">Become a Pathfinder!</h2>
-
+          
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3">
               <label htmlFor="firstName" className="form-label">
@@ -100,6 +102,7 @@ export default function AddUser() {
             <button type="submit" className="btn btn-outline-primary">
               Submit
             </button>
+           
           </form>
         </div>
       </div>

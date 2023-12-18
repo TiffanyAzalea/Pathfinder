@@ -11,8 +11,11 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import NavbarForHome from './layout/NavbarForHome';
 import Corousal from './layout/Corousal';
 import CreateHike from './components/CreateHike';
+import EditUser from './users/EditUser';
+import React from 'react';
 
 function App() {
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -20,6 +23,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/adduser" element={<AddUser />} />
+          <Route exact path="/edituser" element={<EditUser />} />
         </Routes>
       </BrowserRouter>
       <NavbarForHome />
