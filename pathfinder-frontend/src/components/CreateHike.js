@@ -42,7 +42,11 @@ export default function CreateHike() {
       const popup = new mapboxgl.Popup({ offset: [0, -15] })
         .setLngLat(feature.geometry.coordinates)
         .setHTML(
-          `<h6>${feature.properties.TRAIL_NAME}</h6><p>${feature.properties.WALKING}</p>`
+          `<h6>${feature.properties.TRAIL_NAME}</h6>
+          <p style="margin-bottom: 0">${feature.properties.AREA_NAME}</p>
+          <p style="margin-bottom: 0">${feature.properties.WALKING}</p>
+          <p style="margin-bottom: 0">${feature.properties.BIKING}</p>
+          <p style="margin-bottom: 0">${Math.round(feature.properties.GIS_MILES * 100)/100} miles</p>` 
         )
         .addTo(map.current);
     });
