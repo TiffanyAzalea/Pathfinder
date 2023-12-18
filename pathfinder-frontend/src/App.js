@@ -12,7 +12,7 @@ import NavbarForHome from './layout/NavbarForHome';
 import Corousal from './layout/Corousal';
 import CreateHike from './components/CreateHike';
 import EditUser from './users/EditUser';
-import React from 'react';
+import UserHomePage from './pages/UserHomePage';
 
 function App() {
 
@@ -24,11 +24,14 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/adduser" element={<AddUser />} />
           <Route exact path="/edituser" element={<EditUser />} />
+          <Route exact path="/userhomepage" element={<UserHomePage />} />
+          <Route exact path="/createhike" element={<CreateHike />} />
         </Routes>
       </BrowserRouter>
-      <NavbarForHome />
+      {/* <NavbarForHome /> */}
+      {/* <UserHomePage /> */}
 
-      <CreateHike />
+      {/* <CreateHike /> */}
     </div>
   );
 }
