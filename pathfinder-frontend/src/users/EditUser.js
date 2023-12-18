@@ -2,11 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-<<<<<<< HEAD
-//Edit User
-=======
->>>>>>> 03d449ff783b19abc275ecf238783a4fffc921b6
-
 export default function EditUser() {
   let navigate = useNavigate();
 
@@ -30,16 +25,6 @@ export default function EditUser() {
     navigate("/");
   };
 
-<<<<<<< HEAD
-=======
-  const YourComponent = () => {
-    const handleClose = () => {
-      // Add your close logic here
-      console.log('Close button clicked!');
-    };
-  }
-  
->>>>>>> 03d449ff783b19abc275ecf238783a4fffc921b6
   return (
     <div className="container">
     <div className="row">
@@ -115,9 +100,9 @@ export default function EditUser() {
           <button type="submit" className="btn btn-outline-primary">
             Submit
           </button>
-          <button type="submit" className="btn btn-outline-danger mx-2">
+          <Link className="btn btn-outline-danger mx-2" to="/">
               Cancel
-            </button>
+            </Link>
         </form>
       </div>
     </div>

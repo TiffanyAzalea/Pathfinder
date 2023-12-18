@@ -18,7 +18,7 @@ function NavbarBS() {
             >
               <NavDropdown.Item as={Link} to="/">Home</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/adduser">Create Account</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/edituser">Edit User Details</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/edituser">Edit Account</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
