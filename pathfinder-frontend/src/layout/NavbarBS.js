@@ -1,5 +1,6 @@
 import { NavDropdown , Container , Nav , Navbar } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import React from 'react';
 
 function NavbarBS() {
   return (
@@ -17,6 +18,7 @@ function NavbarBS() {
             >
               <NavDropdown.Item as={Link} to="/">Home</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/adduser">Create Account</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/edituser">Edit User Details</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
