@@ -17,6 +17,7 @@ function NavbarBS() {
               align="end"
             >
               <NavDropdown.Item as={Link} to="/">Home</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/login">Log In</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/adduser">Create Account</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/edituser">Edit User Details</NavDropdown.Item>
             </NavDropdown>

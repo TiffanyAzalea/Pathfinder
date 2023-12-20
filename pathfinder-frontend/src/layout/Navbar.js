@@ -16,6 +16,7 @@ export default function Navbar() {
             </button>
             <ul class="dropdown-menu">
               <li><Link className="dropdown-item" to="/">Home</Link></li>
+              <li><Link className="dropdown-item" to="/login">Log In</Link></li>
               <li><Link className="dropdown-item" to="/adduser">Create Account</Link></li>
             </ul>
           </div>
