@@ -2,12 +2,13 @@ package com.fastfour.pathfinderbackend.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.IDENTITY) //ariel quest
     private Long id;
 
     private String firstName;
