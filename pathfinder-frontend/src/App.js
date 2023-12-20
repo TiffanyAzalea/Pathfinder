@@ -23,7 +23,7 @@ function App() {
         <NavbarBS />
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/adduser/:id" element={<AddUser />} />
+          <Route exact path="/adduser" element={<AddUser />} />
           <Route exact path="/edituser/:id" element={<EditUser />} />
           <Route exact path="/viewuser/:id" element={<ViewUser />} />
         </Routes>
