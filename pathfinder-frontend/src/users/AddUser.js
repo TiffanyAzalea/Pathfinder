@@ -34,66 +34,65 @@ export default function AddUser() {
           <h2 className="text-center m-4">Become a Pathfinder!</h2>
           
           <form onSubmit={(e) => onSubmit(e)}>
-            <div className="mb-3">
+            <div className="mb-3" style={{textAlign: 'left'}}>
               <label htmlFor="firstName" className="form-label">
                 First Name
-              </label>
-              <input
+                </label><input
                 type={"text"}
                 className="form-control"
-                placeholder="First name here"
+                placeholder="Edmund"
                 name="firstName"
                 value={firstName}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-            <div className="mb-3">
+            <div className="mb-3" style={{textAlign: 'left'}}>
               <label htmlFor="lastName" className="form-label">
                 Last Name
               </label>
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Last name here"
+                placeholder="Hillary"
                 name="lastName"
                 value={lastName}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-            <div className="mb-3">
+            <div className="mb-3" style={{textAlign: 'left'}}>
               <label htmlFor="username" className="form-label">
                 Username
               </label>
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Username here"
+                placeholder="sireddyhills"
                 name="username"
                 value={username}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-            <div className="mb-3">
+            <div className="mb-3" style={{textAlign: 'left'}}>
               <label htmlFor="password" className="form-label">
                 Password
               </label>
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Password here"
+                placeholder="icl1mb3verest"
                 name="password"
                 value={password}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-            <div className="mb-3">
+            <div className="mb-3" style={{textAlign: 'left'}}>
               <label htmlFor="email" className="form-label">
                 E-mail
               </label>
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="E-mail here"
+                placeholder="you@pathfinder.com"
                 name="email"
                 value={email}
                 onChange={(e) => onInputChange(e)}
