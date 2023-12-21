@@ -13,6 +13,7 @@ import Corousal from './layout/Corousal';
 import CreateHike from './components/CreateHike';
 import EditUser from './users/EditUser';
 import React from 'react';
+import ViewUser from './users/ViewUser';
 
 function App() {
 
@@ -23,12 +24,10 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/adduser" element={<AddUser />} />
-          <Route exact path="/edituser" element={<EditUser />} />
+          <Route exact path="/edituser/:id" element={<EditUser />} />
+          <Route exact path="/viewuser/:id" element={<ViewUser />} />
         </Routes>
       </BrowserRouter>
-      <NavbarForHome />
-
-      <CreateHike />
     </div>
   );
 }
