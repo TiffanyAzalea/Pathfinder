@@ -22,16 +22,10 @@ export default function EditUser() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8080/user", user);
+    await axios.put("http://localhost:8080/user", user);
     navigate("/");
   };
 
-  const YourComponent = () => {
-    const handleClose = () => {
-      // Add your close logic here
-      console.log('Close button clicked!');
-    };
-  }
   
   return (
     <div className="container">
@@ -108,9 +102,9 @@ export default function EditUser() {
           <button type="submit" className="btn btn-outline-primary">
             Submit
           </button>
-          <button type="submit" className="btn btn-outline-danger mx-2">
+          <Link to="/" className="btn btn-outline-danger mx-2">
               Cancel
-            </button>
+            </Link>
         </form>
       </div>
     </div>
