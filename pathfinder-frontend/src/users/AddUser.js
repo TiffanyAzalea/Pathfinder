@@ -18,6 +18,7 @@ export default function AddUser() {
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
+  
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -33,14 +34,14 @@ export default function AddUser() {
         
           <h2 className="text-center m-4">Become a Pathfinder!</h2>
           
-          <form onSubmit={(e) => onSubmit(e)}>
+          <form onSubmit={onSubmit}>
             <div className="mb-3" style={{textAlign: 'left'}}>
               <label htmlFor="firstName" className="form-label">
                 First Name
                 </label><input
                 type={"text"}
                 className="form-control"
-                placeholder="Edmund"
+                placeholder="Eg:Edmund"
                 name="firstName"
                 value={firstName}
                 onChange={(e) => onInputChange(e)}
@@ -53,7 +54,7 @@ export default function AddUser() {
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Hillary"
+                placeholder="Eg:Hillary"
                 name="lastName"
                 value={lastName}
                 onChange={(e) => onInputChange(e)}
@@ -66,7 +67,7 @@ export default function AddUser() {
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="sireddyhills"
+                placeholder="Eg:sireddyhills"
                 name="username"
                 value={username}
                 onChange={(e) => onInputChange(e)}
@@ -79,7 +80,7 @@ export default function AddUser() {
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="icl1mb3verest"
+                placeholder="Eg:icl1mb3verest"
                 name="password"
                 value={password}
                 onChange={(e) => onInputChange(e)}
@@ -92,13 +93,14 @@ export default function AddUser() {
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="you@pathfinder.com"
+                placeholder="Eg:you@pathfinder.com"
                 name="email"
                 value={email}
                 onChange={(e) => onInputChange(e)}
+                autoComplete="off"
               />
             </div>
-            <button type="submit" className="btn btn-outline-primary">
+            <button type="submit" className="btn btn-outline-primary" >
               Submit
             </button>
            

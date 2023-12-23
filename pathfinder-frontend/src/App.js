@@ -14,6 +14,8 @@ import CreateHike from './components/CreateHike';
 import EditUser from './users/EditUser';
 import React from 'react';
 import ViewUser from './users/ViewUser';
+import DeleteUser from './users/DeleteUser';
+
 
 function App() {
 
@@ -21,19 +23,16 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <NavbarBS />
+        
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/adduser" element={<AddUser />} />
           <Route exact path="/edituser/:id" element={<EditUser />} />
+          
           <Route exact path="/viewuser/:id" element={<ViewUser />} />
+          <Route exact path="/deleteuser/:id" element={<DeleteUser />} />
         </Routes>
       </BrowserRouter>
-<<<<<<< HEAD
-      
-
-      <CreateHike />
-=======
->>>>>>> 3e5e2c718fa0e715f2465cb3bc0c3a72a64996f2
     </div>
   );
 }

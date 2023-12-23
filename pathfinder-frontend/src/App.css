@@ -1,7 +1,6 @@
 .App {
   text-align: center;
 }
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -12,7 +11,9 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+p{
+  color: red;
+}
 .content img {
   position: absolute;
   top: -45px;
