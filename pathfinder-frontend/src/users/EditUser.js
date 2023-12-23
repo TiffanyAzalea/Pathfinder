@@ -8,6 +8,7 @@ export default function EditUser() {
                   firstName: "",
                   lastName: "",
                   username: "",
+                  email:"",
                   password: ""
                   
             }
@@ -15,7 +16,7 @@ export default function EditUser() {
   const [visible,setVisible] = useState(false);
 
   const {id}=useParams();
-  const { firstName, lastName, username, password } = user;
+  const { firstName, lastName, username, password, email } = user;
 
   const onInputChange = (e) => {
     const {name, value} = e.target;
@@ -36,6 +37,7 @@ const loadUser= async ()=>{
     const result=await axios.get(`http://localhost:8080/user/${id}`)
     setUser(result.data)
 }
+
 
   return (
     <div className="container">
@@ -87,6 +89,19 @@ const loadUser= async ()=>{
             />
           </div>
          
+          <div className="mb-3">
+            <label htmlFor="username" className="form-label">
+              E-mail
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              placeholder={user.email}
+              name="email"
+              value={user.email}
+              onChange={onInputChange}
+            />
+          </div>
           
           <div className="mb-3">
               <label htmlFor="password" className="form-label">

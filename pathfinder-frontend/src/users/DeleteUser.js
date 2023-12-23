@@ -15,7 +15,7 @@ export default function DeleteUser() {
   });
 
   const {id}=useParams();
-  //const { firstName, lastName, username, password, email } = user;
+  const { firstName, lastName, username, password, email } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -23,8 +23,8 @@ export default function DeleteUser() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.delete("http://localhost:8080/user", user);
-    //navigate(`/`);
+    await axios.delete(`http://localhost:8080/user/${id}`);
+    navigate(`/`);
   };
 
   useEffect(()=>{
@@ -34,11 +34,6 @@ export default function DeleteUser() {
 const loadUser= async ()=>{
     const result=await axios.get(`http://localhost:8080/user/${id}`)
     setUser(result.data)
-}
-
-const deleteUser=async (id)=>{
-    await axios.delete(`http://localhost:8080/user/${id}`)
-    navigate("/");
 }
   
   return (
@@ -52,8 +47,9 @@ const deleteUser=async (id)=>{
             Are you sure you want to delete your account
               </label>
                 <div className="mb-3">
-                    <button className="btn btn-danger mx-2" 
-                    onClick={()=>deleteUser(user.id)}>Delete</button>
+                <button type="submit" to={"/"} className="btn btn-danger ">
+            Delete
+          </button>
                     <Link to={`/viewuser/${user.id}`} className="btn btn-primary mx-2">
                     Cancel
                 </Link>
