@@ -1,6 +1,32 @@
-import React from 'react';
+
+import React, { useState } from 'react';
 
 export default function LogIn() {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        try {
+            const response = await fetch('http://localhost:8080/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Invalid credentials');
+            }
+
+            console.log('Login successful');
+        } catch (error) {
+            console.error('Login failed:', error.message);
+        }
+    };
+
   return (
     <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
         <div className='big-white p-3 rounded w-25'>
