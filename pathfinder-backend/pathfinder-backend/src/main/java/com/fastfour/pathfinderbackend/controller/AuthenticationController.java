@@ -1,6 +1,6 @@
 package com.fastfour.pathfinderbackend.controller;
 
-import ch.qos.logback.core.model.Model;
+
 import com.fastfour.pathfinderbackend.model.User;
 import com.fastfour.pathfinderbackend.model.dto.LoginFormDTO;
 import com.fastfour.pathfinderbackend.repository.UserRepository;
@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
 
 import java.util.Optional;
 
@@ -29,13 +30,10 @@ public class AuthenticationController {
             return null;
         }
 
-        Optional<User> user = userRepository.findById(userId);
+        Optional<User> user = userRepository.findById(Long.valueOf(userId));
 
-        if (user.isEmpty()) {
-            return null;
-        }
+        return user.orElse(null);
 
-        return user.get();
     }
 
     private static void setUserInSession(HttpSession session, User user) {
@@ -81,7 +79,8 @@ public class AuthenticationController {
 
         setUserInSession(request.getSession(), theUser);
 
-        return "redirect:";
+        //redirect to home page?
+        return "redirect:home";
     }
 
 }

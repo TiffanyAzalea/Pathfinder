@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 @Entity
 public class User {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY) //ariel quest
+    @GeneratedValue //(strategy = GenerationType.IDENTITY) //ariel quest
     private Long id;
 
     private String firstName;
@@ -63,5 +63,9 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isMatchingPassword(String password) {
+        return this.password.equals(password); //added this method(TH)
     }
 }
