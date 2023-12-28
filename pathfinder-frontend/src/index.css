@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
+.close-icon {
+  cursor: pointer;
+  color: #333; /* Customize the color as needed */
+  margin-top: 10px;
+}
 .marker-btn {
   background: none;
   border: none;

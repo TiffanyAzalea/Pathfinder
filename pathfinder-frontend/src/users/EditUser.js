@@ -1,58 +1,66 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-
+import React, { useEffect,useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function EditUser() {
   let navigate = useNavigate();
+  const initialValues = { 
+                  firstName: "",
+                  lastName: "",
+                  username: "",
+                  email:"",
+                  password: ""
+                  
+            }
+  const [ user, setUser] = useState({initialValues});
+  const [visible,setVisible] = useState(false);
 
-  const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    username: "",
-    password: "",
-    email: ""
-  });
-
+  const {id}=useParams();
   const { firstName, lastName, username, password, email } = user;
 
   const onInputChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    const {name, value} = e.target;
+    setUser({ ...user, [name]: value });
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios.post("http://localhost:8080/user", user);
-    navigate("/");
+    navigate(`/viewuser/${id}`);
   };
 
-  const YourComponent = () => {
-    const handleClose = () => {
-      // Add your close logic here
-      console.log('Close button clicked!');
-    };
-  }
-  
+  useEffect(()=>{
+    loadUser()
+},[]);
+
+const loadUser= async ()=>{
+    const result=await axios.get(`http://localhost:8080/user/${id}`)
+    setUser(result.data)
+}
+
+
   return (
     <div className="container">
+    
     <div className="row">
       <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-      
+      <form onSubmit={onSubmit}>
         <h2 className="text-center">Save Changes!</h2>
-        <form onSubmit={(e) => onSubmit(e)}>
+        
           <div className="mb-3">
-            <label htmlFor="firstName" className="form-label">
+            <label htmlFor="firstName" className="form-label" >
               First Name
             </label>
             <input
               type={"text"}
               className="form-control"
-              placeholder="Change your First name here"
+              placeholder={user.firstName}
               name="firstName"
-              value={firstName}
-              onChange={(e) => onInputChange(e)}
+              value={user.firstName}
+              onChange={onInputChange}
             />
           </div>
+         
           <div className="mb-3">
             <label htmlFor="lastName" className="form-label">
               Last Name
@@ -60,12 +68,13 @@ export default function EditUser() {
             <input
               type={"text"}
               className="form-control"
-              placeholder="Change your Last name here"
+              placeholder={user.lastName}
               name="lastName"
-              value={lastName}
-              onChange={(e) => onInputChange(e)}
+              value={user.lastName}
+              onChange={onInputChange}
             />
           </div>
+        
           <div className="mb-3">
             <label htmlFor="username" className="form-label">
               Username
@@ -73,44 +82,48 @@ export default function EditUser() {
             <input
               type={"text"}
               className="form-control"
-              placeholder="Change your Username here"
+              placeholder={user.username}
               name="username"
-              value={username}
-              onChange={(e) => onInputChange(e)}
+              value={user.username}
+              onChange={onInputChange}
             />
           </div>
+         
+          <div className="mb-3">
+            <label htmlFor="username" className="form-label">
+              E-mail
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              placeholder={user.email}
+              name="email"
+              value={user.email}
+              onChange={onInputChange}
+            />
+          </div>
+          
           <div className="mb-3">
               <label htmlFor="password" className="form-label">
                 Password
               </label>
               <input
-                type={"text"}
+                type={visible ? "text" : "password"}
                 className="form-control"
-                placeholder="Change your Password here"
+                placeholder={user.password}
                 name="password"
-                value={password}
-                onChange={(e) => onInputChange(e)}
+                value={user.password}
+                onChange={onInputChange}
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">
-                E-mail
-              </label>
-              <input
-                type={"text"}
-                className="form-control"
-                placeholder="Change your E-mail here"
-                name="email"
-                value={email}
-                onChange={(e) => onInputChange(e)}
-              />
-            </div>
-          <button type="submit" className="btn btn-outline-primary">
+
+            
+          <button type="submit" to={`/viewuser/${user.id}`} className="btn btn-outline-primary">
             Submit
           </button>
-          <button type="submit" className="btn btn-outline-danger mx-2">
+          <Link to="/" className="btn btn-outline-danger mx-2">
               Cancel
-            </button>
+            </Link>
         </form>
       </div>
     </div>

@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export function Navbar() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-black">
@@ -22,6 +22,7 @@ export default function Navbar() {
             <ul class="dropdown-menu">
               <li><Link className="dropdown-item" to="/">Home</Link></li>
               <li><Link className="dropdown-item" to="/adduser">Create Account</Link></li>
+              <li><Link className="dropdown-item" to="/edituser">Edit Account</Link></li>
             </ul>
           </div>
         </div>
