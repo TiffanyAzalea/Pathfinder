@@ -44,7 +44,7 @@ export default function LogIn() {
             navigate("/"); // Navigate to the desired location after successful login
         } catch (error) {
             console.error('Login failed:', error.message);
-            navigate("/login"); // Navigate to the login page in case of login failure
+            navigate("/login"); // Reroute to the login page in case of login failure
         }
     };
 
@@ -60,9 +60,11 @@ export default function LogIn() {
                     <label htmlFor="password"><strong>Password</strong></label>
                     <input type="password" placeholder='Enter Password' className='form-control rounded-0' value={password} onChange={handlePasswordChange}/>
                 </div>
-                <button type='submit' className='btn btn-success w-100'>Log In</button>
-                <p></p>
-                <button className='btn btn-default border w-100 bg-light'>Create Account</button>
+                <div>
+                    <button type='submit' className='btn btn-success w-100'>Log In</button>
+                    <p></p>
+                    <button className='btn btn-default border w-100 bg-light'>Create Account</button>
+                </div>
             </form>
         </div>
     </div>
