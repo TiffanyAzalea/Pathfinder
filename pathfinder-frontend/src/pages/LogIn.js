@@ -1,7 +1,13 @@
 
 import React, { useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
+
+  
 
 export default function LogIn() {
+
+    let navigate = useNavigate();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -18,21 +24,27 @@ export default function LogIn() {
         e.preventDefault();
         
         try {
-            const response = await fetch('http://localhost:8080/login', {
-                method: 'POST',
+            const response = await axios.post('http://localhost:8080/login', {
+                username,
+                password
+            }, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username, password }),
+                withCredentials: true
             });
-
-            if (!response.ok) {
+    
+            console.log(JSON.stringify(response?.data));
+    
+            if (response.status !== 200) {
                 throw new Error('Invalid credentials');
             }
-
+    
             console.log('Login successful');
+            navigate("/"); // Navigate to the desired location after successful login
         } catch (error) {
             console.error('Login failed:', error.message);
+            navigate("/login"); // Navigate to the login page in case of login failure
         }
     };
 
