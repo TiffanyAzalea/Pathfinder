@@ -22,7 +22,7 @@ public class AuthenticationController {
     @Autowired
     UserRepository userRepository;
 
-    private static  final String userSessionKey = "user";
+    private static final String userSessionKey = "user";
 
     public User getUserFromSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
@@ -44,7 +44,7 @@ public class AuthenticationController {
 
     //Login form
     @GetMapping("/login")
-    public String displayLoginForm(Model model) {
+    public String displayLoginForm(Model model, HttpSession session) {
         model.addAttribute(new LoginFormDTO());
         model.addAttribute("title", "Log In");
         return "login";
@@ -80,7 +80,13 @@ public class AuthenticationController {
         setUserInSession(request.getSession(), theUser);
 
         //redirect to home page?
-        return "redirect:home";
+        return "redirect:/";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "redirect:/login";
     }
 
 }

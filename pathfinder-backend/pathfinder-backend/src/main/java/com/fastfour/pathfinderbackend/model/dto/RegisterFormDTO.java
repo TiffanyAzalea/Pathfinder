@@ -1,6 +1,6 @@
 package com.fastfour.pathfinderbackend.model.dto;
 
-public class RegisterFormDTO {
+public class RegisterFormDTO extends LoginFormDTO {
 
     private String verifyPassword;
 
