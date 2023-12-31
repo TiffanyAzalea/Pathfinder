@@ -34,17 +34,17 @@ export default function LogIn() {
                 withCredentials: true
             });
     
-            console.log(JSON.stringify(response?.data));
     
-            if (response.status !== 200) {
+            if (response.status === 200) {
+                console.log('Login successful');
+                navigate("/"); // Navigate to home page after successful login
+            } else {
                 throw new Error('Invalid credentials');
             }
-    
-            console.log('Login successful');
-            navigate("/"); // Navigate to the desired location after successful login
+
         } catch (error) {
             console.error('Login failed:', error.message);
-            navigate("/login"); // Reroute to the login page in case of login failure
+             // Reroute to the login page in case of login failure
         }
     };
 
@@ -63,7 +63,7 @@ export default function LogIn() {
                 <div>
                     <button type='submit' className='btn btn-success w-100'>Log In</button>
                     <p></p>
-                    <button className='btn btn-default border w-100 bg-light'>Create Account</button>
+                    <button className='btn btn-default border w-100 bg-light'><Link to="/adduser" >Create Account</Link></button>
                 </div>
             </form>
         </div>
