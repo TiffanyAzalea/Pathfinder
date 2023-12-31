@@ -13,7 +13,11 @@ import Corousal from './layout/Corousal';
 import CreateHike from './components/CreateHike';
 import EditUser from './users/EditUser';
 import React from 'react';
+<<<<<<< HEAD
 import LogIn from './pages/LogIn';
+=======
+import ViewUser from './users/ViewUser';
+>>>>>>> 3e5e2c718fa0e715f2465cb3bc0c3a72a64996f2
 
 function App() {
 
@@ -24,13 +28,15 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/adduser" element={<AddUser />} />
+<<<<<<< HEAD
           <Route exact path="/edituser" element={<EditUser />} />
           <Route exact path="/login" element={<LogIn />} />
+=======
+          <Route exact path="/edituser/:id" element={<EditUser />} />
+          <Route exact path="/viewuser/:id" element={<ViewUser />} />
+>>>>>>> 3e5e2c718fa0e715f2465cb3bc0c3a72a64996f2
         </Routes>
       </BrowserRouter>
-      <NavbarForHome />
-
-      <CreateHike />
     </div>
   );
 }
