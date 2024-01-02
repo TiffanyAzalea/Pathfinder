@@ -20,35 +20,42 @@ export default function LogIn() {
         setPassword(e.target.value);
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        
-        try {
-            const response = await axios.post('http://localhost:8080/login', {
-                username,
-                password
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                withCredentials: true
-            });
     
+        const formData = new FormData(e.target);
     
-            if (response.status === 200) {
-                console.log('Login successful');
-                navigate("/"); // Navigate to home page after successful login
+        fetch("http://localhost:8080/login", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: formData.get('username'),
+            password: formData.get('password'),
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if(data.fieldErrors) {
+              data.fieldErrors.forEach(fieldError => {
+                if(fieldError.field === 'username'){
+                  setUsernameError(fieldError.message);
+                }
+    
+                if(fieldError.field === 'password'){
+                  setPasswordError(fieldError.message);
+                }
+              });
             } else {
-                throw new Error('Invalid credentials');
+              alert("Success !!");
             }
-
-        } catch (error) {
-            console.error('Login failed:', error.message);
-             // Reroute to the login page in case of login failure
-        }
-    };
-
-  return (
+          })
+          .catch((err) => console.error(err));
+    };  
+    
+    return (
     <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
         <div className='big-white p-3 rounded w-25'>
             <form onSubmit={handleSubmit}>
