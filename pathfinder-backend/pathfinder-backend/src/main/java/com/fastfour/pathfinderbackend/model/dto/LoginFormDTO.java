@@ -14,7 +14,7 @@ public class LoginFormDTO {
 
     @NotNull(message = "Password is required.")
     @NotBlank
-    @Size(min = 6, message = "Password should be at least 6 characters.")
+    @Size(min = 4, message = "Password should be at least 4 characters.")
     private String password;
 
     public String getUsername() {
