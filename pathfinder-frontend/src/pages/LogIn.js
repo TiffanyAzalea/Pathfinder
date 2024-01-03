@@ -7,53 +7,52 @@ import axios from 'axios';
 
 export default function LogIn() {
 
-    let navigate = useNavigate();
+  let navigate = useNavigate();
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
 
-    const handleUsernameChange = (e) => {
-        setUsername(e.target.value);
-    };
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    
-        const formData = new FormData(e.target);
-    
-        fetch("http://localhost:8080/login", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username: formData.get('username'),
-            password: formData.get('password'),
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if(data.fieldErrors) {
-              data.fieldErrors.forEach(fieldError => {
-                if(fieldError.field === 'username'){
-                  setUsernameError(fieldError.message);
-                }
-    
-                if(fieldError.field === 'password'){
-                  setPasswordError(fieldError.message);
-                }
-              });
-            } else {
-              alert("Success !!");
-            }
-          })
-          .catch((err) => console.error(err));
-    };  
+  const handleUsernameChange = (e) => {
+      setUsername(e.target.value);
+  };
+
+
+  const handlePasswordChange = (e) => {
+      setPassword(e.target.value);
+  };
+
+
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+     
+      try {
+          const response = await axios.post('http://localhost:8080/login', {
+              username,
+              password
+          }, {
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              withCredentials: true
+          });
+          console.log(JSON.stringify(response?.data));
+ 
+          if (response.status === 200) {
+              console.log('Login successful');
+              navigate("/"); // Navigate to home page after successful login
+          } else {
+              throw new Error('Invalid credentials');
+          }
+
+
+      } catch (error) {
+          console.error('Login failed:', error.message);
+           // Reroute to the login page in case of login failure
+      }
+  };
+
     
     return (
     <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
