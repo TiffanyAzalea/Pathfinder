@@ -5,6 +5,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpdHRpYWthc2F0dGkiLCJhIjoiY2xwenY1cmVtMTBzZDJrcW5yb2Y5cjRzNSJ9.SYzooukcLn0gjeS-VTjdgw';
 
@@ -49,7 +50,7 @@ export default function CreateHike() {
       distance: feature.properties.GIS_MILES.toFixed(2),
       date: hikeDate.toLocaleDateString()
     })
-    navigate("/allhikes")
+    navigate("/userhomepage")
 
   }
 
@@ -108,7 +109,11 @@ export default function CreateHike() {
   }
 
   return (
+    
     <div>
+      <div className='homepagebutton'>
+      <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
+      </div>
       {/* <div className="sidebar">
         Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
       </div> */}

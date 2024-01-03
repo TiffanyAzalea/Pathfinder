@@ -79,3 +79,12 @@ code {
   
  
 }
+.center{
+  margin-left: auto;
+  margin-right: auto;
+}
+div.homepagebutton{
+  
+  right: 0;
+ 
+}
