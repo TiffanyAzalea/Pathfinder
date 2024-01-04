@@ -1,5 +1,6 @@
 package com.fastfour.pathfinderbackend.model;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,7 +35,7 @@ public class User {
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(  name = "user_roles",
+    @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
@@ -47,3 +48,8 @@ public class User {
         this.email = email;
         this.password = password;
     }
+
+    public Collection<Object> getRoles() {
+        return null;
+    }
+}
