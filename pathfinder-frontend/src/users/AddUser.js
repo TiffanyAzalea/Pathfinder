@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import { useState , useRef , useEffect , useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
 export default function AddUser() {
@@ -13,7 +13,15 @@ export default function AddUser() {
     email: ""
   });
 
+  const [errMsg, setErrMsg] = useState('');
+  const errRef = useRef();
+  const userRef = useRef();
+
   const { firstName, lastName, username, password, email } = user;
+
+  useEffect(() => {
+    setErrMsg('');
+}, [username, password])
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -21,8 +29,28 @@ export default function AddUser() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8080/user", user);
-    navigate("/");
+
+    try {
+      const response = await axios.post("http://localhost:8080/user", user);
+      console.log(JSON.stringify(response?.data));
+      console.log(JSON.stringify(response));
+      const responseUser = JSON.stringify(response?.data?.username);
+      const responsePw = JSON.stringify(response?.data?.password);
+      // setUser({firstName: "",
+      // lastName: "",
+      // username: "",
+      // password: "",
+      // email: ""});
+      navigate("/");
+  } catch (err) {
+      if (!err?.response) {
+          setErrMsg('No server response.');
+      // } else if (responseUser == null) {
+      //   setErrMsg('Incorrect or unavailable username.')
+      // } else if (responsePw == null) {
+      //   setErrMsg('Incorrect or missing password.')
+      }
+    }
   };
 
   return (
@@ -32,7 +60,7 @@ export default function AddUser() {
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
         
           <h2 className="text-center m-4">Become a Pathfinder!</h2>
-          
+          <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3" style={{textAlign: 'left'}}>
               <label htmlFor="firstName" className="form-label">
@@ -42,6 +70,7 @@ export default function AddUser() {
                 className="form-control"
                 placeholder="Edmund"
                 name="firstName"
+                id="firstName"
                 value={firstName}
                 onChange={(e) => onInputChange(e)}
               />
@@ -55,6 +84,7 @@ export default function AddUser() {
                 className="form-control"
                 placeholder="Hillary"
                 name="lastName"
+                id="lastName"
                 value={lastName}
                 onChange={(e) => onInputChange(e)}
               />
@@ -68,7 +98,9 @@ export default function AddUser() {
                 className="form-control"
                 placeholder="sireddyhills"
                 name="username"
+                id="username"
                 value={username}
+                required
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -81,7 +113,9 @@ export default function AddUser() {
                 className="form-control"
                 placeholder="icl1mb3verest"
                 name="password"
+                id="password"
                 value={password}
+                required
                 onChange={(e) => onInputChange(e)}
               />
             </div>

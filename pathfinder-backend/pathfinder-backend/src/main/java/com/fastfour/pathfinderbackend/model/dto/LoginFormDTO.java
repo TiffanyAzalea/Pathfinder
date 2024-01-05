@@ -1,21 +1,20 @@
 package com.fastfour.pathfinderbackend.model.dto;
 
+import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 
 public class LoginFormDTO {
 
-    @NotNull(message = "Username is required.")
-    @NotBlank
-    @Size(min = 1, message = "Username is invalid.")
     private String username;
-
-
-    @NotNull(message = "Password is required.")
-    @NotBlank
-    @Size(min = 6, message = "Password should be at least 6 characters.")
     private String password;
+
+    public LoginFormDTO(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public String getUsername() {
         return username;
@@ -31,5 +30,13 @@ public class LoginFormDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "LoginFormDTO{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
