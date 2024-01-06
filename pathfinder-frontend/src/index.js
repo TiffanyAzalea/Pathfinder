@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const cors = require('cors');
+//const cors = require('cors');
 
 
 root.render(
