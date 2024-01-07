@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect,useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import '../App.css';
 
 
 export default function EditUser() {
@@ -23,17 +24,21 @@ export default function EditUser() {
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios.post("http://localhost:8080/user", user);
-    navigate("/");
+    navigate("/userhomepage");
   };
+  const {id}=useParams();
 
-  const YourComponent = () => {
-    const handleClose = () => {
-      // Add your close logic here
-      console.log('Close button clicked!');
-    };
-  }
+    useEffect(()=>{
+        loadUser()
+    },[])
+
+    const loadUser= async ()=>{
+        const result=await axios.get(`http://localhost:8080/user/${id}`)
+        setUser(result.data)
+    }
   
   return (
+    
     <div className="container">
     <div className="row">
       <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
@@ -49,7 +54,7 @@ export default function EditUser() {
               className="form-control"
               placeholder="Change your First name here"
               name="firstName"
-              value={firstName}
+              value={user.firstName}
               onChange={(e) => onInputChange(e)}
             />
           </div>
@@ -62,7 +67,7 @@ export default function EditUser() {
               className="form-control"
               placeholder="Change your Last name here"
               name="lastName"
-              value={lastName}
+              value={user.lastName}
               onChange={(e) => onInputChange(e)}
             />
           </div>
@@ -75,7 +80,7 @@ export default function EditUser() {
               className="form-control"
               placeholder="Change your Username here"
               name="username"
-              value={username}
+              value={user.username}
               onChange={(e) => onInputChange(e)}
             />
           </div>
@@ -88,7 +93,7 @@ export default function EditUser() {
                 className="form-control"
                 placeholder="Change your Password here"
                 name="password"
-                value={password}
+                value={user.password}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -101,7 +106,7 @@ export default function EditUser() {
                 className="form-control"
                 placeholder="Change your E-mail here"
                 name="email"
-                value={email}
+                value={user.email}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -115,6 +120,7 @@ export default function EditUser() {
       </div>
     </div>
   </div>
+  
   );
 }
 

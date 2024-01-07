@@ -1,0 +1,43 @@
+.social-container {
+    
+    padding: 2px 5px;
+  }
+
+  a.social {
+    margin: 0 1rem;
+    transition: transform 250ms;
+    display: inline-block;
+  }
+  a.social:hover {
+    transform: rotate(360deg);
+  }
+
+  a.youtube {
+    background: #eee;
+    border-radius: 7px;
+  color: #eb3223;
+}
+
+a.facebook {
+    background: #eee;
+    border-radius: 5px;
+    width: auto;
+    padding: 2px;
+  color: #4968ad;
+}
+
+a.twitter {
+    background: #eee;
+    border-radius: 7px;
+    width: auto;
+    padding: 2px;
+  color: #49a1eb;
+}
+
+a.instagram {
+  background: #eee;
+  background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
+  border-radius: 5px;
+  width: auto;
+  padding: 3px;
+}
