@@ -69,6 +69,7 @@ export default function CreateHike() {
         setLat(map.current.getCenter().lat.toFixed(4));
         setZoom(map.current.getZoom().toFixed(2));
         console.log(map.current.getStyle().layers)
+<<<<<<< HEAD
       });
 
 
@@ -99,6 +100,38 @@ export default function CreateHike() {
           .addTo(map.current);
         <h1>Trail Details</h1>
       });
+=======
+      });
+
+
+      map.current.on('click', (event) => {
+        const features = map.current.queryRenderedFeatures(event.point, {
+          layers: ['mo-trails-parsed']
+        });
+        if (!features.length) {
+          return;
+        }
+        const feature = features[0];
+        //setSelectedCoordinates(feature.geometry.coordinates)
+        setFeature(feature);
+
+        const popup = new mapboxgl.Popup({ offset: [0, -15] })
+          .setLngLat(feature.geometry.coordinates)
+          .setHTML(
+            `<h6>${feature.properties.TRAIL_NAME}</h6>
+          <p style="margin-bottom: 0" >${feature.properties.AREA_NAME}</p>
+          <p style="margin-bottom: 0" >${feature.properties.WALKING}</p>
+          <p style="margin-bottom: 0" >${feature.properties.BIKING}</p>
+          <p style="margin-bottom: 0" >${Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
+          
+          
+          `
+
+          )
+          .addTo(map.current);
+        <h1>Trail Details</h1>
+      });
+>>>>>>> main
     }
   });
 
@@ -130,7 +163,11 @@ export default function CreateHike() {
               <p value={distance} onChange={(e) => onInputChange(e)}>{Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
               <p value={date} onChange={(e) => onInputChange(e)}>${hikeDate.toLocaleDateString()}</p>
             </div>
+<<<<<<< HEAD
             <button to='/viewhike' type='submit' value={"createHike"}>Create Hike</button>
+=======
+            <button type='submit' value={"createHike"}>Create Hike</button>
+>>>>>>> main
           </form>
           //<LogoutButton onClick={this.handleLogoutClick} />
         ) : (
@@ -140,6 +177,20 @@ export default function CreateHike() {
 
       </div>
 
+<<<<<<< HEAD
+=======
+
+
+
+
+      <div className='calendar'>
+        <Calendar onChange={changeValue} value={hikeDate} />
+        <p>The selected date is - {hikeDate.toLocaleDateString()}</p>
+      </div>
+    </div>
+  );
+}
+>>>>>>> main
 
 
 

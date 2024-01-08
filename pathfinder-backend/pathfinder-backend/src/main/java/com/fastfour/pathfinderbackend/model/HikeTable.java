@@ -73,4 +73,8 @@ public class HikeTable {
     public void setDate(String date) {
         this.date = date;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main

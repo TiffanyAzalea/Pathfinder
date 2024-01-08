@@ -12,7 +12,10 @@ import NavbarForHome from './HomePage/NavbarForHome';
 import Corousal from './layout/Corousal';
 import CreateHike from './components/CreateHike';
 import EditUser from './users/EditUser';
+import UserHomePage from './pages/UserHomePage';
+import AllHikes from './pages/AllHikes';
 import React from 'react';
+import Login from './pages/Login';
 import ViewUser from './users/ViewUser';
 import DeleteUser from './users/DeleteUser';
 import UserHomePage from './pages/UserHomePage';
@@ -29,6 +32,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/adduser" element={<AddUser />} />
+<<<<<<< HEAD
           <Route exact path="/edituser/:id" element={<EditUser />} />
           <Route exact path="/viewuser/:id" element={<ViewUser />} />
           <Route exact path="/deleteuser/:id" element={<DeleteUser />} />
@@ -37,8 +41,20 @@ function App() {
           <Route exact path="/allhikes" element={<AllHikes/>} />
           <Route exact path="/explore" element={<Explore/>} />
           <Route exact path="/viewhike/:id" element={<ViewHike/>} />
+=======
+          <Route exact path="/login" element={<Login />} />
+           <Route exact path="/edituser/:id" element={<EditUser />} />
+           <Route exact path="/viewuser/:id" element={<ViewUser />} />
+          <Route exact path="/userhomepage" element={<UserHomePage />} />
+          <Route exact path="/createhike" element={<CreateHike />} />
+          <Route exact path="/allhikes" element={<AllHikes/>} />
+>>>>>>> main
         </Routes>
       </BrowserRouter>
+      {/* <NavbarForHome /> */}
+      {/* <UserHomePage /> */}
+
+      {/* <CreateHike /> */}
     </div>
   );
 }
