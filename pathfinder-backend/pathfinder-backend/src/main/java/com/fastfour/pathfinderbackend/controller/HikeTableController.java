@@ -1,10 +1,7 @@
 package com.fastfour.pathfinderbackend.controller;
 
-<<<<<<< HEAD
 import com.fastfour.pathfinderbackend.exception.HikeNotFoundException;
 import com.fastfour.pathfinderbackend.exception.UserNotFoundException;
-=======
->>>>>>> main
 import com.fastfour.pathfinderbackend.model.HikeTable;
 import com.fastfour.pathfinderbackend.repository.HikeTableRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +24,7 @@ public class HikeTableController {
         return hikeTableRepo.findAll();
     }
 
-<<<<<<< HEAD
+
     @PutMapping("/edithike/{id}")
     HikeTable updateUser(@RequestBody HikeTable newHike, @PathVariable Long id) {
         if(!hikeTableRepo.existsById(id)){
@@ -55,8 +52,5 @@ public class HikeTableController {
     }
 
 
+}
 
-}
-=======
-}
->>>>>>> main
