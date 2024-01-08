@@ -23,7 +23,7 @@ function Footer() {
               type='email'
               placeholder='Your Email'
             />
-            <Button buttonStyle='btn--outline'>Subscribe</Button>
+            <Button buttonStyle='button'>Subscribe</Button>
           </form>
         </div>
       </section>
@@ -49,21 +49,17 @@ function Footer() {
             <Link to='/'>Submit Video</Link>
         
           </div>
+          <div className='footer-link-wrapper'>
           <div class='footer-link-items'>
-            
+          <h2>Social Media</h2>
             <SocialFollow/>
-            
+            </div>
           </div>
         </div>
       </div>
       <section class='social-media'>
         <div class='social-media-wrap'>
-          <div class='footer-logo'>
-            <Link to='/' className='social-logo'>
-            <img src={logo}alt="logo"></img>PathFinder
-              <i class='fab fa-typo3' />
-            </Link>
-          </div>
+         
           <small class='website-rights'>PathFinder © 2024</small>
           
         </div>

@@ -3,18 +3,19 @@ import '../App.css';
 import Cards from '../HomePage/Cards';
 import HeroSection from '../HomePage/HeroSection';
 import Footer from '../HomePage/Footer';
+import NavbarForHome from '../HomePage/NavbarForHome';
 
 function Home() {
   return (
-    <div>Home</div>
-    );
-   {/*<>
+  
+    
+   <><NavbarForHome/>
       <HeroSection />
       <Cards />
-      <Footer />
+      
   </>
-  */}
-  
+ );
+{/*<div>Home</div>*/}
   
 }
 

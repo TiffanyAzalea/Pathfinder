@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect,useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import NavbarBS from "../layout/NavbarBS";
 
 
 
@@ -38,6 +39,8 @@ const loadUser= async ()=>{
 }
   
   return (
+    <section className="section">
+      <NavbarBS/>
     <div className="container">
         <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
@@ -59,6 +62,7 @@ const loadUser= async ()=>{
             </div>
         </div>
     </div>
+    </section>
 
   );
 }

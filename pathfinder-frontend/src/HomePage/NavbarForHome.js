@@ -51,15 +51,7 @@ function NavbarForHome() {
                Explore
               </Link>
             </li>
-            <li className='nav-item'>
-              <Link
-                to='/carditem'
-                className='nav-links'
-                onClick={closeMobileMenu}
-              >
-                All Hikes
-              </Link>
-            </li>
+            
             <li className='nav-item'>
               <Link
                 to='/login'
@@ -71,7 +63,7 @@ function NavbarForHome() {
             
             </li>
           </ul>
-          {button && <Button to="/login">Log In</Button>}
+         
         </div>
       </nav>
     </>

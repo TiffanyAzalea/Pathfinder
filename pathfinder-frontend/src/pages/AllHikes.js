@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-<<<<<<< HEAD
 import { useParams, useNavigate } from "react-router-dom";
+import NavbarForHome from '../HomePage/NavbarForHome';
+import NavbarBS from '../layout/NavbarBS';
 
 export default function AllHikes() {
     const [allhikes, setAllHikes] = useState([]);
     let navigate = useNavigate();
-=======
-
-export default function AllHikes() {
-    const [allhikes, setAllHikes] = useState([]);
->>>>>>> main
 
 
     useEffect(() => {
@@ -21,7 +17,6 @@ export default function AllHikes() {
         const result = await axios.get("http://localhost:8080/allhikes");
         setAllHikes(result.data);
     }
-<<<<<<< HEAD
     const onSubmit = async (e) => {
         e.preventDefault();
         await axios.post("http://localhost:8080/hiketable", allhikes);
@@ -37,14 +32,11 @@ export default function AllHikes() {
         const result=await axios.get(`http://localhost:8080/hiketable/${id}`)
         setAllHikes(result.data)
     }
-=======
-
-
-
->>>>>>> main
 
 
     return (
+        <section className='section'>
+            <NavbarBS/>
         <div className='hikescontainer'>
             <div className='py-4'>
                 <table className="table border shadow">
@@ -61,10 +53,6 @@ export default function AllHikes() {
                         </tr>
                     </thead>
                     <tbody>
-<<<<<<< HEAD
-                    
-=======
->>>>>>> main
                         {allhikes.map((hike, index) => (
                             <tr>
                                 <th scope="row" key={index}>{index + 1}</th>
@@ -76,29 +64,17 @@ export default function AllHikes() {
                                 <td>{hike.date}</td>
                                 <td>
                                     <button className='btn btn-primary mx2'>Edit</button>
-<<<<<<< HEAD
-                                    <button to='/allhikes'className='btn btn-danger mx2'>Cancel</button>
-=======
-                                    <button className='btn btn-danger mx2'>Cancel</button>
->>>>>>> main
+                                    <button to='/allhikes'className='btn btn-danger mx2'>Delete</button>
                                 </td>
                             </tr>
                         ))}
 
-<<<<<<< HEAD
                         
                     </tbody>
                 
-=======
-
-                    </tbody>
->>>>>>> main
                 </table>
             </div>
         </div>
+        </section>
     )
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> main

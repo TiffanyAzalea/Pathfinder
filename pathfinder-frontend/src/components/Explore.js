@@ -27,20 +27,10 @@ export default function CreateHike() {
     date: ""
   })
   const { trailName, areaName, walkable, bikeFriendly, distance, date } = hike
-  const onInputChange = (e) => {
-
-  }
+ 
   const onSubmit = async (e) => {
     e.preventDefault();
-    // await setHike({
-    //   trailName: feature.properties.TRAIL_NAME,
-    //   areaName: feature.properties.AREA_NAME,
-    //   walkable: feature.properties.WALKING,
-    //   bikable: feature.properties.BIKING,
-    //   distance: feature.properties.GIS_MILES,
-    //   date: hikeDate.toLocaleDateString()
-    // })
-    // console.log(hike);
+    
     await axios.post("http://localhost:8080/createhike", {
       trailName: feature.properties.TRAIL_NAME,
       areaName: feature.properties.AREA_NAME,
@@ -95,8 +85,7 @@ export default function CreateHike() {
           `
 
           )
-          .addTo(map.current);
-        <h1>Trail Details</h1>
+        
       });
     }
   });

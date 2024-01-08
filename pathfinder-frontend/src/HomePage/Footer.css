@@ -135,6 +135,8 @@
 .website-rights {
   color: #fff;
   margin-bottom: 16px;
+  align-items: center;
+  text-align: center;
 }
 
 @media screen and (max-width: 820px) {

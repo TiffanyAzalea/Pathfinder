@@ -2,8 +2,9 @@ import { useState, useRef, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthProvider';
 import axios from 'axios';
+import NavbarForHome from '../HomePage/NavbarForHome';
 
-const Login = () => {
+const LogIn = () => {
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
@@ -40,7 +41,7 @@ const Login = () => {
             setAuth({ username, password });
             setUsername('');
             setPassword('');
-            navigate("/");
+            navigate("/userhomepage");
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No server response.');
@@ -59,6 +60,7 @@ const Login = () => {
 
     return (
         <section>
+          <NavbarForHome/>
             <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
                 <div className='big-white p-3 rounded w-25'>
                     <div>
@@ -100,4 +102,4 @@ const Login = () => {
         </section >
     )
 }
-export default Login
+export default LogIn;

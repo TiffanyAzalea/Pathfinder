@@ -12,7 +12,7 @@ function HeroSection() {
       <p>What are you waiting for?</p>
       <div className='hero-btns'>
         <Button
-          classname="btn--outline"
+          classname="button"
         >
           GET STARTED
         </Button>
