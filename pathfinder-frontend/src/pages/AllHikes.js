@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useParams, useNavigate } from "react-router-dom";
-import NavbarForHome from '../HomePage/NavbarForHome';
 import NavbarBS from '../layout/NavbarBS';
 
 export default function AllHikes() {

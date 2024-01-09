@@ -19,9 +19,7 @@ export default function DeleteUser() {
   const {id}=useParams();
   const { firstName, lastName, username, password, email } = user;
 
-  const onInputChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
+
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -48,13 +46,13 @@ const loadUser= async ()=>{
             <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3"></div>
             <label htmlFor="username" className="form-label">
-            Are you sure you want to delete your account
+            Are you sure {user.username}, Do you want to delete your account?
               </label>
                 <div className="mb-3">
-                <button type="submit" to={"/"} className="btn btn-danger ">
+                <button type="submit" to={"/"} className="button1 btn-danger ">
             Delete
           </button>
-                    <Link to={`/viewuser/${user.id}`} className="btn btn-primary mx-2">
+                    <Link to={`/viewuser/${user.id}`} className="button mx-2">
                     Cancel
                 </Link>
                 </div>
