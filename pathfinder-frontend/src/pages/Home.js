@@ -8,12 +8,13 @@ import NavbarForHome from '../HomePage/NavbarForHome';
 function Home() {
   return (
   
-    
-   <><NavbarForHome/>
+    <div>
+   <NavbarForHome/>
       <HeroSection />
       <Cards />
       
-  </>
+  
+  </div>
  );
 {/*<div>Home</div>*/}
   

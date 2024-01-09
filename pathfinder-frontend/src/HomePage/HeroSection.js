@@ -10,9 +10,9 @@ function HeroSection() {
 
       <h1>ADVENTURE AWAITS</h1>
       <p>What are you waiting for?</p>
-      <div className='hero-btns'>
+      <div classname="button">
         <Button
-          classname="button"
+          
         >
           GET STARTED
         </Button>

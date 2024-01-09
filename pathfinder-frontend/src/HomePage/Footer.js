@@ -23,7 +23,7 @@ function Footer() {
               type='email'
               placeholder='Your Email'
             />
-            <Button buttonStyle='button'>Subscribe</Button>
+            <a href="/login" className='button'>Subscribe</a>
           </form>
         </div>
       </section>

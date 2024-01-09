@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect,useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import '../App.css';
+import NavbarBS from "../layout/NavbarBS";
 
 
 export default function EditUser() {
@@ -38,12 +39,13 @@ export default function EditUser() {
     }
   
   return (
-    
-    <div className="container">
-    <div className="row">
+    <div className="section1">
+    <NavbarBS/>
+    <div className="container ">
+    <div className="row ">
       <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
       
-        <h2 className="text-center">Save Changes!</h2>
+        <h2 >Save Changes!</h2>
         <form onSubmit={(e) => onSubmit(e)}>
           <div className="mb-3">
             <label htmlFor="firstName" className="form-label">
@@ -110,17 +112,17 @@ export default function EditUser() {
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-          <button type="submit" className="btn btn-outline-primary">
+          <button type="submit" className="button">
             Submit
           </button>
-          <button type="submit" className="btn btn-outline-danger mx-2">
+          <button type="submit" className="button1 mx-2">
               Cancel
             </button>
         </form>
       </div>
     </div>
   </div>
-  
+  </div>
   );
 }
 

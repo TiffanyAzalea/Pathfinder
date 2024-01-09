@@ -27,11 +27,11 @@ function NavbarForHome() {
 
   return (
     <>
-      <nav className='navbar'>
-        <div className='navbar-container'>
+      <nav className='navbar' position= "fixed">
+        <div className='navbar-container' >
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
             <img src={logo}alt="logo"></img>PathFinder
-            <i className='fab fa-typo3' />
+            
           </Link>
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />

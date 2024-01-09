@@ -15,8 +15,8 @@ public class HikeTableController {
     @Autowired
     private HikeTableRepo hikeTableRepo;
     @PostMapping("/createhike")
-    HikeTable newHike(@RequestBody HikeTable newHike){
-        return hikeTableRepo.save(newHike);
+    HikeTable newHikeTable(@RequestBody HikeTable newHikeTable){
+        return hikeTableRepo.save(newHikeTable);
     }
 
     @GetMapping("/allhikes")
@@ -26,24 +26,24 @@ public class HikeTableController {
 
 
     @PutMapping("/edithike/{id}")
-    HikeTable updateUser(@RequestBody HikeTable newHike, @PathVariable Long id) {
+    HikeTable updatehike(@RequestBody HikeTable newHikeTable, @PathVariable Long id) {
         if(!hikeTableRepo.existsById(id)){
             throw new HikeNotFoundException(id);
         }
         return hikeTableRepo.findById(id)
                 .map(hikeTable -> {
-                    hikeTable.setTrailName(newHike.getTrailName());
-                    hikeTable.setAreaName(newHike.getAreaName());
-                    hikeTable.setWalkable(newHike.getWalkable());
-                    hikeTable.setBikeFriendly(newHike.getBikeFriendly());
-                    hikeTable.setDistance(newHike.getDistance());
-                    hikeTable.setDate(newHike.getDate());
+                    hikeTable.setTrailName(newHikeTable.getTrailName());
+                    hikeTable.setAreaName(newHikeTable.getAreaName());
+                    hikeTable.setWalkable(newHikeTable.getWalkable());
+                    hikeTable.setBikeFriendly(newHikeTable.getBikeFriendly());
+                    hikeTable.setDistance(newHikeTable.getDistance());
+                    hikeTable.setDate(newHikeTable.getDate());
                     return hikeTableRepo.save(hikeTable);
                 }).orElseThrow(() -> new UserNotFoundException(id));
     }
 
     @DeleteMapping("/deletehike/{id}")
-    String deleteUser(@PathVariable Long id){
+    String deletehike(@PathVariable Long id){
         if(!hikeTableRepo.existsById(id)){
             throw new HikeNotFoundException(id);
         }

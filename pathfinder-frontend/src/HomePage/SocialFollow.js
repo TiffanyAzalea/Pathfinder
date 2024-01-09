@@ -13,7 +13,7 @@ export default function SocialFollow(){
     return(
   <div class="social-container">
       
-      <a href="https://www.youtube.com/c/jamesqquick"
+      <a href="https://youtu.be/Bubb94PWO5w?si=j1PAHr3ZUVzif1wR"
         className="youtube social">
         <FontAwesomeIcon icon={faYoutube} size="2x" />
       </a>

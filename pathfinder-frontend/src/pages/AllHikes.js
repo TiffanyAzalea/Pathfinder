@@ -33,6 +33,10 @@ export default function AllHikes() {
         setAllHikes(result.data)
     }
 
+    const deletehike=async (id)=>{
+        await axios.delete(`http://localhost:8080/hiketable/${id}`)
+        loadUser();
+    }
 
     return (
         <section className='section'>
@@ -64,7 +68,7 @@ export default function AllHikes() {
                                 <td>{hike.date}</td>
                                 <td>
                                     <button className='btn btn-primary mx2'>Edit</button>
-                                    <button to='/allhikes'className='btn btn-danger mx2'>Delete</button>
+                                    <button to='/allhikes'className='btn btn-danger mx2'onClick={()=>deletehike(hike.id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}

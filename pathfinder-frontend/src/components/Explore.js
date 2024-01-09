@@ -5,10 +5,12 @@ import "react-calendar/dist/Calendar.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Explore.css';
+import NavbarBS from '../layout/NavbarBS';
+import NavbarForHome from '../HomePage/NavbarForHome';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpdHRpYWthc2F0dGkiLCJhIjoiY2xwenY1cmVtMTBzZDJrcW5yb2Y5cjRzNSJ9.SYzooukcLn0gjeS-VTjdgw';
 
-export default function CreateHike() {
+export default function Explore() {
   let navigate = useNavigate()
   const mapContainer = useRef(null);
   const map = useRef(null);
@@ -31,7 +33,7 @@ export default function CreateHike() {
   const onSubmit = async (e) => {
     e.preventDefault();
     
-    await axios.post("http://localhost:8080/createhike", {
+    await axios.post("http://localhost:8080/createHike", {
       trailName: feature.properties.TRAIL_NAME,
       areaName: feature.properties.AREA_NAME,
       walkable: feature.properties.WALKING,
@@ -89,23 +91,43 @@ export default function CreateHike() {
       });
     }
   });
+  const onInputChange = (e) => {
+
+  }
 
 
   
 
   return (
+    <div className='section'>
     
-    <div>
-     
-      <div id='map'ref={mapContainer} className="map-containers" />
-      <br></br><form onSubmit={(e) => onSubmit(e)}>
-<div> <button to='/viewhike' type='submit' value={"createHike"}>Create Hike</button>
-</div>
-</form>
-
-
-
+    <NavbarForHome/>
+        <div >
+    <div ref={mapContainer} className="map-containers" />
+    
+        <form onSubmit={(e) => onSubmit(e)}>
+        {Object.keys(feature).length ? (
+              <div class="split right">
+                <h1>Trail Details</h1>
+                    <div className='hike-details-table' >
+                      <h6 value={trailName} onChange={(e) => onInputChange(e)}>{feature.properties.TRAIL_NAME}</h6>
+                      <p value={areaName} onChange={(e) => onInputChange(e)}>{feature.properties.AREA_NAME}</p>
+                      <p value={walkable} onChange={(e) => onInputChange(e)}>{feature.properties.WALKING}</p>
+                      <p value={bikeFriendly} onChange={(e) => onInputChange(e)}>{feature.properties.BIKING}</p>
+                      <p value={distance} onChange={(e) => onInputChange(e)}>{Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
+                      <p value={date} onChange={(e) => onInputChange(e)}>${hikeDate.toLocaleDateString()}</p>
+                    </div>
+                
+              </div>
+          //<LogoutButton onClick={this.handleLogoutClick} />
+        ) : (
+          <div > </div>
+        )}
       
+        </form>
+      
+</div>
     </div>
+
   );
 }

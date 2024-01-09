@@ -15,7 +15,8 @@
     justify-content: center;
     align-items: center;
     height: 50px;
-    max-width: 1500px;
+    width: 1500px;
+    position: sticky;
   }
   
   .navbar-logo {
@@ -27,6 +28,8 @@
     font-size: 2rem;
     display: flex;
     align-items: center;
+    top:0;
+    position: sticky;
   }
   
   .fa-typo3 {
@@ -47,6 +50,7 @@
   
   .nav-item {
     height: 80px;
+    
   }
   
   .nav-links {
@@ -61,10 +65,11 @@
   .nav-links:hover {
     border-bottom: 4px solid #fff;
     transition: all 0.2s ease-out;
+    color: rgb(174, 231, 17);
   }
   
   .fa-bars {
-    color: #fff;
+    color: rgb(174, 231, 17);
   }
   
   .nav-links-mobile {

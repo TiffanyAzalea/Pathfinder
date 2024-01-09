@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from 'axios';
-import AllHikes from './AllHikes';
-import Footer from '../HomePage/Footer';
+
 import NavbarBS from '../layout/NavbarBS';
+import '../HomePage/Button.css';
 
 export default function UserHomePage() {
   let navigate = useNavigate();
+  
+  
   const [futureHikes, setFutureHikes] = useState()
   // function onClickHandle() {
   //   setFutureHikes(true);
@@ -16,16 +18,21 @@ export default function UserHomePage() {
     setFutureHikes(result.data);
     navigate("/allhikes");
   }
-
+ 
 
   return (
+<section className='section'>
+  <div><NavbarBS/></div>
 
-    <div className='section'>
-      <NavbarBS/>
+    <div >
+    
+      <div className='hero-containers'>
+      <image src='/public/images/img-9.jpg' />
+      <h1>Welcome Back!</h1>
       {/* <a className="btn btn-primary" href="#" role="button">Create Hike</a> */}
-      <Link className="btn btn-primary" to="/createhike">Create Hike</Link>
-      <button className="btn btn-primary" type="submit" onClick={loadAllHikes}>Future Hikes</button>
-      <button className="btn btn-primary" type="submit">Past Hikes</button>
+      <a href="/createhike" className="button">Create Hike</a>
+      <button className="button" type="submit" onClick={loadAllHikes}>Future Hikes</button>
+      <button className="button" type="submit">Past Hikes</button>
 
       {/* {
   futureHikes ? <div class="list-group">
@@ -60,7 +67,8 @@ export default function UserHomePage() {
 <input className="btn btn-primary" type="reset" value="Reset"></input> */}
 
    
-
 </div>
+</div>
+</section>
   )
 }
