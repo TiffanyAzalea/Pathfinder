@@ -123,12 +123,12 @@ export default function CreateHike() {
         {Object.keys(feature).length ? (
           <form onSubmit={(e) => onSubmit(e)}>
             <div className='hike-details-table'>
-              <h6 value={trailName} onChange={(e) => onInputChange(e)}>{feature.properties.TRAIL_NAME}</h6>
-              <p value={areaName} onChange={(e) => onInputChange(e)}>{feature.properties.AREA_NAME}</p>
+              <h6 value={trailName} >{feature.properties.TRAIL_NAME}</h6>
+              <p value={areaName} >{feature.properties.AREA_NAME}</p>
               <p value={walkable} onChange={(e) => onInputChange(e)}>{feature.properties.WALKING}</p>
               <p value={bikeFriendly} onChange={(e) => onInputChange(e)}>{feature.properties.BIKING}</p>
               <p value={distance} onChange={(e) => onInputChange(e)}>{Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
-              <p value={date} onChange={(e) => onInputChange(e)}>${hikeDate.toLocaleDateString()}</p>
+              <p value={date} onChange={(e) => onInputChange(e)}>{hikeDate.toLocaleDateString()}</p>
             </div>
             <button type='submit' value={"createHike"}>Create Hike</button>
           </form>
@@ -147,6 +147,11 @@ export default function CreateHike() {
       <div className='calendar'>
         <Calendar onChange={changeValue} value={hikeDate} />
         <p>The selected date is - {hikeDate.toLocaleDateString()}</p>
+      </div>
+      <div className='comments'>
+        <textarea style={{width: '30%', borderRadius: '0.25em'}}></textarea>
+        <button type='submit'>Comment</button>
+
       </div>
     </div>
   );
