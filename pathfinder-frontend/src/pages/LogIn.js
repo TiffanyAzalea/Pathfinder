@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthProvider';
 import axios from 'axios';
+import useAuth from '../hooks/useAuth';
 
 const Login = () => {
-    const { setAuth } = useContext(AuthContext);
+    const { setAuth } = useAuth;
     const userRef = useRef();
     const errRef = useRef();
 
@@ -13,7 +14,9 @@ const Login = () => {
     const [errMsg, setErrMsg] = useState('');
 
 
-    let navigate = useNavigate();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
         userRef.current.focus();
@@ -40,7 +43,7 @@ const Login = () => {
             setAuth({ username, password });
             setUsername('');
             setPassword('');
-            navigate("/");
+            navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No server response.');
