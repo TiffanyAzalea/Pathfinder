@@ -2,10 +2,8 @@ import { useState, useRef, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthProvider';
 import axios from 'axios';
-import NavbarForHome from '../HomePage/NavbarForHome';
-import '../HomePage/HeroSection';
 
-const LogIn = () => {
+const Login = () => {
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
@@ -42,7 +40,7 @@ const LogIn = () => {
             setAuth({ username, password });
             setUsername('');
             setPassword('');
-            navigate("/userhomepage");
+            navigate("/");
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No server response.');
@@ -61,16 +59,14 @@ const LogIn = () => {
 
     return (
         <section>
-          <NavbarForHome/>
-          <div className='hero-containers' >
-            <div className='d-flex justify-content-center align-items-center vw-100'>
+            <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
                 <div className='big-white p-3 rounded w-25'>
                     <div>
                         <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     </div>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
-                            <label htmlFor="username" className='text'>Username:</label>
+                            <label htmlFor="username">Username:</label>
                             <input
                                 type="text"
                                 id="username"
@@ -91,18 +87,17 @@ const LogIn = () => {
                                 required
                             />
                         </div>
-                        <button type='submit' className='button w-100'>Sign In</button>
+                        <button type='submit' className='btn btn-success w-100'>Sign In</button>
                     </form>
                     <p>
                         Want to become a Pathfinder?<br />
                         <span className="line">
-                            <button className='button w-100 bg-light'><Link to="/adduser" >Create Account</Link></button>
+                            <button className='btn btn-default border w-100 bg-light'><Link to="/adduser" >Create Account</Link></button>
                         </span>
                     </p>
                 </div>
             </div >
-            </div>
         </section >
     )
 }
-export default LogIn;
+export default Login
