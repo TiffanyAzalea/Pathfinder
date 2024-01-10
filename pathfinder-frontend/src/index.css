@@ -91,6 +91,7 @@ transform: translate(-50%, -100%);
 .center{
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 /*div.homepagebutton{
   
@@ -106,8 +107,9 @@ transform: translate(-50%, -100%);
   text-decoration: none;
   border-radius: 10px;
   display: inline-flex;
-  font-size: 15px;
+  font-size: 16px;
   margin: 4px 2px;
+
   
 }
 
@@ -129,8 +131,23 @@ p{
   right: 0;
 }
 .middle{
-  left: 25%;
+  
+  position:absolute;
+  z-index: 1;
+  padding-top: 20px;
+  left: 60%;
 }
 .left{
-  left: 2%;
+  left: 0;
+  background: rgb(205, 200, 200);
+}
+
+.box{
+  width: fit-content;
+  height: fit-content;
+  background: #57c0e8;
+  border-radius: 10px;
+  padding: 20px;
+
+  transform: translate(10%, 30%);
 }

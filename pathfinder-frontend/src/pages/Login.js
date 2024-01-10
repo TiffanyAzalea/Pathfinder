@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthProvider';
 import axios from 'axios';
+import NavbarForHome from '../HomePage/NavbarForHome';
 
 const LogIn = () => {
     const { setAuth } = useContext(AuthContext);
@@ -40,7 +41,7 @@ const LogIn = () => {
             setAuth({ username, password });
             setUsername('');
             setPassword('');
-            navigate("/");
+            navigate("/userhomepage");
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No server response.');
@@ -58,8 +59,10 @@ const LogIn = () => {
     }
 
     return (
-        <section>
-            <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
+
+        <section >
+            <NavbarForHome/>
+            <div className='d-flex justify-content-center align-items-center bg-primary section vh-100'>
                 <div className='big-white p-3 rounded w-25'>
                     <div>
                         <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>

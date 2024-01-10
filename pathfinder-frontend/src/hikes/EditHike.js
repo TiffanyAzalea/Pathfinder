@@ -1,18 +1,15 @@
 import axios from "axios";
 import React, { useEffect,useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import '../App.css';
+import { useParams, useNavigate, Link } from "react-router-dom";
+import './EditHike.css'
 import NavbarBS from "../layout/NavbarBS";
+import Calendar from "react-calendar";
 
 
 export default function EditHike() {
-  let navigate = useNavigate();
-  return(
-
+   return(
     <div>
         <NavbarBS/>
-        <div className="section">EditHike</div>
-        
-    </div>
-  );
+        Edit</div>
+   );
 }

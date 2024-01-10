@@ -15,6 +15,20 @@
   margin: 4px 2px;
   cursor: pointer;
 }
+.btn--button{
+  background-color: rgb(174, 231, 17);
+  transition: all 0.3s ease-out;
+  color: black;
+  border: 2px solid var(--primary);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+  color: black;
+  border-radius: 5px;
+}
 .button1 {
   background-color: rgb(234, 31, 48);
   border: none;
@@ -28,12 +42,19 @@
   margin: 4px 2px;
   cursor: pointer;
 }
+.button--primary {
+  background-color: blueviolet;
+  color: black;
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+}
+
 .btn {
   padding: 12px 24px;
   border-radius: 2px;
   cursor: pointer;
   color: inherit;
-  background-color: white;
+  background-color: rgb(174, 231, 17);
 }
 
 .btn--primary {

@@ -22,6 +22,8 @@ import Footer from './HomePage/Footer';
 import DeleteUser from './users/DeleteUser';
 import Explore from './components/Explore';
 import EditHike from './hikes/EditHike';
+import ViewHike from './hikes/ViewHike';
+
 
 function App() {
 
@@ -41,8 +43,10 @@ function App() {
           <Route exact path="/createhike" element={<CreateHike />} />
           <Route exact path="/allhikes" element={<AllHikes/>} />
           <Route exact path="/edithike/:id" element={<EditHike />} />
+          <Route exact path="/viewhike/:id" element={<ViewHike />} />
           <Route exact path="/explore" element={<Explore/>} />
         </Routes>
+        
         <Footer/>
       </BrowserRouter>
       

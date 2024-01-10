@@ -1,0 +1,18 @@
+.headind3{
+    text-align: left;
+    font-size: large;
+}
+
+.button-delete {
+    background-color: rgb(48, 155, 221);
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }

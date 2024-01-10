@@ -27,7 +27,7 @@ function NavbarBS() {
   return (
     <Navbar variant="dark" bg="dark" expand="lg">
       <Container fluid>
-        <Navbar.Brand className='navbar-logo' href="/"><img src={logo} alt="logo.jpg"></img>Pathfinder</Navbar.Brand>
+        <Navbar.Brand className='navbar-logo' href="/userhomepage"><img src={logo} alt="logo.jpg"></img>Pathfinder</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-dark-example" />
         <Navbar.Collapse id="navbar-dark-example" className="justify-content-end">
         

@@ -115,7 +115,7 @@ export default function CreateHike() {
      <NavbarBS/>
       <div className='hero-containers'>
         <div >
-          <div class= "split middle" className='homepagebutton'>
+          <div >
             <Link className="button" to="/userhomepage">Home page</Link>
           
       {/* <div className="sidebar">
@@ -123,16 +123,16 @@ export default function CreateHike() {
       </div> */}
           
             {Object.keys(feature).length ? (
-              <div className='display'>
+              <div class= "middle box" >
                 <form onSubmit={(e) => onSubmit(e)}>
                   <h1>Trail Details</h1>
-                    <div className='hike-details-table'>
+                    <div >
                       <h6 value={trailName} onChange={(e) => onInputChange(e)}>{feature.properties.TRAIL_NAME}</h6>
                       <p value={areaName} onChange={(e) => onInputChange(e)}>{feature.properties.AREA_NAME}</p>
                       <p value={walkable} onChange={(e) => onInputChange(e)}>{feature.properties.WALKING}</p>
                       <p value={bikeFriendly} onChange={(e) => onInputChange(e)}>{feature.properties.BIKING}</p>
                       <p value={distance} onChange={(e) => onInputChange(e)}>{Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
-                      <p value={date} onChange={(e) => onInputChange(e)}>${hikeDate.toLocaleDateString()}</p>
+                      <p value={date} onChange={(e) => onInputChange(e)}>{hikeDate.toLocaleDateString()}</p>
                     </div>
                   <button to='/allhikes' type='submit' className="button" value={"createHike"}>Create Hike</button>
                 </form>

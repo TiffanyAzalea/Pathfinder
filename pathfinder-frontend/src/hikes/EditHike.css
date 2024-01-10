@@ -1,0 +1,26 @@
+.split-left{
+    height: 95%;
+    width: 45%;
+    border-radius: 10px;
+    background: rgb(67, 154, 220);
+    text-align: center;
+    transform: translate(10%, 1%);
+  }
+
+.split-right{
+    height: 95%;
+    width: 45%;
+    right: 0%;
+    border-radius: 10px;
+    background: rgb(229, 137, 137);
+    text-align: center;
+    transform: translate(120%, -99%);
+  }
+  .split-center{
+    height: 95%;
+    width: 45%;
+    right: 0%;
+    border-radius: 10px;
+    background: rgb(205, 200, 200);
+    text-align: center;
+  }
