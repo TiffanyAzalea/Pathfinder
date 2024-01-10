@@ -45,8 +45,8 @@ const loadUser= async ()=>{
         <h2 className="text-center m-4">Delete Account!</h2>
             <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3"></div>
-            <label htmlFor="username" className="form-label">
-            Are you sure {user.username}, Do you want to delete your account?
+            <label htmlFor="username" className="form-label" >
+            <h5>Are you sure {user.username}, Do you want to delete your account?</h5>
               </label>
                 <div className="mb-3">
                 <button type="submit" to={"/"} className="button1 btn-danger ">

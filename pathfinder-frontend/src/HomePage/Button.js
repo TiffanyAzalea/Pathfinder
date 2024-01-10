@@ -24,7 +24,7 @@ export const Button = ({
   return (
     <Link to='/login' className='button'>
       <button
-        className={`button ${checkButtonStyle} ${checkButtonSize}`}
+        className={`btn ${checkButtonStyle} ${checkButtonSize}`}
         onClick={onClick}
         type={type}
       >

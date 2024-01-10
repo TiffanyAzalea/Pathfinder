@@ -63,7 +63,6 @@ const LogIn = () => {
         <section>
           <NavbarForHome/>
           <div className='hero-containers' >
-          <video src='/videos/video-1.mp4' autoPlay loop muted />
             <div className='d-flex justify-content-center align-items-center vw-100'>
                 <div className='big-white p-3 rounded w-25'>
                     <div>

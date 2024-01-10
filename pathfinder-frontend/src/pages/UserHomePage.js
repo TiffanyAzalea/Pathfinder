@@ -13,7 +13,7 @@ export default function UserHomePage() {
   // function onClickHandle() {
   //   setFutureHikes(true);
   // }
-  const loadAllHikes = async () => {
+  const loadAllHikes = async (e) => {
     const result = await axios.get("http://localhost:8080/allhikes");
     setFutureHikes(result.data);
     navigate("/allhikes");
@@ -42,7 +42,7 @@ export default function UserHomePage() {
   <a href="#" class="list-group-item list-group-item-action">A second link item</a>
  
 </div> : <div></div>
-} */}
+} 
 
 
       <table className="center">
@@ -61,7 +61,7 @@ export default function UserHomePage() {
         </tbody>
       </table>
 
-
+*/}
       {/* <input className="btn btn-primary" type="button" value="Input"></input>
 <input className="btn btn-primary" type="submit" value="Submit"></input>
 <input className="btn btn-primary" type="reset" value="Reset"></input> */}

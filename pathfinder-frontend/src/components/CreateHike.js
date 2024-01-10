@@ -6,10 +6,8 @@ import "react-calendar/dist/Calendar.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import Footer from '../HomePage/Footer';
 import '../index.css';
 import NavbarBS from '../layout/NavbarBS';
-import NavbarForHome from '../HomePage/NavbarForHome';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpdHRpYWthc2F0dGkiLCJhIjoiY2xwenY1cmVtMTBzZDJrcW5yb2Y5cjRzNSJ9.SYzooukcLn0gjeS-VTjdgw';
 

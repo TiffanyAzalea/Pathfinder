@@ -16,25 +16,21 @@ export default function AllHikes() {
         const result = await axios.get("http://localhost:8080/allhikes");
         setAllHikes(result.data);
     }
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        await axios.post("http://localhost:8080/hiketable", allhikes);
-        navigate("/allhikes");
-      };
 
 
       useEffect(()=>{
-        loadUser()
+        loadAllHikes()
     },[])
     const {id}=useParams();
-    const loadUser= async ()=>{
-        const result=await axios.get(`http://localhost:8080/hiketable/${id}`)
-        setAllHikes(result.data)
-    }
+
 
     const deletehike=async (id)=>{
-        await axios.delete(`http://localhost:8080/hiketable/${id}`)
-        loadUser();
+        await axios.delete(`http://localhost:8080/deletehike/${id}`)
+        loadAllHikes();
+    }
+    const edithike=async (id)=>{
+        await axios.put(`http://localhost:8080/deletehike/${id}`)
+        loadAllHikes();
     }
 
     return (
@@ -42,6 +38,7 @@ export default function AllHikes() {
             <NavbarBS/>
         <div className='hikescontainer'>
             <div className='py-4'>
+                <h1 align="center">Future Hikes</h1>
                 <table className="table border shadow">
                     <thead>
                         <tr>
@@ -66,7 +63,8 @@ export default function AllHikes() {
                                 <td>{hike.distance}</td>
                                 <td>{hike.date}</td>
                                 <td>
-                                    <button className='btn btn-primary mx2'>Edit</button>
+                                    <button className='btn btn--outline mx2'>View</button>
+                                    <button className='btn btn-primary mx2'  to={`/edithike/${hike.id}`}>Edit</button>
                                     <button to='/allhikes'className='btn btn-danger mx2'onClick={()=>deletehike(hike.id)}>Delete</button>
                                 </td>
                             </tr>
