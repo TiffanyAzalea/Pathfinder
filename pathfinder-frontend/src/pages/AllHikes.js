@@ -38,12 +38,12 @@ export default function AllHikes() {
         navigate("/createhike");
       };
     return (
-        <section className='section'>
+        <section>
             <NavbarBS/>
-        <div className='hikescontainer'>
+        <div>
             <div className='py-4'>
-                <h1 align="center">Future Hikes</h1>
-                <table className="table border shadow">
+                <h1 align="center">Saved Hikes</h1>
+                <table className="table table-striped table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">#Id</th>
@@ -68,7 +68,7 @@ export default function AllHikes() {
                                 <td>{hike.distance}</td>
                                 <td>{hike.date}</td>
                                 <td>
-                                    <Link className="btn btn-primary mx2" to={`/edithike/${hike.id}`}>Edit</Link>
+                                    <Link className="btn btn-primary mx2" to={`/viewhike/${hike.id}`}>View</Link>
                                     <button to='/allhikes'className='btn btn-danger mx2'onClick={()=>deletehike(hike.id)}>Cancel</button>
 
                                 </td>

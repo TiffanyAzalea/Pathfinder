@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthProvider';
 import axios from 'axios';
 import NavbarForHome from '../HomePage/NavbarForHome';
+import '../HomePage/HeroSection.css';
 
 const LogIn = () => {
     const { setAuth } = useContext(AuthContext);
@@ -62,8 +63,8 @@ const LogIn = () => {
 
         <section >
             <NavbarForHome/>
-            <div className='d-flex justify-content-center align-items-center bg-primary section vh-100'>
-                <div className='big-white p-3 rounded w-25'>
+            <div className='d-flex justify-content-center align-items-center vh-100'>
+                <div className='w-25 box1'>
                     <div>
                         <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     </div>
@@ -90,12 +91,12 @@ const LogIn = () => {
                                 required
                             />
                         </div>
-                        <button type='submit' className='btn btn-success w-100'>Sign In</button>
+                        <button type='submit' className='btn btn-success w-50'>Sign In</button>
                     </form>
                     <p>
                         Want to become a Pathfinder?<br />
                         <span className="line">
-                            <button className='btn btn-default border w-100 bg-light'><Link to="/adduser" >Create Account</Link></button>
+                            <button className='btn btn-default border w-80 bg-light'><Link to="/adduser" className='btn h-50'>Create Account</Link></button>
                         </span>
                     </p>
                 </div>

@@ -27,8 +27,7 @@ export default function UserHomePage() {
     <div >
     
       <div className='hero-containers'>
-      <image src='/public/images/img-9.jpg' />
-      <h1>Welcome Back!</h1>
+    
       {/* <a className="btn btn-primary" href="#" role="button">Create Hike</a> */}
       <a href="/createhike" className="button">Create Hike</a>
       <button className="button" type="submit" onClick={loadAllHikes}>Future Hikes</button>

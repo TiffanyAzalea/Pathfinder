@@ -1,9 +1,12 @@
+
 import axios from "axios";
 import React, { useEffect,useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import './EditHike.css'
 import NavbarBS from "../layout/NavbarBS";
 import Calendar from "react-calendar";
+import {CalendarComponent} from '@syncfusion/ej2-react-calendars';
+
 
 
 export default function ViewHike() {
@@ -61,7 +64,7 @@ export default function ViewHike() {
 
     <div >
         <NavbarBS/>
-        <div className="section">
+        <div className="section-view">
             <div className="split-left">
             <h1>View Hike Details</h1>
                 <form onSubmit={(e) => onSubmit(e)}>
@@ -119,10 +122,10 @@ export default function ViewHike() {
                             />
                         </div>
                                 
-                    <button type="submit" className="button">Edit</button>
-                    <button to='/allhikes'className='btn-button mx2'onClick={()=>deletehike(hike.id)}>Delete</button>
+                    <button type="submit" className="button mx-2">Edit</button>
+                    <button to='/allhikes'className='button-info mx2'onClick={()=>deletehike(hike.id)}>Delete</button>
 
-                    <button type="submit" className="button1 mx-2">Cancel</button>
+                    <button type="submit" className="button1 mx-2">Share</button>
                 </form>
             <div>
                 <h3 className="headind3">Comments:</h3>
@@ -132,6 +135,7 @@ export default function ViewHike() {
             </div>
             <div className="split-right" >
                 <h1>Save the date!</h1>
+                <CalendarComponent></CalendarComponent>
                 <h9 className='display'>The selected date is- {hikeDate.toLocaleDateString()}</h9>
         
                 <Calendar onChange={changeValue} value={hikeDate} />

@@ -27,7 +27,7 @@ function NavbarForHome() {
 
   return (
     <>
-      <nav className='navbar' position= "fixed">
+      <nav className='navbar'>
         <div className='navbar-container' >
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
             <img src={logo}alt="logo"></img>PathFinder

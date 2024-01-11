@@ -3,7 +3,7 @@
   
 }*/
 .button {
-  background-color: rgb(174, 231, 17);
+  background-color: white;
   border: none;
   color: black;
   padding: 15px 32px;
@@ -30,7 +30,20 @@
   border-radius: 5px;
 }
 .button1 {
-  background-color: rgb(234, 31, 48);
+  background-color: rgb(231, 140, 13);
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button-info {
+  background-color: rgb(84, 204, 245);
   border: none;
   color: black;
   padding: 15px 32px;

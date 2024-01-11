@@ -7,7 +7,12 @@
 .section {
     width: 100vw;
     height: 100vh;
-  background-image: url("/public/images/img-10.jpg");
+  /*background-image: url("/public/images/img-10.jpg");*/
+  }
+  .section-view {
+    width: 100vw;
+    height: 100vh;
+  /*background-image: url("/public/images/img-15.jpg");*/
   }
 
   .section1 {

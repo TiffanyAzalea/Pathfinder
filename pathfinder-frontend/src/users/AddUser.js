@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState , useRef , useEffect , useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import NavbarBS from "../layout/NavbarBS";
+import NavbarForHome from "../HomePage/NavbarForHome";
 
 export default function AddUser() {
   let navigate = useNavigate();
@@ -57,7 +58,7 @@ export default function AddUser() {
 
   return (
     <section className="section">
-    <NavbarBS/>
+    <NavbarForHome/>
     <div className="container">
       <div className="row">
       

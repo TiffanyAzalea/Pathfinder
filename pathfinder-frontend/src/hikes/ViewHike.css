@@ -1,9 +1,11 @@
+@import url("https://cdn.syncfusion.com/ej2/material.css");
+
 .headind3{
     text-align: left;
     font-size: large;
 }
 
-.button-delete {
+.button2-delete {
     background-color: rgb(48, 155, 221);
     border: none;
     color: black;
