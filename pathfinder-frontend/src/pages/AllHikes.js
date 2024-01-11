@@ -68,10 +68,8 @@ export default function AllHikes() {
                                 <td>{hike.distance}</td>
                                 <td>{hike.date}</td>
                                 <td>
-                                    <Link className='btn btn-outline mx2' to={`/viewhike/${hike.id}`}>View</Link>
                                     <Link className="btn btn-primary mx2" to={`/edithike/${hike.id}`}>Edit</Link>
-                                    <button to='/allhikes'className='btn btn-danger mx2'onClick={()=>deletehike(hike.id)}>Delete</button>
-                                    <Link onClick={onSubmit} className='btn button--primary mx2'>Back</Link>
+                                    <button to='/allhikes'className='btn btn-danger mx2'onClick={()=>deletehike(hike.id)}>Cancel</button>
 
                                 </td>
                             </tr>

@@ -4,7 +4,6 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import './EditHike.css'
 import NavbarBS from "../layout/NavbarBS";
 import Calendar from "react-calendar";
-import CommentsPage from "../comments/CommentsPage";
 
 
 export default function ViewHike() {
@@ -127,7 +126,7 @@ export default function ViewHike() {
                 </form>
             <div>
                 <h3 className="headind3">Comments:</h3>
-                <CommentsPage/>
+               
 
             </div>
             </div>
