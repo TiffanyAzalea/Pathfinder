@@ -18,6 +18,7 @@ import React from 'react';
 import Login from './pages/Login';
 import RequireAuth from './components/RequireAuth';
 import ViewUser from './users/ViewUser';
+import Layout from './components/Layout';
 
 function App() {
 

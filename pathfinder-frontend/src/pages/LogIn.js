@@ -40,7 +40,7 @@ const Login = () => {
             console.log(JSON.stringify(response));
             console.log(JSON.stringify(response?.data?.username));
             console.log(JSON.stringify(response?.status));
-            setAuth({ username, password });
+            // setAuth({ username, password });
             setUsername('');
             setPassword('');
             navigate(from, { replace: true });
