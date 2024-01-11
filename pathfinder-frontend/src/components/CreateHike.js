@@ -19,15 +19,12 @@ export default function CreateHike() {
   const [zoom, setZoom] = useState(9);
   const [hikeDate, changeHikeDate] = useState(new Date());
   const [feature, setFeature] = useState({});
-  const [hike, setHike] = useState({
-    trailName: "",
-    areaName: "",
-    walkable: "",
-    bikeFriendly: "",
-    distance: "",
-    date: ""
-  })
-  const { trailName, areaName, walkable, bikeFriendly, distance, date } = hike
+  const [comment, setComment] = useState();
+
+  const onChangeComment = (e) => {
+    setComment(e.target.value);
+  }
+
   const onInputChange = (e) => {
 
   }
@@ -51,7 +48,16 @@ export default function CreateHike() {
       date: hikeDate.toLocaleDateString()
     })
     navigate("/userhomepage")
+  }
 
+  const submitComment = async function (e) {
+    e.preventDefault();
+
+    await axios.post("http://localhost:8080/comments", {
+      trailName: feature.properties.TRAIL_NAME,
+      text: comment,
+      createdBy: 52
+    })
   }
 
   useEffect(() => {
@@ -109,10 +115,10 @@ export default function CreateHike() {
   }
 
   return (
-    
+
     <div>
       <div className='homepagebutton'>
-      <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
+        <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
       </div>
       {/* <div className="sidebar">
         Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
@@ -123,12 +129,12 @@ export default function CreateHike() {
         {Object.keys(feature).length ? (
           <form onSubmit={(e) => onSubmit(e)}>
             <div className='hike-details-table'>
-              <h6 value={trailName} >{feature.properties.TRAIL_NAME}</h6>
-              <p value={areaName} >{feature.properties.AREA_NAME}</p>
-              <p value={walkable} onChange={(e) => onInputChange(e)}>{feature.properties.WALKING}</p>
-              <p value={bikeFriendly} onChange={(e) => onInputChange(e)}>{feature.properties.BIKING}</p>
-              <p value={distance} onChange={(e) => onInputChange(e)}>{Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
-              <p value={date} onChange={(e) => onInputChange(e)}>{hikeDate.toLocaleDateString()}</p>
+              <h6>{feature.properties.TRAIL_NAME}</h6>
+              <p>{feature.properties.AREA_NAME}</p>
+              <p>{feature.properties.WALKING}</p>
+              <p>{feature.properties.BIKING}</p>
+              <p>{Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
+              <p>{hikeDate.toLocaleDateString()}</p>
             </div>
             <button type='submit' value={"createHike"}>Create Hike</button>
           </form>
@@ -148,11 +154,13 @@ export default function CreateHike() {
         <Calendar onChange={changeValue} value={hikeDate} />
         <p>The selected date is - {hikeDate.toLocaleDateString()}</p>
       </div>
-      <div className='comments'>
-        <textarea style={{width: '30%', borderRadius: '0.25em'}}></textarea>
-        <button type='submit'>Comment</button>
+      <form onSubmit={(e) => submitComment(e)}>
+        <div className='comments'>
+          <textarea style={{ width: '30%', borderRadius: '0.25em' }} onChange={(e) => onChangeComment(e)}></textarea>
+          <button type='submit'>Comment</button>
 
-      </div>
+        </div>
+      </form>
     </div>
   );
 }

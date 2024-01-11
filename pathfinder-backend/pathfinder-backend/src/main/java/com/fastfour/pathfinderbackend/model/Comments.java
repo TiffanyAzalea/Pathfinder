@@ -11,9 +11,9 @@ public class Comments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "hike_table_trail_name")
-    private HikeTable hike;
+
+    @Column(columnDefinition = "TEXT")
+    private String trailName;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User createdBy;
@@ -30,12 +30,13 @@ public class Comments {
         this.id = id;
     }
 
-    public HikeTable getHike() {
-        return hike;
+
+    public String getTrailName() {
+        return trailName;
     }
 
-    public void setHike(HikeTable hike) {
-        this.hike = hike;
+    public void setTrailName(String trailName) {
+        this.trailName = trailName;
     }
 
     public User getCreatedBy() {
