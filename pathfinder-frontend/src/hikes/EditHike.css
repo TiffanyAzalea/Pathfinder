@@ -2,7 +2,7 @@
     height: 95%;
     width: 45%;
     border-radius: 10px;
-    background: rgb(67, 154, 220);
+    background: rgb(255, 255, 255);
     text-align: center;
     transform: translate(10%, 1%);
   }
@@ -23,4 +23,13 @@
     border-radius: 10px;
     background: rgb(205, 200, 200);
     text-align: center;
+  }
+
+  .box-calendar{
+    width: fit-content;
+  height: fit-content;
+  background: transparent;
+  border-radius: 10px;
+  padding: 20px;
+  transform: translate(20%, 0%);
   }

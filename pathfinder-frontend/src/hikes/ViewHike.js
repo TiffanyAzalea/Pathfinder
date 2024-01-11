@@ -5,7 +5,6 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import './EditHike.css'
 import NavbarBS from "../layout/NavbarBS";
 import Calendar from "react-calendar";
-import {CalendarComponent} from '@syncfusion/ej2-react-calendars';
 
 
 
@@ -40,7 +39,7 @@ export default function ViewHike() {
     }
     const deletehike=async (id)=>{
         await axios.delete(`http://localhost:8080/deletehike/${id}`)
-        loadAllHikes();
+       navigate("/userhomepage")
     }
 
       useEffect(()=>{
@@ -50,16 +49,17 @@ export default function ViewHike() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.get(`http://localhost:8080/viewhike/${id}`,{
-            trailName: feature.properties.TRAIL_NAME,
-            areaName: feature.properties.AREA_NAME,
-            walkable: feature.properties.WALKING,
-            bikeFriendly: feature.properties.BIKING,
-            distance: feature.properties.GIS_MILES.toFixed(2),
-            date: hikeDate.toLocaleDateString()
-          });
-        navigate("/createhike");
-      };
+       
+        await axios.get(`http://localhost:8080/viewhike/${id}`, {
+          trailName: feature.properties.TRAIL_NAME,
+          areaName: feature.properties.AREA_NAME,
+          walkable: feature.properties.WALKING,
+          bikeFriendly: feature.properties.BIKING,
+          distance: feature.properties.GIS_MILES.toFixed(2),
+          date: hikeDate.toLocaleDateString()
+        })
+        navigate("/viewhikes")
+    }
   return(
 
     <div >
@@ -72,9 +72,8 @@ export default function ViewHike() {
                         <div className="mb-3">
                         <label>Trail Name: </label>
                             <input 
-                            
                                 type={"text"}
-                            autoComplete="off"
+                                autoComplete="off"
                                 value={hike.trailName}
                                 onChange={(e) => onInputChange(e)}
                         />
@@ -123,7 +122,7 @@ export default function ViewHike() {
                         </div>
                                 
                     <button type="submit" className="button mx-2">Edit</button>
-                    <button to='/allhikes'className='button-info mx2'onClick={()=>deletehike(hike.id)}>Delete</button>
+                    <button to='/allhikes'className='button-info mx2' onClick={()=>deletehike(hike.id)}>Delete</button>
 
                     <button type="submit" className="button1 mx-2">Share</button>
                 </form>
@@ -135,11 +134,11 @@ export default function ViewHike() {
             </div>
             <div className="split-right" >
                 <h1>Save the date!</h1>
-                <CalendarComponent></CalendarComponent>
+                <div className="box-calendar">
                 <h9 className='display'>The selected date is- {hikeDate.toLocaleDateString()}</h9>
         
                 <Calendar onChange={changeValue} value={hikeDate} />
-
+                </div>
             </div>
         </div>
         
