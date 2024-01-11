@@ -5,7 +5,7 @@ import axios from 'axios';
 import useAuth from '../hooks/useAuth';
 
 const Login = () => {
-    const { setAuth } = useAuth;
+    const { setAuth } = useAuth();
     const userRef = useRef();
     const errRef = useRef();
 
@@ -34,18 +34,20 @@ const Login = () => {
                 JSON.stringify({ username, password }),
                 {
                     headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true,
                 }
             );
             console.log(JSON.stringify(response?.data));
             console.log(JSON.stringify(response));
             console.log(JSON.stringify(response?.data?.username));
             console.log(JSON.stringify(response?.status));
-            // setAuth({ username, password });
+            setAuth({ username, password });
             setUsername('');
             setPassword('');
             navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {
+                console.error(err);
                 setErrMsg('No server response.');
             } else if (err.response?.status === 400) {
                 setErrMsg('Missing username or password.');
