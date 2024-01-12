@@ -8,7 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,15 +18,23 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import static org.springframework.security.config.Customizer.withDefaults;
+import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
+
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
+
     private UserService userService;
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
+    private AuthTokenFilter authTokenFilter;
+
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 //        http
 //                .formLogin().disable()
 //                .csrf().disable()
@@ -32,33 +42,23 @@ public class SecurityConfig {
 //                .and()
 //                .sessionManagement()
 //                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                .and()
+//                    .and()
 //                .addFilterBefore(getJWTAuthTokenFilter(),
 //                        UsernamePasswordAuthenticationFilter.class)
-//                .authorizeRequests()
-//                .antMatchers("/actuator/**").permitAll()
-//                .antMatchers("/api/v1/auth/token").permitAll()
-//                .antMatchers(HttpMethod.POST).hasRole("ADMIN")
-//                .antMatchers(HttpMethod.PUT).hasRole("ADMIN")
+//                .authorizeHttpRequests()
+//                .requestMatchers("/actuator/**").authenticated()
+//                .requestMatchers("/api/v1/auth/token").authenticated()
 //                .anyRequest().authenticated();
+//        return http.build();
 //    }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
         http
-                .formLogin(Customizer.withDefaults()).disable()
-                .csrf(Customizer.withDefaults()).disable()
-                .httpBasic(Customizer.withDefaults())
-                .and()
-                .sessionManagement(Customizer.withDefaults())
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
-                .antMatchers("/actuator/**").permitAll()
-                .antMatchers("/api/v1/auth/token").permitAll()
-                .antMatchers(HttpMethod.POST).hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT).hasRole("ADMIN")
-                .anyRequest().authenticated();
+                .authorizeHttpRequests((authz) -> authz
+                        .anyRequest().authenticated()
+                );
         return http.build();
     }
 
@@ -78,8 +78,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager getAuthenticationManager() throws Exception {
-        return authenticationManager();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
     }
 
     @Bean
