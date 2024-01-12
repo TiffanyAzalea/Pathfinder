@@ -24,6 +24,7 @@ export default function ViewHike() {
       const { trailName, areaName, walkable, bikeFriendly, distance, date } = hike
      
     const onInputChange = (e) => {
+        setHike({ ...hike, [e.target.name]: e.target.value });
 
     }
     function changeValue(val) {
@@ -50,7 +51,7 @@ export default function ViewHike() {
     const onSubmit = async (e) => {
         e.preventDefault();
        
-        await axios.get(`http://localhost:8080/viewhike/${id}`, {
+        await axios.get(`http://localhost:8080/allhikes`, {
           trailName: feature.properties.TRAIL_NAME,
           areaName: feature.properties.AREA_NAME,
           walkable: feature.properties.WALKING,
@@ -58,7 +59,7 @@ export default function ViewHike() {
           distance: feature.properties.GIS_MILES.toFixed(2),
           date: hikeDate.toLocaleDateString()
         })
-        navigate("/viewhikes")
+        navigate("/viewhike")
     }
   return(
 
@@ -120,9 +121,9 @@ export default function ViewHike() {
                                 onChange={(e) => onInputChange(e)}
                             />
                         </div>
-                                
+                        <button to="/userhomepage" className='button-info mx2'type="submit" >Back</button>           
                     <button type="submit" className="button mx-2">Edit</button>
-                    <button to='/allhikes'className='button-info mx2' onClick={()=>deletehike(hike.id)}>Delete</button>
+                    <button to='/userhomepage'className='button-danger mx2' onClick={()=>deletehike(hike.id)}>Delete</button>
 
                     <button type="submit" className="button1 mx-2">Share</button>
                 </form>

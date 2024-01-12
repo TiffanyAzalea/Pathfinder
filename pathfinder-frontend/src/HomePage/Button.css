@@ -3,7 +3,7 @@
   
 }*/
 .button {
-  background-color: white;
+  background-color: rgb(82, 147, 29);
   border: none;
   color: black;
   padding: 15px 32px;
@@ -14,6 +14,7 @@
   font-size: 15px;
   margin: 4px 2px;
   cursor: pointer;
+  
 }
 .btn--button{
   background-color: rgb(174, 231, 17);
@@ -44,6 +45,20 @@
 }
 .button-info {
   background-color: rgb(84, 204, 245);
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button-danger {
+  background-color: rgb(250, 84, 84);
   border: none;
   color: black;
   padding: 15px 32px;

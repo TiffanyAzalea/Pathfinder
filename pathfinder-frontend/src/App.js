@@ -41,7 +41,6 @@ function App() {
            <Route exact path="/deleteuser/:id" element={<DeleteUser />} />
           <Route exact path="/userhomepage" element={<UserHomePage />} />
           <Route exact path="/createhike" element={<CreateHike />} />
-          <Route exact path="/allhikes" element={<AllHikes/>} />
           <Route exact path="/edithike/:id" element={<EditHike />} />
           <Route exact path="/viewhike/:id" element={<ViewHike />} />
           <Route exact path="/explore" element={<Explore/>} />

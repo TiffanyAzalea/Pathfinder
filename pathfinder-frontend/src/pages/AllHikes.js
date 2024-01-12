@@ -70,7 +70,7 @@ export default function AllHikes() {
                                 <td>
                                     <Link className="btn btn-primary mx2" to={`/viewhike/${hike.id}`}>View</Link>
                                     <button to='/allhikes'className='btn btn-danger mx2'onClick={()=>deletehike(hike.id)}>Cancel</button>
-
+                                    
                                 </td>
                             </tr>
                         ))}

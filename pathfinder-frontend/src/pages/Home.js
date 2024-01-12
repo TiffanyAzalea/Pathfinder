@@ -8,8 +8,10 @@ function Home() {
   return (
   <div>
       <NavbarForHome/>
+      
       <HeroSection />
       <Cards />
+      
   </div>
  );
 {/*<div>Home</div>*/}

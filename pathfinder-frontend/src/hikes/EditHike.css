@@ -12,9 +12,10 @@
     width: 45%;
     right: 0%;
     border-radius: 10px;
-    background: rgb(229, 137, 137);
+    background: rgb(255, 255, 255);
     text-align: center;
     transform: translate(120%, -99%);
+    
   }
   .split-center{
     height: 95%;

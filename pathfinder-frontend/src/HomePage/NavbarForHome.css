@@ -8,6 +8,7 @@
     position: sticky;
     top: 0;
     z-index: 999;
+    position: sticky;
   }
   
   .navbar-container {
@@ -16,7 +17,7 @@
     align-items: center;
     height: 50px;
     width: 1500px;
-    position:relative;
+    position:sticky;
   }
   
   .navbar-logo {
@@ -29,7 +30,7 @@
     display: flex;
     align-items: right;
     top:0;
-    position: relative;
+    position: relatstickyive;
   }
   
   .fa-typo3 {
