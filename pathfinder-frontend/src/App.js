@@ -17,24 +17,33 @@ import AllHikes from './pages/AllHikes';
 import React from 'react';
 import Login from './pages/Login';
 import ViewUser from './users/ViewUser';
+import RequireAuth from './components/RequireAuth';
+import Layout from './components/Layout';
+import AmILoggedIn from './pages/AmILoggedIn';
 
 function App() {
 
   return (
-    <div className="App">
-      <BrowserRouter>
-        <NavbarBS />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/adduser" element={<AddUser />} />
-          <Route exact path="/login" element={<Login />} />
-           <Route exact path="/edituser/:id" element={<EditUser />} />
-           <Route exact path="/viewuser/:id" element={<ViewUser />} />
-          <Route exact path="/userhomepage" element={<UserHomePage />} />
-          <Route exact path="/createhike" element={<CreateHike />} />
-          <Route exact path="/allhikes" element={<AllHikes/>} />
-        </Routes>
-      </BrowserRouter>
+    <div className="App">
+      <NavbarBS />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          {/* public routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/adduser" element={<AddUser />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/amiloggedin" element={<AmILoggedIn />} />
+
+          {/* protected routes */}
+          <Route element={<RequireAuth />}>
+            <Route path="/edituser/:id" element={<EditUser />} />
+            <Route path="/viewuser/:id" element={<ViewUser />} />
+            <Route path="/userhomepage" element={<UserHomePage />} />
+            <Route path="/createhike" element={<CreateHike />} />
+          </Route>
+          <Route path="/allhikes" element={<AllHikes />} />
+        </Route>
+      </Routes>
       {/* <NavbarForHome /> */}
       {/* <UserHomePage /> */}
 

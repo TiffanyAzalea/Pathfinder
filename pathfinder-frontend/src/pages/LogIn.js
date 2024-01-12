@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import AuthContext from '../context/AuthProvider';
 import axios from 'axios';
 
@@ -14,6 +14,8 @@ const Login = () => {
 
 
     let navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
         userRef.current.focus();
@@ -24,7 +26,6 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
 
         try {
             const response = await axios.post("http://localhost:8080/login",
@@ -37,10 +38,12 @@ const Login = () => {
             console.log(JSON.stringify(response));
             console.log(JSON.stringify(response?.data?.username));
             console.log(JSON.stringify(response?.status));
-            setAuth({ username, password });
+            localStorage.setItem('user', response.data)
+            setAuth({ username });
             setUsername('');
             setPassword('');
-            navigate("/");
+            // navigate("/");
+            navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No server response.');
