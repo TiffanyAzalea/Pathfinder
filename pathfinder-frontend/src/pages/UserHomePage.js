@@ -6,7 +6,16 @@ import NavbarBS from '../layout/NavbarBS';
 export default function UserHomePage() {
   let navigate = useNavigate();
   const [futureHikes, setFutureHikes] = useState()
-  const [hikes, setHikes] = useState()
+  const [hike, setHike] = useState({
+    trailName: "",
+    areaName: "",
+    walkable: "",
+    bikeFriendly: "",
+    distance: "",
+    date: ""
+  })
+  const { trailName, areaName, walkable, bikeFriendly, distance, date } = hike
+     
   // function onClickHandle() {
   //   setFutureHikes(true);
   // }
@@ -17,17 +26,15 @@ export default function UserHomePage() {
   const {id}=useParams();
 
     useEffect(()=>{
-        loadHikes()
+      loadAllHikes()
     },[])
 
-    const loadHikes= async ()=>{
-        const result=await axios.get(`http://localhost:8080/viewhike/${id}`)
-        setFutureHikes(result.data)
-    }
+  
+      
 const onSubmit = async (e) => {
   e.preventDefault();
   await axios.get("http://localhost:8080/allhikes",);
-  navigate("/viewhike");
+  navigate("/userhomepage");
 };
 
   return (
@@ -36,7 +43,6 @@ const onSubmit = async (e) => {
       <NavbarBS/>
       {/* <a className="btn btn-primary" href="#" role="button">Create Hike</a> */}
       <Link className="btn btn-primary mx-2" to="/createhike">Create Hike</Link>
-      {/*<Link className="btn btn-primary mx2" to={`/viewhike/${hike.id}`}>View</Link>*/}
       <button className="btn btn-primary mx-2" type="submit" onClick={loadAllHikes}>Future Hikes</button>
       <button className="btn btn-primary mx-2" type="submit">Past Hikes</button>
 
@@ -57,7 +63,7 @@ const onSubmit = async (e) => {
           {futureHikes?.map((hike, index) => (
             <tr>
               <th scope="row" key={index}>{index + 1}</th>
-              <Link to={`/viewhike/${id}`}><td>{hike.trailName}</td></Link>
+              <Link to={`/viewhike/${hike.id}`}><td>{hike.trailName}</td></Link>
               <td>{hike.date}</td>
 
             </tr>

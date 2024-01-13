@@ -17,3 +17,12 @@
     margin: 4px 2px;
     cursor: pointer;
   }
+
+  .box-share{
+    width: fit-content;
+    height: fit-content;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    transform: translate(100%, 10%);
+  }

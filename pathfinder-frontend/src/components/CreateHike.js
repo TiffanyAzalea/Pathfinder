@@ -91,11 +91,7 @@ export default function CreateHike() {
           <p style="margin-bottom: 0" >${feature.properties.AREA_NAME}</p>
           <p style="margin-bottom: 0" >${feature.properties.WALKING}</p>
           <p style="margin-bottom: 0" >${feature.properties.BIKING}</p>
-          <p style="margin-bottom: 0" >${Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
-          
-          
-          `
-
+          <p style="margin-bottom: 0" >${Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p> `
           )
           .addTo(map.current);
         <h1>Trail Details</h1>

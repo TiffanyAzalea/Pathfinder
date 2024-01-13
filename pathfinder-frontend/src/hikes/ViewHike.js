@@ -4,6 +4,10 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import './ViewHike.css'
 import NavbarBS from "../layout/NavbarBS";
 import Calendar from "react-calendar";
+import DatePicker from "react-multi-date-picker"
+import DatePanel from "react-multi-date-picker/plugins/date_panel";
+import {FacebookShareButton,FacebookIcon,TwitterShareButton, TwitterIcon,PinterestShareButton,
+    PinterestIcon,InstapaperIcon,InstapaperShareButton,EmailShareButton,EmailIcon} from "react-share";
 
 
 export default function ViewHike() {
@@ -20,6 +24,7 @@ export default function ViewHike() {
         date: ""
       })
       const { trailName, areaName, walkable, bikeFriendly, distance, date } = allhikes
+      
      
     const onInputChange = (e) => {
         setAllHikes({ ...allhikes, [e.target.name]: e.target.value });
@@ -36,9 +41,11 @@ export default function ViewHike() {
         setAllHikes(result.data);
     }
     const deletehike=async (id)=>{
-        await axios.delete(`http://localhost:8080/deletehike/${id}`)
-        navigate("/allhikes")
-    }
+        const result=await axios.delete(`http://localhost:8080/deletehike/${id}`)
+        setAllHikes(result.data);
+        navigate("/userhomepage")
+        }
+        
 
     const {id}=useParams();
 
@@ -47,6 +54,7 @@ export default function ViewHike() {
         await axios.get(`http://localhost:8080/allhikes`);
         navigate("/userhomepage")
       };
+      
   return(
 
     <div >
@@ -54,9 +62,6 @@ export default function ViewHike() {
         <div className="section">
             <div className="split-left">
             <h1>View Hike Details</h1>
-            
-           
-                <form onSubmit={(e) => onSubmit(e)}>
                     
                         <div className="mb-3">
                         <label>Trail Name: </label>
@@ -106,18 +111,37 @@ export default function ViewHike() {
                             <input 
                                 type={"text"}
                                 autoComplete="off"
-                                value={hikeDate.toLocaleDateString()}
+                                value={allhikes.date}
                                 onChange={(e) => onInputChange(e)}
                             />
                         </div>
                                 
                         <button type="submit" className="btn-info mx-3">Edit</button>
                     <button type="submit" className="button-share mx-3">Share</button>
-                    <button to='/allhikes'className='btn-info mx-3'onClick={()=>deletehike(allhikes.id)}>Delete</button>
+                    <button className='btn-info mx-3'onClick={()=>deletehike(allhikes.id)}>Delete</button>
 
-                    <button type="submit" className="button-cancel mx-3">Cancel</button>
-                </form>
-          
+                    <button onSubmit={onSubmit} type="submit" className="button-cancel mx-3">Cancel</button>
+        
+              
+                
+                <div class="box-share">
+                    <FacebookShareButton
+                        url="https://www.facebook.com/groups/hikingforadventure">
+                            <FacebookIcon size ={40} round={true} color="#4968ad"/>
+                    </FacebookShareButton>&nbsp;
+                    <TwitterShareButton url="https://twitter.com/TheHikingGuide">
+                        <TwitterIcon size={40} round={true} />
+                    </TwitterShareButton>&nbsp;
+                    {/*<PinterestShareButton url="">
+                    <PinterestIcon size={40} round={true} />
+  </PinterestShareButton>&nbsp;*/}
+                    <InstapaperShareButton url="https://www.instagram.com/hiking.guide/">
+                    <InstapaperIcon size={40} round={true} />
+                    </InstapaperShareButton>&nbsp;
+                    <EmailShareButton url ="">
+                    <EmailIcon size={40} round={true} />
+                    </EmailShareButton>
+                </div>
             <div>
                 <h3 className="headind3">Comments:</h3>
                 
@@ -126,8 +150,9 @@ export default function ViewHike() {
             </div>
             <div className="split-right" >
                <h1>Save the date!</h1>
-            
+               
                <div className="display">
+                
                     <Calendar onChange={changeValue} value={hikeDate} />
                 </div>
                 

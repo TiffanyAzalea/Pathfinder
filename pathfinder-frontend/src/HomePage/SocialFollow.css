@@ -1,6 +1,6 @@
 .social-container {
     
-    padding: 1px 1px;
+    padding: 2px 2px;
   }
 
   a.social {
@@ -9,37 +9,54 @@
     display: inline-block;
   }
   a.social:hover {
-    transform: rotate(360deg);
+    transform: translateY(-4px);
+    transition:0.3s;
   }
 
   a.youtube {
-    background: #eee;
+    background: white;
     border-radius: 7px;
     width: auto;
     padding: 2px;
   color: #eb3223;
-  margin-bottom: 7%;
+  vertical-align: middle;
+  box-shadow: 0px 3px 10px rgba(0,0,0,.25);
 }
 
 a.facebook {
-    background: #eee;
+    background: white;
     border-radius: 7px;
     width: auto;
     padding: 2px;
   color: #4968ad;
+  vertical-align: middle;
+  box-shadow: 0px 3px 10px rgba(0,0,0,.25);
 }
 
 a.twitter {
-    background: #eee;
+    background: white;
     border-radius: 7px;
     width: auto;
     padding: 2px;
   color: #49a1eb;
+  vertical-align: middle;
+  box-shadow: 0px 3px 10px rgba(0,0,0,.25);
 }
 
 a.instagram {
+
+  display: inline-block;
+  width: 35px;
+  height: auto;
+  text-align: center;
+  border-radius: 7px;
+  color: white;
   
-  background: radial-gradient(circle farthest-corner at 45% 90%, #fec564, transparent 50%), 
+  vertical-align: middle;
+  background: #d6249f;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+  box-shadow: 0px 3px 10px rgba(0,0,0,.25);
+  /*background: radial-gradient(circle farthest-corner at 45% 90%, #fec564, transparent 50%), 
               radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), 
               radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), 
               radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), 
@@ -49,5 +66,5 @@ a.instagram {
               linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
   border-radius: 7px;
   width: auto;
-  padding: 5px;
+  padding: 5px;*/
 }
