@@ -36,6 +36,7 @@ const onSubmit = async (e) => {
       <NavbarBS/>
       {/* <a className="btn btn-primary" href="#" role="button">Create Hike</a> */}
       <Link className="btn btn-primary mx-2" to="/createhike">Create Hike</Link>
+      {/*<Link className="btn btn-primary mx2" to={`/viewhike/${hike.id}`}>View</Link>*/}
       <button className="btn btn-primary mx-2" type="submit" onClick={loadAllHikes}>Future Hikes</button>
       <button className="btn btn-primary mx-2" type="submit">Past Hikes</button>
 
