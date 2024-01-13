@@ -31,11 +31,11 @@ public class AuthController {
 
     private static final String userSessionKey = "username";
 
-//    @Autowired
-//    public AuthController(HttpSession session, LoginFormDTO loginFormDTO) {
-//        this.session = session;
-//        this.loginFormDTO = loginFormDTO;
-//    }
+    // @Autowired
+    // public AuthController(HttpSession session, LoginFormDTO loginFormDTO) {
+    // this.session = session;
+    // this.loginFormDTO = loginFormDTO;
+    // }
 
     public User getUserFromSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
