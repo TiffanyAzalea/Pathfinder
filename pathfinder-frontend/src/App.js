@@ -17,6 +17,7 @@ import AllHikes from './pages/AllHikes';
 import React from 'react';
 import Login from './pages/Login';
 import ViewUser from './users/ViewUser';
+import Search from './components/Search';
 
 function App() {
 
@@ -33,12 +34,17 @@ function App() {
           <Route exact path="/userhomepage" element={<UserHomePage />} />
           <Route exact path="/createhike" element={<CreateHike />} />
           <Route exact path="/allhikes" element={<AllHikes/>} />
+          <Route exact path= "/search" element={<Search />} />
         </Routes>
       </BrowserRouter>
       {/* <NavbarForHome /> */}
       {/* <UserHomePage /> */}
 
       {/* <CreateHike /> */}
+      <div >
+        <Search />
+      
+      </div>
     </div>
   );
 }
