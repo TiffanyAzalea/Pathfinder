@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
@@ -70,23 +69,6 @@ public class AuthController {
         setUserInSession(request.getSession(), theUser);
         return new ResponseEntity<>(responseDTO, httpStatus);
     }
-
-//    @PostMapping("/login")
-//    public ResponseEntity<?> userLogin(@RequestBody LoginFormDTO loginFormDTO, HttpServletRequest request) {
-//        User theUser = userRepository.findByUsername(loginFormDTO.getUsername());
-//        HttpStatus httpStatus = HttpStatus.OK;
-//        String password = loginFormDTO.getPassword();
-//        if (!password.equals(theUser.getPassword())) {
-//            loginFormDTO.setPassword(null);
-//            httpStatus = HttpStatus.CONFLICT;
-//        }
-//        String jwtToken = JWTUtil.generateToken(theUser.getUsername());
-//        setUserInSession(request.getSession(), theUser);
-//        return ResponseEntity
-//                .status(httpStatus)
-//                .header(HttpHeaders.AUTHORIZATION, "Bearer " + jwtToken)
-//                .build();
-//    }
 
     @GetMapping("/logout")
     public void logout(HttpServletRequest request) {

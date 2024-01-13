@@ -38,11 +38,12 @@ const Login = () => {
             console.log(JSON.stringify(response));
             console.log(JSON.stringify(response?.data?.username));
             console.log(JSON.stringify(response?.status));
-            localStorage.setItem('user', response.data)
+            localStorage.setItem('user', response?.data?.username);
+            localStorage.setItem('token', response?.data?.token);
+            console.log(localStorage.getItem('user'));
             setAuth({ username });
             setUsername('');
             setPassword('');
-            // navigate("/");
             navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {

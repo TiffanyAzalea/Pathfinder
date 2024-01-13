@@ -11,14 +11,17 @@ export default function Home() {
     const [user, setUser] = useState();
 
     let navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
+
 
     useEffect(() => {
         const loggedInUser = localStorage.getItem("user");
-        if (loggedInUser) {
-            // const foundUser = JSON.parse(loggedInUser);
-            setUser(loggedInUser);
+        const loggedInToken = localStorage.getItem("token");
+        if (loggedInToken === "token123") {
+            const foundUser = loggedInUser;
+            console.log(localStorage.getItem('user'));
+            console.log(loggedInUser);
+            console.log(foundUser);
+            setUser(foundUser);
         }
     }, []);
 
@@ -31,7 +34,7 @@ export default function Home() {
         <div>
             <h2>Your current status is:</h2>
             {user
-                ? <p>Logged in!</p>
+                ? <p>Logged in! You are {user}.</p>
                 : <p>Womp womp.</p>
             }
             <button onClick={handleLogout}>logout</button>
