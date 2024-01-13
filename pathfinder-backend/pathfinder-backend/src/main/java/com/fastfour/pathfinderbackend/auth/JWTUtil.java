@@ -38,6 +38,7 @@ public class JWTUtil {
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
+
     public static String extractUsername(String token) {
         return Jwts.parser()
                 .setSigningKey(secret)
@@ -46,45 +47,45 @@ public class JWTUtil {
                 .getSubject();
     }
 
-//    private SecretKey secretKey;
-//
-//    @PostConstruct
-//    public void setUpSecretKey() {
-//        try {
-//            secretKey = Keys.hmacShaKeyFor(secret.getBytes("UTF-8"));
-//        } catch (UnsupportedEncodingException e) {
-////            log.error("Error generating JWT Secret Key : {}", e.getMessage());
-//            throw new RuntimeException("Error generating JWT Secret Key", e);
-//        }
-//    }
-//
-//    private static final String CLAIM_FIRST_NAME_KEY = "FirstName";
-//    private static final String CLAIM_LAST_NAME_KEY = "LastName";
-//
-//    public String createJWT(User user) {
-//
-//        String jwt =
-//                Jwts.builder()
-//                        .setId(UUID.randomUUID().toString())
-//                        .setSubject(user.getUsername())
-//                        .setIssuer(issuer)
-//                        .setIssuedAt(Date.from(Instant.now()))
-//                        .setExpiration(Date.from(Instant.now().plus(Duration.ofSeconds(timeToLiveInSeconds))))
-//                        .claim(CLAIM_FIRST_NAME_KEY, user.getFirstName())
-//                        .claim(CLAIM_LAST_NAME_KEY, user.getLastName())
-//                        .signWith(secretKey)
-//                        .compact();
-//        return jwt;
-//    }
-//
-//    public Claims parseJWT(String jwtString) {
-//        Jws<Claims> headerClaimsJwt =
-//                Jwts.parserBuilder()
-//                        .setSigningKey(secretKey)
-//                        .build()
-//                        .parseClaimsJws(jwtString);
-//        Claims claims = headerClaimsJwt.getBody();
-//        return claims;
-//    }
+    // private SecretKey secretKey;
+    //
+    // @PostConstruct
+    // public void setUpSecretKey() {
+    // try {
+    // secretKey = Keys.hmacShaKeyFor(secret.getBytes("UTF-8"));
+    // } catch (UnsupportedEncodingException e) {
+    //// log.error("Error generating JWT Secret Key : {}", e.getMessage());
+    // throw new RuntimeException("Error generating JWT Secret Key", e);
+    // }
+    // }
+    //
+    // private static final String CLAIM_FIRST_NAME_KEY = "FirstName";
+    // private static final String CLAIM_LAST_NAME_KEY = "LastName";
+    //
+    // public String createJWT(User user) {
+    //
+    // String jwt =
+    // Jwts.builder()
+    // .setId(UUID.randomUUID().toString())
+    // .setSubject(user.getUsername())
+    // .setIssuer(issuer)
+    // .setIssuedAt(Date.from(Instant.now()))
+    // .setExpiration(Date.from(Instant.now().plus(Duration.ofSeconds(timeToLiveInSeconds))))
+    // .claim(CLAIM_FIRST_NAME_KEY, user.getFirstName())
+    // .claim(CLAIM_LAST_NAME_KEY, user.getLastName())
+    // .signWith(secretKey)
+    // .compact();
+    // return jwt;
+    // }
+    //
+    // public Claims parseJWT(String jwtString) {
+    // Jws<Claims> headerClaimsJwt =
+    // Jwts.parserBuilder()
+    // .setSigningKey(secretKey)
+    // .build()
+    // .parseClaimsJws(jwtString);
+    // Claims claims = headerClaimsJwt.getBody();
+    // return claims;
+    // }
 
 }
