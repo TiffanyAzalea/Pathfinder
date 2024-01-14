@@ -17,12 +17,51 @@
     margin: 4px 2px;
     cursor: pointer;
   }
+  .split-left{
+    height: 95%;
+    width: 30%;
+    border-radius: 10px;
+    background: rgb(223, 222, 222);
+    text-align: left;
+    transform: translate(3%, 1%);
+    border-color: black;
+  }
 
+.split-right{
+    height: 95%;
+    width: 210%;
+    right: 0%;
+    border-radius: 10px;
+    background: rgb(143, 48, 48);
+    text-align: center;
+    transform: translate(50%, -64%);
+    
+  }
+  .split-center{
+    height: 95%;
+    width: 45%;
+    right: 0%;
+    border-radius: 10px;
+    background: rgb(205, 200, 200);
+    text-align: center;
+  }
+
+  .box-calendar{
+    width: fit-content;
+  height: fit-content;
+  background: transparent;
+  border-radius: 10px;
+  padding: 20px;
+  transform: translate(20%, 0%);
+  }
+  
   .box-share{
+    margin: 4px 10px;
     width: fit-content;
     height: fit-content;
-    background: white;
+    background: rgb(186, 185, 185);
     border-radius: 10px;
+    
     padding: 10px;
-    transform: translate(100%, 10%);
+    transform: translate(0%, 10%);
   }

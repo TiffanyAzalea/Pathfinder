@@ -1,8 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-
 import "react-calendar/dist/Calendar.css";
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import './Explore.css';
 import NavbarForHome from '../HomePage/NavbarForHome';
@@ -14,9 +12,9 @@ export default function Explore() {
   const map = useRef(null);
   const [lng, setLng] = useState(-90.2);
   const [lat, setLat] = useState(38.6);
-  const [selectedCoordinates, setSelectedCoordinates] = useState([0, 0]);
+  
   const [zoom, setZoom] = useState(9);
-  const [hikeDate, changeHikeDate] = useState(new Date());
+  
   const [feature, setFeature] = useState({});
 
   useEffect(() => {
@@ -58,7 +56,7 @@ export default function Explore() {
       <div ref={mapContainer} className="map-explore" />
      
       <br/>
-      <span>Click on the link to <Link to="/createhike">Create Hike</Link></span>
+      <span>Click on the link to <Link to="/login">Create Hike</Link></span>
        
     </div>
 

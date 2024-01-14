@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React, {useState } from 'react';
+import { Link} from "react-router-dom";
 import axios from 'axios';
 import NavbarBS from '../layout/NavbarBS';
 
 export default function UserHomePage() {
-  let navigate = useNavigate();
+
   const [futureHikes, setFutureHikes] = useState()
   const [hike, setHike] = useState({
     trailName: "",
@@ -23,19 +23,7 @@ export default function UserHomePage() {
     const result = await axios.get("http://localhost:8080/allhikes");
     setFutureHikes(result.data);
   }
-  const {id}=useParams();
-
-    useEffect(()=>{
-      loadAllHikes()
-    },[])
-
-  
-      
-const onSubmit = async (e) => {
-  e.preventDefault();
-  await axios.get("http://localhost:8080/allhikes",);
-  navigate("/userhomepage");
-};
+ 
 
   return (
 
@@ -56,7 +44,7 @@ const onSubmit = async (e) => {
 </div> : <div></div>
 } */}
 
-<form onSubmit={(e) => onSubmit(e)}>
+
       <table className="center">
 
         <tbody>
@@ -72,7 +60,7 @@ const onSubmit = async (e) => {
 
         </tbody>
       </table>
-      </form>
+      
     
       {/* <input className="btn btn-primary" type="button" value="Input"></input>
 <input className="btn btn-primary" type="submit" value="Submit"></input>

@@ -38,9 +38,9 @@ export default function AllHikes() {
         navigate("/createhike");
       };
     return (
-        <section>
+        <section className='section'>
             <NavbarBS/>
-        <div>
+        <div >
             <div className='py-4'>
                 <h1 align="center">Saved Hikes</h1>
                 <table className="table table-striped table-bordered">

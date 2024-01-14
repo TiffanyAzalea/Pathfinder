@@ -17,7 +17,7 @@
   
 }
 .btn--button{
-  background-color: rgb(174, 231, 17);
+  background-color: rgb(255, 255, 255);
   transition: all 0.3s ease-out;
   color: black;
   border: 2px solid var(--primary);

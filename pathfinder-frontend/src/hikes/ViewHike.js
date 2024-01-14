@@ -3,7 +3,7 @@ import React, { useEffect,useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import './ViewHike.css'
 import NavbarBS from "../layout/NavbarBS";
-import Calendar from "react-calendar";
+import Calendar from "react-multi-date-picker";
 import DatePicker from "react-multi-date-picker"
 import DatePanel from "react-multi-date-picker/plugins/date_panel";
 import {FacebookShareButton,FacebookIcon,TwitterShareButton, TwitterIcon,PinterestShareButton,
@@ -71,6 +71,7 @@ export default function ViewHike() {
                             autoComplete="off"
                                 value={allhikes.trailName}
                                 onChange={(e) => onInputChange(e)}
+                                disabled={true}
                         />
                         </div>
                         <div className="mb-3">
@@ -80,6 +81,7 @@ export default function ViewHike() {
                                 autoComplete="off"
                                 value={allhikes.areaName}
                                 onChange={(e) => onInputChange(e)}
+                                disabled={true}
                         />
                         </div>
                         <div className="mb-3">
@@ -89,6 +91,7 @@ export default function ViewHike() {
                                 autoComplete="off"
                                 value={allhikes.walkable}
                                 onChange={(e) => onInputChange(e)}
+                                disabled={true}
                         /></div>
                         <div className="mb-3">
                         <label>Bike Friendly</label>
@@ -97,6 +100,7 @@ export default function ViewHike() {
                                 autoComplete="off"
                                 value={allhikes.bikeFriendly}
                                 onChange={(e) => onInputChange(e)}
+                                disabled={true}
                         /></div>
                         <div className="mb-3">
                         <label>Distance</label>
@@ -105,26 +109,24 @@ export default function ViewHike() {
                                 autoComplete="off"
                                 value={allhikes.distance}
                                 onChange={(e) => onInputChange(e)}
+                                disabled={true}
                         /></div>
                         <div className="mb-3">
                         <label>Date:</label>
-                            <input 
-                                type={"text"}
-                                autoComplete="off"
-                                value={allhikes.date}
-                                onChange={(e) => onInputChange(e)}
-                            />
+                        <Calendar onChange={changeValue} value={hikeDate} disabled={true}/>
+                            
                         </div>
                                 
-                        <button type="submit" className="btn-info mx-3">Edit</button>
-                    <button type="submit" className="button-share mx-3">Share</button>
-                    <button className='btn-info mx-3'onClick={()=>deletehike(allhikes.id)}>Delete</button>
+                        <Link className="btn btn-primary mx-2" to={`/edithike/${id}`}>Edit</Link>
+                   
+                    <button className='btn btn-primary mx-3'onClick={()=>deletehike(allhikes.id)}>Delete</button>
 
-                    <button onSubmit={onSubmit} type="submit" className="button-cancel mx-3">Cancel</button>
+                    <Link className="btn btn-primary mx-2" to="/userhomepage">Cancel</Link>
         
               
                 
                 <div class="box-share">
+                <h3 className="headind3">Share:</h3>
                     <FacebookShareButton
                         url="https://www.facebook.com/groups/hikingforadventure">
                             <FacebookIcon size ={40} round={true} color="#4968ad"/>
@@ -141,22 +143,16 @@ export default function ViewHike() {
                     <EmailShareButton url ="">
                     <EmailIcon size={40} round={true} />
                     </EmailShareButton>
-                </div>
-            <div>
-                <h3 className="headind3">Comments:</h3>
+                </div><br/>
+                <div className="split-right">
+                    <div class="box-share">
+                        <h3 className="headind3">Reviews:</h3>
                 
 
-            </div>
-            </div>
-            <div className="split-right" >
-               <h1>Save the date!</h1>
-               
-               <div className="display">
-                
-                    <Calendar onChange={changeValue} value={hikeDate} />
+                    </div>
                 </div>
-                
             </div>
+        
         </div>
         
     </div>

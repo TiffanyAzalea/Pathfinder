@@ -119,10 +119,11 @@ export default function CreateHike() {
       
       <div ref={mapContainer} className="map-container" />
       <div className='split middle'>
-        <h1>Trail Details</h1>
+       
         {Object.keys(feature).length ? (
           <form onSubmit={(e) => onSubmit(e)}>
             <div className='hike-details-table'>
+            <h1>Trail Details</h1>
               <h6 value={trailName} onChange={(e) => onInputChange(e)}>{feature.properties.TRAIL_NAME}</h6>
               <p value={areaName} onChange={(e) => onInputChange(e)}>{feature.properties.AREA_NAME}</p>
               <p value={walkable} onChange={(e) => onInputChange(e)}>{feature.properties.WALKING}</p>
@@ -139,10 +140,6 @@ export default function CreateHike() {
         {/* <button type='submit' value={"createHike"}>Create Hike</button> */}
 
       </div>
-
-
-
-
 
       <div className='calendar'>
         <Calendar onChange={changeValue} value={hikeDate} />

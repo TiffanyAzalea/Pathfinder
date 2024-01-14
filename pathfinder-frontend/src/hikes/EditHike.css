@@ -1,20 +1,21 @@
 .split-left{
     height: 95%;
-    width: 45%;
+    width: 30%;
     border-radius: 10px;
-    background: rgb(255, 255, 255);
-    text-align: center;
-    transform: translate(10%, 1%);
+    background: rgb(223, 222, 222);
+    text-align: left;
+    transform: translate(3%, 1%);
+    border-color: black;
   }
 
 .split-right{
     height: 95%;
-    width: 45%;
+    width: 65%;
     right: 0%;
     border-radius: 10px;
-    background: rgb(255, 255, 255);
+    background: rgb(223, 222, 222);
     text-align: center;
-    transform: translate(120%, -99%);
+    transform: translate(50%, -99%);
     
   }
   .split-center{
