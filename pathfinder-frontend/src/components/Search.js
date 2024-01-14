@@ -23,13 +23,24 @@ export default function Search() {
   return (
     <div className='Search'>
       <input type='text' placeholder= 'Search...' onChange={handleInputChange} />
-        {isTyping && trailDataArray.filter((val) => 
-          val.properties.TRAIL_NAME &&
-          val.properties.TRAIL_NAME.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+        {isTyping && trailDataArray.filter((val) => {
+          const trailNameMatch =
+            val.properties.TRAIL_NAME &&
+            val.properties.TRAIL_NAME.toLowerCase().includes(searchTerm.toLowerCase())
+
+            // const walkingMatch =
+            // val.properties.WALKING &&
+            // val.properties.WALKING.toLowerCase().includes(searchTerm.toLowerCase());
+
+          const bikingMatch =
+            val.properties.BIKING &&
+            val.properties.BIKING.toLowerCase().includes(searchTerm.toLowerCase());
+
+          return trailNameMatch || bikingMatch;
+        }) 
         .map((val, key) => (
             <div key={key} className= 'trail'>
-              <p> {val.properties.TRAIL_NAME}</p>
+              <p> {val.properties.TRAIL_NAME} Biking: {val.properties.BIKING}</p>
             </div>
       
       ))}
