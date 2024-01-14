@@ -34,17 +34,14 @@ function App() {
           <Route exact path="/userhomepage" element={<UserHomePage />} />
           <Route exact path="/createhike" element={<CreateHike />} />
           <Route exact path="/allhikes" element={<AllHikes/>} />
-          <Route exact path= "/search" element={<Search />} />
+      
         </Routes>
       </BrowserRouter>
       {/* <NavbarForHome /> */}
       {/* <UserHomePage /> */}
 
       {/* <CreateHike /> */}
-      <div >
-        <Search />
       
-      </div>
     </div>
   );
 }

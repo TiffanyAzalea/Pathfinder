@@ -6,6 +6,7 @@ import "react-calendar/dist/Calendar.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import Search from '../components/Search'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpdHRpYWthc2F0dGkiLCJhIjoiY2xwenY1cmVtMTBzZDJrcW5yb2Y5cjRzNSJ9.SYzooukcLn0gjeS-VTjdgw';
 
@@ -111,6 +112,7 @@ export default function CreateHike() {
   return (
     
     <div>
+      <Search />
       <div className='homepagebutton'>
       <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
       </div>
