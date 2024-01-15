@@ -34,26 +34,32 @@ export default function CreateHike() {
   }
   const onSubmit = async (e) => {
     e.preventDefault();
-    // await setHike({
-    //   trailName: feature.properties.TRAIL_NAME,
-    //   areaName: feature.properties.AREA_NAME,
-    //   walkable: feature.properties.WALKING,
-    //   bikable: feature.properties.BIKING,
-    //   distance: feature.properties.GIS_MILES,
-    //   date: hikeDate.toLocaleDateString()
-    // })
-    // console.log(hike);
-    await axios.post("http://localhost:8080/createhike", {
-      trailName: feature.properties.TRAIL_NAME,
-      areaName: feature.properties.AREA_NAME,
-      walkable: feature.properties.WALKING,
-      bikeFriendly: feature.properties.BIKING,
-      distance: feature.properties.GIS_MILES.toFixed(2),
-      date: hikeDate.toLocaleDateString()
-    })
-    navigate("/userhomepage")
+    
+    if (feature && feature.properties) {
+      const { TRAIL_NAME, AREA_NAME, WALKING, BIKING, GIS_MILES } = feature.properties;
+  
+      await axios.post("http://localhost:8080/createhike", {
+        trailName: TRAIL_NAME || "",
+        areaName: AREA_NAME || "",
+        walkable: WALKING || "",
+        bikeFriendly: BIKING || "",
+        distance: (GIS_MILES || 0).toFixed(2),
+        date: hikeDate.toLocaleDateString() || ""
+      });
+  
+      navigate("/userhomepage");
+    } else {
+      // Handle the case where feature or its properties are undefined/null
+      console.error("Cannot submit, feature or its properties are undefined or null");
+    }
 
   }
+
+  const [filteredTrailResults, setFilteredTrailResults] = useState([]);
+
+  const handleSearchResults = (results) => {
+    setFilteredTrailResults(results);
+  };
 
   useEffect(() => {
     if (!map.current) {
@@ -101,7 +107,7 @@ export default function CreateHike() {
         <h1>Trail Details</h1>
       });
     }
-  });
+  }, [filteredTrailResults] );
 
 
   // Calender code
@@ -112,7 +118,7 @@ export default function CreateHike() {
   return (
     
     <div>
-      <Search />
+      <Search onSearchResults={handleSearchResults} />
       <div className='homepagebutton'>
       <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
       </div>
@@ -122,14 +128,14 @@ export default function CreateHike() {
       <div ref={mapContainer} className="map-container" />
       <div className=''>
         <h1>Trail Details</h1>
-        {Object.keys(feature).length ? (
+        {Object.keys(feature).length || (filteredTrailResults.length > 0) ? (
           <form onSubmit={(e) => onSubmit(e)}>
-            <div className='hike-details-table'>
-              <h6 value={trailName} onChange={(e) => onInputChange(e)}>{feature.properties.TRAIL_NAME}</h6>
-              <p value={areaName} onChange={(e) => onInputChange(e)}>{feature.properties.AREA_NAME}</p>
-              <p value={walkable} onChange={(e) => onInputChange(e)}>{feature.properties.WALKING}</p>
-              <p value={bikeFriendly} onChange={(e) => onInputChange(e)}>{feature.properties.BIKING}</p>
-              <p value={distance} onChange={(e) => onInputChange(e)}>{Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
+             <div className='hike-details-table'>
+              <h6 value={trailName} onChange={(e) => onInputChange(e)}>{feature.properties?.TRAIL_NAME || filteredTrailResults[0]?.properties?.TRAIL_NAME}</h6>
+              <p value={areaName} onChange={(e) => onInputChange(e)}>{feature.properties?.AREA_NAME || filteredTrailResults[0]?.properties?.AREA_NAME}</p>
+              <p value={walkable} onChange={(e) => onInputChange(e)}>{feature.properties?.WALKING || filteredTrailResults[0]?.properties?.WALKING}</p>
+              <p value={bikeFriendly} onChange={(e) => onInputChange(e)}>{feature.properties?.BIKING || filteredTrailResults[0]?.properties?.BIKING}</p>
+              <p value={distance} onChange={(e) => onInputChange(e)}>{(feature.properties?.GIS_MILES || filteredTrailResults[0]?.properties?.GIS_MILES)?.toFixed(2)} miles</p>
               <p value={date} onChange={(e) => onInputChange(e)}>${hikeDate.toLocaleDateString()}</p>
             </div>
             <button type='submit' value={"createHike"}>Create Hike</button>
@@ -153,5 +159,3 @@ export default function CreateHike() {
     </div>
   );
 }
-
-
