@@ -14,10 +14,6 @@ export default function AllHikes() {
         setAllHikes(result.data);
     }
 
-
-
-
-
     return (
         <div className='hikescontainer'>
             <div className='py-4'>

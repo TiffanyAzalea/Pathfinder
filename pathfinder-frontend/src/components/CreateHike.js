@@ -20,6 +20,10 @@ export default function CreateHike() {
   const [hikeDate, changeHikeDate] = useState(new Date());
   const [feature, setFeature] = useState({});
   const [comment, setComment] = useState();
+  const [trailName, setTrailName] = useState();
+  const [allComments, setAllComments] = useState();
+  let newDate = new Date()
+
 
   const onChangeComment = (e) => {
     setComment(e.target.value);
@@ -56,12 +60,20 @@ export default function CreateHike() {
     await axios.post("http://localhost:8080/comments", {
       trailName: feature.properties.TRAIL_NAME,
       text: comment,
-      createdBy: 52
+      createdBy: 102,
+      createdDate: new Date().toLocaleDateString()
     })
+
+    axios.get("http://localhost:8080/comments/" + feature.properties.TRAIL_NAME)
+      .then((response) => {
+        setAllComments(response.data);
+      })
+      .catch(error => console.log(error))
   }
 
+
   useEffect(() => {
-    if (!map.current) {
+    if (map.current === null) {
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
         style: 'mapbox://styles/chittiakasatti/clq45nc7s01a701p79yzjbjre',
@@ -74,7 +86,6 @@ export default function CreateHike() {
         setLng(map.current.getCenter().lng.toFixed(4));
         setLat(map.current.getCenter().lat.toFixed(4));
         setZoom(map.current.getZoom().toFixed(2));
-        console.log(map.current.getStyle().layers)
       });
 
 
@@ -82,28 +93,30 @@ export default function CreateHike() {
         const features = map.current.queryRenderedFeatures(event.point, {
           layers: ['mo-trails-parsed']
         });
-        if (!features.length) {
-          return;
-        }
-        const feature = features[0];
-        //setSelectedCoordinates(feature.geometry.coordinates)
-        setFeature(feature);
+        if (features.length > 0) {
+          const feature = features[0];
+          //setSelectedCoordinates(feature.geometry.coordinates)
+          setFeature(feature);
+          axios.get("http://localhost:8080/comments/" + feature.properties.TRAIL_NAME)
+            .then((response) => {
+              setAllComments(response.data);
+            })
+            .catch(error => console.log(error))
 
-        const popup = new mapboxgl.Popup({ offset: [0, -15] })
-          .setLngLat(feature.geometry.coordinates)
-          .setHTML(
-            `<h6>${feature.properties.TRAIL_NAME}</h6>
-          <p style="margin-bottom: 0" >${feature.properties.AREA_NAME}</p>
-          <p style="margin-bottom: 0" >${feature.properties.WALKING}</p>
-          <p style="margin-bottom: 0" >${feature.properties.BIKING}</p>
-          <p style="margin-bottom: 0" >${Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
-          
-          
+
+
+          const popup = new mapboxgl.Popup({ offset: [0, -15] })
+            .setLngLat(feature.geometry.coordinates)
+            .setHTML(
+              `<h6>${feature.properties.TRAIL_NAME}</h6>
+              <p style="margin-bottom: 0" >${feature.properties.AREA_NAME}</p>
+              <p style="margin-bottom: 0" >${feature.properties.WALKING}</p>
+              <p style="margin-bottom: 0" >${feature.properties.BIKING}</p>
+              <p style="margin-bottom: 0" >${Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
           `
-
-          )
-          .addTo(map.current);
-        <h1>Trail Details</h1>
+            )
+            .addTo(map.current);
+        }
       });
     }
   });
@@ -161,6 +174,18 @@ export default function CreateHike() {
 
         </div>
       </form>
+      <div>
+        <p>Comments:</p>
+        {allComments?.map((comment, index) => (
+
+          <div key={index}>
+            <h6>{comment.createdBy.firstName} {comment.createdBy.lastName} - {comment.createdDate}</h6>
+            <p>{comment.text}</p>
+          </div>
+        ))}
+
+
+      </div>
     </div>
   );
 }

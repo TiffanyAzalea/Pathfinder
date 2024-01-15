@@ -1,5 +1,6 @@
 package com.fastfour.pathfinderbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,9 +12,17 @@ public class User {
     @GeneratedValue //(strategy = GenerationType.IDENTITY) //ariel quest
     private Long id;
 
+    public User() {
+    }
+
+    public User(Long id) {
+        this.id = id;
+    }
     private String firstName;
     private String lastName;
     private String username;
+
+    @JsonIgnore
     private String password;
     private String email;
 
