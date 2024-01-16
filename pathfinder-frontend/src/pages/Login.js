@@ -2,8 +2,6 @@ import { useState, useRef, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthProvider';
 import axios from 'axios';
-import NavbarForHome from '../HomePage/NavbarForHome';
-import '../HomePage/HeroSection.css';
 
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
@@ -42,7 +40,7 @@ const Login = () => {
             setAuth({ username, password });
             setUsername('');
             setPassword('');
-            navigate("/userhomepage");
+            navigate("/");
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No server response.');
@@ -60,11 +58,9 @@ const Login = () => {
     }
 
     return (
-
-        <section >
-            <NavbarForHome/>
-            <div className='d-flex justify-content-center align-items-center vh-100'>
-                <div className='w-25 box1'>
+        <section>
+            <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
+                <div className='big-white p-3 rounded w-25'>
                     <div>
                         <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     </div>
@@ -91,12 +87,12 @@ const Login = () => {
                                 required
                             />
                         </div>
-                        <button type='submit' className='btn btn-success w-50'>Sign In</button>
+                        <button type='submit' className='btn btn-success w-100'>Sign In</button>
                     </form>
                     <p>
                         Want to become a Pathfinder?<br />
                         <span className="line">
-                            <button className='btn btn-default border w-80 bg-light'><Link to="/adduser" className='btn h-50'>Create Account</Link></button>
+                            <button className='btn btn-default border w-100 bg-light'><Link to="/adduser" >Create Account</Link></button>
                         </span>
                     </p>
                 </div>
