@@ -5,7 +5,7 @@ import axios from 'axios';
 import NavbarForHome from '../HomePage/NavbarForHome';
 import '../HomePage/HeroSection.css';
 
-const LogIn = () => {
+const Login = () => {
     const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
@@ -104,4 +104,4 @@ const LogIn = () => {
         </section >
     )
 }
-export default LogIn
+export default Login
