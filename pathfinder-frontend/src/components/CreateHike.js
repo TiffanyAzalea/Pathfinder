@@ -91,7 +91,7 @@ export default function CreateHike() {
 
       map.current.on('click', (event) => {
         const features = map.current.queryRenderedFeatures(event.point, {
-          layers: ['mo-trails-parsed']
+          layers: ['mo-trails-parsed-filtered']
         });
         if (features.length > 0) {
           const feature = features[0];
@@ -174,8 +174,8 @@ export default function CreateHike() {
 
         </div>
       </form>
-      <div>
-        <p>Comments:</p>
+      <div className='comments'>
+        <h6>Comments:</h6>
         {allComments?.map((comment, index) => (
 
           <div key={index}>

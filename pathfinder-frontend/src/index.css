@@ -60,31 +60,40 @@ code {
   /* Customize the color as needed */
   margin-top: 10px;
 }
-.map-container{
-  margin:1em;
+
+.map-container {
+  margin: 1em;
   height: 500px;
-  width:620px;
+  width: 620px;
   border-radius: 10px;
-  border:1px solid #57c0e8;
+  border: 1px solid #57c0e8;
   float: right;
-  
- 
+
+
 }
-.calendar{
-  margin:1em;
-  
+
+.calendar {
+  margin: 1em;
+
   border-radius: 10px;
-  border:1px solid #57c0e8;
+  border: 1px solid #57c0e8;
   float: right;
-  
- 
+
+
 }
-.center{
+
+.center {
   margin-left: auto;
   margin-right: auto;
 }
-div.homepagebutton{
-  
+
+div.homepagebutton {
+
   right: 0;
- 
+
+}
+
+.comments {
+  text-align: left;
+  padding: 10px;
 }
