@@ -15,7 +15,7 @@ import EditUser from './users/EditUser';
 import UserHomePage from './pages/UserHomePage';
 import AllHikes from './pages/AllHikes';
 import React from 'react';
-import LogIn from './pages/LogIn';
+import Login from './pages/Login';
 import Logout from './pages/Logout';
 import ViewUser from './users/ViewUser';
 import Footer from './HomePage/Footer';
@@ -34,7 +34,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/adduser" element={<AddUser />} />
-          <Route exact path="/login" element={<LogIn />} />
+          <Route exact path="/login" element={<Login />} />
           <Route exact path="/logout" element={<Logout/>} />
            <Route exact path="/edituser/:id" element={<EditUser />} />
            <Route exact path="/viewuser/:id" element={<ViewUser />} />
