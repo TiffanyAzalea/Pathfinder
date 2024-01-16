@@ -1,14 +1,12 @@
 package com.fastfour.pathfinderbackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue //(strategy = GenerationType.IDENTITY) //ariel quest
+    @GeneratedValue//(strategy = GenerationType.IDENTITY) //ariel quest
     private Long id;
 
     private String firstName;
@@ -16,6 +14,27 @@ public class User {
     private String username;
     private String password;
     private String email;
+    @OneToOne(mappedBy = "user")
+    HikeTable hikeTable;
+
+    public HikeTable getHikeTable() {
+        return hikeTable;
+    }
+
+    public void setHikeTable(HikeTable hikeTable) {
+        this.hikeTable = hikeTable;
+    }
+
+    @OneToOne(mappedBy = "user")
+    Comment comment;
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
+    }
 
     public Long getId() {
         return id;
