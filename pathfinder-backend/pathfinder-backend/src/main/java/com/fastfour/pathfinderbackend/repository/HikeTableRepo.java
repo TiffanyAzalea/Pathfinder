@@ -4,4 +4,6 @@ import com.fastfour.pathfinderbackend.model.HikeTable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface HikeTableRepo extends JpaRepository<HikeTable, Long> {
+
 }
+

@@ -1,9 +1,6 @@
 package com.fastfour.pathfinderbackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-
+import jakarta.persistence.*;
 
 
 @Entity
@@ -11,6 +8,12 @@ public class HikeTable {
 
     @Id
     @GeneratedValue
+    @Column(name = "user_id")
+    Long userId;
+
+    @OneToOne
+    @PrimaryKeyJoinColumn(name = "user_id")
+    User user;
     private Long id;
     private String trailName;
     private String areaName;
@@ -23,7 +26,6 @@ public class HikeTable {
     public Long getId() {
         return id;
     }
-
 
 
     public String getTrailName() {
@@ -73,4 +75,25 @@ public class HikeTable {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 }

@@ -1,6 +1,8 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect,useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import '../App.css';
+import NavbarBS from "../layout/NavbarBS";
 
 
 export default function EditUser() {
@@ -23,22 +25,27 @@ export default function EditUser() {
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios.post("http://localhost:8080/user", user);
-    navigate("/");
+    navigate("/userhomepage");
   };
+  const {id}=useParams();
 
-  const YourComponent = () => {
-    const handleClose = () => {
-      // Add your close logic here
-      console.log('Close button clicked!');
-    };
-  }
+    useEffect(()=>{
+        loadUser()
+    },[])
+
+    const loadUser= async ()=>{
+        const result=await axios.get(`http://localhost:8080/user/${id}`)
+        setUser(result.data)
+    }
   
   return (
-    <div className="container">
-    <div className="row">
+    <div className="section1">
+    <NavbarBS/>
+    <div className="container ">
+    <div className="row ">
       <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
       
-        <h2 className="text-center">Save Changes!</h2>
+        <h2 >Save Changes!</h2>
         <form onSubmit={(e) => onSubmit(e)}>
           <div className="mb-3">
             <label htmlFor="firstName" className="form-label">
@@ -49,7 +56,8 @@ export default function EditUser() {
               className="form-control"
               placeholder="Change your First name here"
               name="firstName"
-              value={firstName}
+              autoComplete="off"
+              value={user.firstName}
               onChange={(e) => onInputChange(e)}
             />
           </div>
@@ -62,7 +70,8 @@ export default function EditUser() {
               className="form-control"
               placeholder="Change your Last name here"
               name="lastName"
-              value={lastName}
+              autoComplete="off"
+              value={user.lastName}
               onChange={(e) => onInputChange(e)}
             />
           </div>
@@ -75,7 +84,8 @@ export default function EditUser() {
               className="form-control"
               placeholder="Change your Username here"
               name="username"
-              value={username}
+              autoComplete="off"
+              value={user.username}
               onChange={(e) => onInputChange(e)}
             />
           </div>
@@ -88,7 +98,8 @@ export default function EditUser() {
                 className="form-control"
                 placeholder="Change your Password here"
                 name="password"
-                value={password}
+                autoComplete="off"
+                value={user.password}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -101,19 +112,21 @@ export default function EditUser() {
                 className="form-control"
                 placeholder="Change your E-mail here"
                 name="email"
-                value={email}
+                autoComplete="off"
+                value={user.email}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-          <button type="submit" className="btn btn-outline-primary">
+          <button type="submit" className="button">
             Submit
           </button>
-          <button type="submit" className="btn btn-outline-danger mx-2">
+          <button type="submit" className="button1 mx-2">
               Cancel
             </button>
         </form>
       </div>
     </div>
+  </div>
   </div>
   );
 }

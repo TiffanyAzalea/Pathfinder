@@ -1,6 +1,9 @@
+import { faBorderStyle } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useState , useRef , useEffect , useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
+import NavbarBS from "../layout/NavbarBS";
+import NavbarForHome from "../HomePage/NavbarForHome";
 
 export default function AddUser() {
   let navigate = useNavigate();
@@ -54,6 +57,8 @@ export default function AddUser() {
   };
 
   return (
+    <section className="section">
+    <NavbarForHome/>
     <div className="container">
       <div className="row">
       
@@ -72,6 +77,7 @@ export default function AddUser() {
                 name="firstName"
                 id="firstName"
                 value={firstName}
+                required
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -86,6 +92,7 @@ export default function AddUser() {
                 name="lastName"
                 id="lastName"
                 value={lastName}
+                required
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -129,6 +136,7 @@ export default function AddUser() {
                 placeholder="you@pathfinder.com"
                 name="email"
                 value={email}
+                required
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -140,5 +148,6 @@ export default function AddUser() {
         </div>
       </div>
     </div>
+    </section>
   );
 }

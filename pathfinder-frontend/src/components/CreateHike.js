@@ -1,12 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-import moTrailsData from '../data/MO_Trails_geo.json'
+import moTrailsData from '../data/MO_Trails_geo.json';
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import Search from '../components/Search'
+import NavbarBS from '../layout/NavbarBS';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpdHRpYWthc2F0dGkiLCJhIjoiY2xwenY1cmVtMTBzZDJrcW5yb2Y5cjRzNSJ9.SYzooukcLn0gjeS-VTjdgw';
 
@@ -81,7 +82,7 @@ export default function CreateHike() {
 
       map.current.on('click', (event) => {
         const features = map.current.queryRenderedFeatures(event.point, {
-          layers: ['mo-trails-parsed']
+          layers: ['mo-trails-parsed-filtered']
         });
         if (!features.length) {
           return;
@@ -97,11 +98,7 @@ export default function CreateHike() {
           <p style="margin-bottom: 0" >${feature.properties.AREA_NAME}</p>
           <p style="margin-bottom: 0" >${feature.properties.WALKING}</p>
           <p style="margin-bottom: 0" >${feature.properties.BIKING}</p>
-          <p style="margin-bottom: 0" >${Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
-          
-          
-          `
-
+          <p style="margin-bottom: 0" >${Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p> `
           )
           .addTo(map.current);
         <h1>Trail Details</h1>
@@ -117,45 +114,46 @@ export default function CreateHike() {
 
   return (
     
-    <div>
-      <Search onSearchResults={handleSearchResults} />
-      <div className='homepagebutton'>
-      <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
-      </div>
-      {/* <div className="sidebar">
-        Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-      </div> */}
-      <div ref={mapContainer} className="map-container" />
-      <div className=''>
-        <h1>Trail Details</h1>
-        {Object.keys(feature).length || (filteredTrailResults.length > 0) ? (
-          <form onSubmit={(e) => onSubmit(e)}>
-             <div className='hike-details-table'>
-              <h6 value={trailName} onChange={(e) => onInputChange(e)}>{feature.properties?.TRAIL_NAME || filteredTrailResults[0]?.properties?.TRAIL_NAME}</h6>
-              <p value={areaName} onChange={(e) => onInputChange(e)}>{feature.properties?.AREA_NAME || filteredTrailResults[0]?.properties?.AREA_NAME}</p>
-              <p value={walkable} onChange={(e) => onInputChange(e)}>{feature.properties?.WALKING || filteredTrailResults[0]?.properties?.WALKING}</p>
-              <p value={bikeFriendly} onChange={(e) => onInputChange(e)}>{feature.properties?.BIKING || filteredTrailResults[0]?.properties?.BIKING}</p>
-              <p value={distance} onChange={(e) => onInputChange(e)}>{(feature.properties?.GIS_MILES || filteredTrailResults[0]?.properties?.GIS_MILES)?.toFixed(2)} miles</p>
-              <p value={date} onChange={(e) => onInputChange(e)}>${hikeDate.toLocaleDateString()}</p>
-            </div>
-            <button type='submit' value={"createHike"}>Create Hike</button>
-          </form>
-          //<LogoutButton onClick={this.handleLogoutClick} />
-        ) : (
-          <div> </div>
-        )}
-        {/* <button type='submit' value={"createHike"}>Create Hike</button> */}
-
-      </div>
-
-
-
-
-
-      <div className='calendar'>
-        <Calendar onChange={changeValue} value={hikeDate} />
-        <p>The selected date is - {hikeDate.toLocaleDateString()}</p>
-      </div>
+    <div className='section'>
+    <NavbarBS/>
+    <div className='hero-container'>
+    <div className='homepagebutton'>
+    <Search />  
+    <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
     </div>
-  );
+    {/* <div className="sidebar">
+      Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+    </div> */}
+    
+    <div ref={mapContainer} className="map-container" />
+    <div className='split middle'>
+     
+      {Object.keys(feature).length || (filteredTrailResults.length > 0) ? (
+        <form onSubmit={(e) => onSubmit(e)}>
+          <div className='hike-details-table'>
+          <h1>Trail Details</h1>
+            <h6 value={trailName} onChange={(e) => onInputChange(e)}>{feature.properties?.TRAIL_NAME || filteredTrailResults[0]?.properties?.TRAIL_NAME}</h6>
+            <p value={areaName} onChange={(e) => onInputChange(e)}>{feature.properties?.AREA_NAME || filteredTrailResults[0]?.properties?.AREA_NAME}</p>
+            <p value={walkable} onChange={(e) => onInputChange(e)}>{feature.properties?.WALKING || filteredTrailResults[0]?.properties?.WALKING}</p>
+            <p value={bikeFriendly} onChange={(e) => onInputChange(e)}>{feature.properties?.BIKING || filteredTrailResults[0]?.properties?.BIKING}</p>
+            <p value={distance} onChange={(e) => onInputChange(e)}>{(feature.properties?.GIS_MILES || filteredTrailResults[0]?.properties?.GIS_MILES)?.toFixed(2)} miles</p>
+            <p value={date} onChange={(e) => onInputChange(e)}>{hikeDate.toLocaleDateString()}</p>
+          </div>
+          <button className="btn btn-primary" type='submit' value={"createHike"}>Create Hike</button>
+        </form>
+        //<LogoutButton onClick={this.handleLogoutClick} />
+      ) : (
+        <div> </div>
+      )}
+      {/* <button type='submit' value={"createHike"}>Create Hike</button> */}
+
+    </div>
+
+    <div className='calendar'>
+      <Calendar onChange={changeValue} value={hikeDate} />
+      <p>The selected date is - {hikeDate.toLocaleDateString()}</p>
+    </div>
+  </div>
+  </div>
+);
 }
