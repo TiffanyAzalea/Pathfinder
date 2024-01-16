@@ -8,13 +8,15 @@ public class HikeTable {
 
     @Id
     @GeneratedValue
-    @Column(name = "user_id")
-    Long userId;
-
-    @OneToOne
-    @PrimaryKeyJoinColumn(name = "user_id")
-    User user;
     private Long id;
+    
+    // @Column(name = "user_id")
+    // Long userId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     private String trailName;
     private String areaName;
     private String walkable;
@@ -76,13 +78,7 @@ public class HikeTable {
         this.date = date;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+    
 
     public User getUser() {
         return user;
@@ -92,8 +88,5 @@ public class HikeTable {
         this.user = user;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
 }

@@ -62,7 +62,7 @@ const LogIn = () => {
     return (
 
         <section >
-            <NavbarForHome/>
+            <NavbarForHome />
             <div className='d-flex justify-content-center align-items-center vh-100'>
                 <div className='w-25 box1'>
                     <div>
