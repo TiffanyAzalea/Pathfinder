@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import React, {useState } from 'react';
+import { Link} from "react-router-dom";
 import axios from 'axios';
-import AllHikes from './AllHikes';
+import NavbarBS from '../layout/NavbarBS';
 
 export default function UserHomePage() {
+
   const [futureHikes, setFutureHikes] = useState()
+  const [hike, setHike] = useState({
+    trailName: "",
+    areaName: "",
+    walkable: "",
+    bikeFriendly: "",
+    distance: "",
+    date: ""
+  })
+  const { trailName, areaName, walkable, bikeFriendly, distance, date } = hike
+     
   // function onClickHandle() {
   //   setFutureHikes(true);
   // }
@@ -12,14 +23,16 @@ export default function UserHomePage() {
     const result = await axios.get("http://localhost:8080/allhikes");
     setFutureHikes(result.data);
   }
-
+ 
 
   return (
-    <div>
+
+    <div className='section'>
+      <NavbarBS/>
       {/* <a className="btn btn-primary" href="#" role="button">Create Hike</a> */}
-      <Link className="btn btn-primary" to="/createhike">Create Hike</Link>
-      <button className="btn btn-primary" type="submit" onClick={loadAllHikes}>Future Hikes</button>
-      <button className="btn btn-primary" type="submit">Past Hikes</button>
+      <Link className="btn btn-primary mx-2" to="/createhike">Create Hike</Link>
+      <button className="btn btn-primary mx-2" type="submit" onClick={loadAllHikes}>Future Hikes</button>
+      <button className="btn btn-primary mx-2" type="submit">Past Hikes</button>
 
       {/* {
   futureHikes ? <div class="list-group">
@@ -38,7 +51,7 @@ export default function UserHomePage() {
           {futureHikes?.map((hike, index) => (
             <tr>
               <th scope="row" key={index}>{index + 1}</th>
-              <td>{hike.trailName}</td>
+              <Link to={`/viewhike/${hike.id}`}><td>{hike.trailName}</td></Link>
               <td>{hike.date}</td>
 
             </tr>
@@ -47,8 +60,8 @@ export default function UserHomePage() {
 
         </tbody>
       </table>
-
-
+      
+    
       {/* <input className="btn btn-primary" type="button" value="Input"></input>
 <input className="btn btn-primary" type="submit" value="Submit"></input>
 <input className="btn btn-primary" type="reset" value="Reset"></input> */}

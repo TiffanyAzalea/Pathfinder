@@ -1,11 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-import moTrailsData from '../data/MO_Trails_geo.json'
+import moTrailsData from '../data/MO_Trails_geo.json';
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import NavbarBS from '../layout/NavbarBS';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpdHRpYWthc2F0dGkiLCJhIjoiY2xwenY1cmVtMTBzZDJrcW5yb2Y5cjRzNSJ9.SYzooukcLn0gjeS-VTjdgw';
 
@@ -136,9 +137,10 @@ export default function CreateHike() {
       {/* <div className="sidebar">
         Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
       </div> */}
+
       <div ref={mapContainer} className="map-container" />
-      <div className=''>
-        <h1>Trail Details</h1>
+      <div className='split middle'>
+
         {Object.keys(feature).length ? (
           <form onSubmit={(e) => onSubmit(e)}>
             <div className='hike-details-table'>
@@ -149,7 +151,7 @@ export default function CreateHike() {
               <p>{Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
               <p>{hikeDate.toLocaleDateString()}</p>
             </div>
-            <button type='submit' value={"createHike"}>Create Hike</button>
+            <button className="btn btn-primary" type='submit' value={"createHike"}>Create Hike</button>
           </form>
           //<LogoutButton onClick={this.handleLogoutClick} />
         ) : (
@@ -158,10 +160,6 @@ export default function CreateHike() {
         {/* <button type='submit' value={"createHike"}>Create Hike</button> */}
 
       </div>
-
-
-
-
 
       <div className='calendar'>
         <Calendar onChange={changeValue} value={hikeDate} />
@@ -189,5 +187,3 @@ export default function CreateHike() {
     </div>
   );
 }
-
-
