@@ -139,27 +139,27 @@ export default function CreateHike() {
       </div> */}
 
       <div ref={mapContainer} className="map-container" />
-      <div className='split middle'>
+      {/* <div className='split middle'> */}
 
-        {Object.keys(feature).length ? (
-          <form onSubmit={(e) => onSubmit(e)}>
-            <div className='hike-details-table'>
-              <h6>{feature.properties.TRAIL_NAME}</h6>
-              <p>{feature.properties.AREA_NAME}</p>
-              <p>{feature.properties.WALKING}</p>
-              <p>{feature.properties.BIKING}</p>
-              <p>{Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
-              <p>{hikeDate.toLocaleDateString()}</p>
-            </div>
-            <button className="btn btn-primary" type='submit' value={"createHike"}>Create Hike</button>
-          </form>
-          //<LogoutButton onClick={this.handleLogoutClick} />
-        ) : (
-          <div> </div>
-        )}
-        {/* <button type='submit' value={"createHike"}>Create Hike</button> */}
+      {Object.keys(feature).length ? (
+        <form onSubmit={(e) => onSubmit(e)}>
+          <div className='hike-details-table'>
+            <h6>{feature.properties.TRAIL_NAME}</h6>
+            <p>{feature.properties.AREA_NAME}</p>
+            <p>{feature.properties.WALKING}</p>
+            <p>{feature.properties.BIKING}</p>
+            <p>{Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
+            <p>{hikeDate.toLocaleDateString()}</p>
+          </div>
+          <button className="btn btn-primary" type='submit' value={"createHike"}>Create Hike</button>
+        </form>
+        //<LogoutButton onClick={this.handleLogoutClick} />
+      ) : (
+        <div> </div>
+      )}
+      {/* <button type='submit' value={"createHike"}>Create Hike</button> */}
 
-      </div>
+      {/* </div> */}
 
       <div className='calendar'>
         <Calendar onChange={changeValue} value={hikeDate} />

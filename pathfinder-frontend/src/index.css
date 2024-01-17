@@ -75,12 +75,27 @@ code {
 }
 
 .calendar {
-  margin: 1em;
+  /* margin: 1em; */
+  position: relative;
+  right: 33%;
 
   border-radius: 10px;
   border: 1px solid #57c0e8;
   float: right;
 }
+
+/* .calendar {
+
+  position: relative;
+  right: 33%;
+  margin-right: 50%;
+  border-radius: 10px;
+  height: 50;
+  border: transparent;
+  text-align: center;
+  float: right;
+
+} */
 
 /* .map-container {
   margin: 1em;
@@ -102,18 +117,7 @@ code {
   height: 80%;
 } */
 
-/* .calendar {
 
-  position: relative;
-  right: 33%;
-  margin-right: 50%;
-  border-radius: 10px;
-  height: 50;
-  border: transparent;
-  text-align: center;
-  float: right;
-
-} */
 
 .center {
   margin-left: auto;
@@ -130,6 +134,7 @@ div.homepagebutton {
 .comments {
   text-align: left;
   padding: 10px;
+
 }
 
 

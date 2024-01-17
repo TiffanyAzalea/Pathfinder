@@ -1,5 +1,5 @@
-import React, {useState } from 'react';
-import { Link} from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import NavbarBS from '../layout/NavbarBS';
 
@@ -15,7 +15,7 @@ export default function UserHomePage() {
     date: ""
   })
   const { trailName, areaName, walkable, bikeFriendly, distance, date } = hike
-     
+
   // function onClickHandle() {
   //   setFutureHikes(true);
   // }
@@ -23,12 +23,12 @@ export default function UserHomePage() {
     const result = await axios.get("http://localhost:8080/allhikes");
     setFutureHikes(result.data);
   }
- 
+
 
   return (
 
     <div className='section'>
-      <NavbarBS/>
+      <NavbarBS />
       {/* <a className="btn btn-primary" href="#" role="button">Create Hike</a> */}
       <Link className="btn btn-primary mx-2" to="/createhike">Create Hike</Link>
       <button className="btn btn-primary mx-2" type="submit" onClick={loadAllHikes}>Future Hikes</button>
@@ -60,8 +60,8 @@ export default function UserHomePage() {
 
         </tbody>
       </table>
-      
-    
+
+
       {/* <input className="btn btn-primary" type="button" value="Input"></input>
 <input className="btn btn-primary" type="submit" value="Submit"></input>
 <input className="btn btn-primary" type="reset" value="Reset"></input> */}
