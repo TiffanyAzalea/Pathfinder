@@ -142,35 +142,49 @@ export default function CreateHike() {
         <div className="col">
           <div className="row">
             <div className="col">
-              {Object.keys(feature).length ? (
-                <form onSubmit={(e) => onSubmit(e)}>
-                  <div className='hike-details-table'>
-                    <h6>{feature.properties.TRAIL_NAME}</h6>
-                    <p>{feature.properties.AREA_NAME}</p>
-                    <p>{feature.properties.WALKING}</p>
-                    <p>{feature.properties.BIKING}</p>
-                    <p>{Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
-                    <input type='date' onChange={changeValue} value={hikeDate} className='form-control' />
-                  </div>
-                  <button className="btn btn-primary" type='submit' value={"createHike"}>Create Hike</button>
-                </form>
-              ) : (
-                <div> </div>
-              )}
-              {/* <div className='calendar'>
+              <div className="card" style={{ height: 350 + "px" }}>
+                <div className="card-body">
+                  {Object.keys(feature).length ? (
+                    <form onSubmit={(e) => onSubmit(e)}>
+                      <div className='hike-details-table'>
+                        <h5 className="card-title">{feature.properties.TRAIL_NAME}</h5>
+                        <p className="card-text">{feature.properties.AREA_NAME}</p>
+                        <p className="card-text">{feature.properties.WALKING}</p>
+                        <p className="card-text">{feature.properties.BIKING}</p>
+                        <p className="card-text">{Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
+                        <input type='date' onChange={changeValue} value={hikeDate} className='form-control mb-6' />
+                      </div>
+                      <button className="btn btn-primary mt-3" type='submit' value={"createHike"}>Create Hike</button>
+                    </form>
+                  ) : (
+                    <div>
+                      <h5 className="card-title">Please select a hike marker in map</h5>
+                    </div>
+                  )}
+                  {/* <div className='calendar'>
                 <Calendar onChange={changeValue} value={hikeDate} />
                 <p>The selected date is - {hikeDate.toLocaleDateString()}</p>
               </div> */}
+                </div>
+              </div>
             </div>
           </div>
           <div className="row">
             <div className="col">
-              <form onSubmit={(e) => submitComment(e)}>
-                <div className='comments'>
-                  <textarea style={{ width: '30%', borderRadius: '0.25em' }} onChange={(e) => onChangeComment(e)}></textarea>
-                  <button type='submit'>Comment</button>
+              <div class="card">
+                <div class="card-body">
+                  <form onSubmit={(e) => submitComment(e)}>
+                    <div className='comments'>
+
+                      <div class="mb-3">
+                        <label for="commentArea" class="form-label" onChange={(e) => onChangeComment(e)}>Trail comments</label>
+                        <textarea class="form-control" id="commentArea" rows="3"></textarea>
+                      </div>
+                      <button className="btn btn-primary" type='submit'>Comment</button>
+                    </div>
+                  </form>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>

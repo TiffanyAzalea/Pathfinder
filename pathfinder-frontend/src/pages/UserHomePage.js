@@ -45,13 +45,19 @@ export default function UserHomePage() {
 } */}
 
 
-      <table className="center">
-
+      <table className="table center" style={{ width: 500 + "px" }}>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Trail Name</th>
+            <th scope="col">Hike Date</th>
+          </tr>
+        </thead>
         <tbody>
           {futureHikes?.map((hike, index) => (
             <tr>
               <th scope="row" key={index}>{index + 1}</th>
-              <Link to={`/viewhike/${hike.id}`}><td>{hike.trailName}</td></Link>
+              <td><Link to={`/viewhike/${hike.id}`}>{hike.trailName}</Link></td>
               <td>{hike.date}</td>
 
             </tr>

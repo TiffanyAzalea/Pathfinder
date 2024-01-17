@@ -64,9 +64,8 @@ code {
 }
 
 .map-container {
-  margin: 1em;
-  height: 500px;
-  width: 620px;
+  height: 600px;
+  width: 700px;
   border-radius: 10px;
   border: 1px solid #57c0e8;
   float: right;
