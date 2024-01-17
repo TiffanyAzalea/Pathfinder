@@ -24,12 +24,18 @@ public class HikeTableController {
     List<HikeTable> getAllHikes(){
         return hikeTableRepo.findAll();
     }
-
     @GetMapping("/viewhike/{id}")
     HikeTable getHikeById(@PathVariable Long id) {
         return hikeTableRepo.findById(id)
                 .orElseThrow(()->new HikeNotFoundException(id));
     }
+
+    @GetMapping("/viewhikes/{user}")
+    List<HikeTable> getHikeByUSer(@PathVariable Long user) {
+        return hikeTableRepo.findHikesByUser(new User(user));
+
+    }
+
 
 
     @PutMapping("/edithike/{id}")

@@ -22,7 +22,7 @@ export default function CreateHike() {
   const [hikeDate, changeHikeDate] = useState(new Date());
   const [feature, setFeature] = useState({});
   const [comment, setComment] = useState();
-  const [trailName, setTrailName] = useState();
+  const [userId, setUserId] = useState();
   const [allComments, setAllComments] = useState();
 
 
@@ -52,6 +52,7 @@ export default function CreateHike() {
       bikeFriendly: feature.properties.BIKING,
       distance: feature.properties.GIS_MILES.toFixed(2),
       date: hikeDate,
+      user: userId
     })
     navigate("/userhomepage")
   }
@@ -72,7 +73,7 @@ export default function CreateHike() {
     await axios.post("http://localhost:8080/comments", {
       trailName: feature.properties.TRAIL_NAME,
       text: comment,
-      createdBy: 102,
+      createdBy: userId,
       createdDate: new Date().toLocaleDateString()
     })
 
@@ -92,6 +93,11 @@ export default function CreateHike() {
         center: [lng, lat],
         zoom: zoom,
       });
+
+      const username = localStorage.getItem("user");
+      axios.get("http://localhost:8080/user/" + username).then(res => {
+        setUserId(res.data.id);
+      })
 
 
       map.current.on('move', () => {
@@ -141,7 +147,7 @@ export default function CreateHike() {
   }
 
   return (<div>
-    <NavbarBS />
+
     <div className="container">
       <Search onSearchResults={handleSearchResults} />
 
