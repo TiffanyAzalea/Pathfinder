@@ -11,7 +11,7 @@ export default function ViewUser() {
 
     useEffect(() => {
         setUserAuth(loadLogin);
-    }, [loadLogin]);
+    }, [userAuth, loadLogin]);
 
     const [user, setUser] = useState({
         firstName: "",
@@ -23,11 +23,10 @@ export default function ViewUser() {
 
     useEffect(() => {
         loadUser()
-    }, [userAuth])
+    }, [loadLogin, userAuth])
 
     const loadUser = async () => {
-        const userName = userAuth;
-        const result = await axios.get(`http://localhost:8080/user/${userName}`);
+        const result = await axios.get(`http://localhost:8080/user/${userAuth}`);
         console.log(result?.data);
         setUser(result?.data);
         console.log(user);
