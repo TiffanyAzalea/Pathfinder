@@ -20,6 +20,7 @@ import DeleteUser from './users/DeleteUser';
 import Explore from './components/Explore';
 import EditHike from './hikes/EditHike';
 import ViewHike from './hikes/ViewHike';
+import Search from './components/Search'
 
 
 function App() {
