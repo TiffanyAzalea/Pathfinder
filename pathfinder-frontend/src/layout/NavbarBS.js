@@ -57,6 +57,7 @@ function NavbarBS() {
         <NavDropdown.Item as={Link} to="/">Home</NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/viewuser">View Your Details</NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/edituser">Edit Your Details</NavDropdown.Item>
+        <NavDropdown.Item as={Link} to="/userhomepage">User Home Page</NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/createhike">Find a Hike</NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/allhikes">View Your Hikes</NavDropdown.Item>
       </NavDropdown>
