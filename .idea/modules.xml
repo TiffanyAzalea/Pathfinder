@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/The-fast-four.iml" filepath="$PROJECT_DIR$/.idea/The-fast-four.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pathfinder-backend.iml" filepath="$PROJECT_DIR$/.idea/modules/pathfinder-backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pathfinder-backend.main.iml" filepath="$PROJECT_DIR$/.idea/modules/pathfinder-backend.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pathfinder-backend.test.iml" filepath="$PROJECT_DIR$/.idea/modules/pathfinder-backend.test.iml" />
     </modules>
   </component>
 </project>

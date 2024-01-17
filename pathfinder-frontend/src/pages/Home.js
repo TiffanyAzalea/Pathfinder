@@ -1,7 +1,21 @@
 import React from 'react';
+import '../App.css';
+import Cards from '../HomePage/Cards';
+import HeroSection from '../HomePage/HeroSection';
+import NavbarForHome from '../HomePage/NavbarForHome';
 
-export default function Home() {
+function Home() {
   return (
-    <div>Home</div>
-  )
+  <div>
+      <NavbarForHome/>
+      
+      <HeroSection />
+      <Cards />
+      
+  </div>
+ );
+{/*<div>Home</div>*/}
+  
 }
+
+export default Home;

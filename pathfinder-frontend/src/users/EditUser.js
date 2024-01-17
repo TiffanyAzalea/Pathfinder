@@ -122,7 +122,8 @@ export default function EditUser() {
               className="form-control"
               placeholder="Change your Username here"
               name="username"
-              value={username}
+              autoComplete="off"
+              value={user.username}
               onChange={(e) => onInputChange(e)}
             />
           </div> */}
@@ -135,7 +136,8 @@ export default function EditUser() {
                 className="form-control"
                 placeholder="Change your Password here"
                 name="password"
-                value={password}
+                autoComplete="off"
+                value={user.password}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -148,7 +150,8 @@ export default function EditUser() {
                 className="form-control"
                 placeholder="Change your E-mail here"
                 name="email"
-                value={email}
+                autoComplete="off"
+                value={user.email}
                 onChange={(e) => onInputChange(e)}
               />
             </div>

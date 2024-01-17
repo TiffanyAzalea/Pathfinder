@@ -35,7 +35,7 @@ function NavbarBS() {
   return (
     <Navbar variant="dark" bg="dark" expand="lg">
       <Container fluid>
-        <Navbar.Brand as={Link} to="/">Pathfinder</Navbar.Brand>
+        <Navbar.Brand className='navbar-logo' as={Link} to="/"><img src={logo} alt="logo.jpg"></img>Pathfinder</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-dark-example" />
         <Navbar.Text>{user}</Navbar.Text>
         <Navbar.Collapse id="navbar-dark-example" className="justify-content-end">
@@ -48,6 +48,7 @@ function NavbarBS() {
               title="Menu"
               menuVariant="dark"
               align="end"
+
             >
               <NavDropdown.Item as={Link} to="/">Home</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/edituser">Edit User Details</NavDropdown.Item>

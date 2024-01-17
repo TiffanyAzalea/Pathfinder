@@ -1,28 +1,31 @@
 package com.fastfour.pathfinderbackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue //(strategy = GenerationType.IDENTITY) //ariel quest
+    @GeneratedValue//(strategy = GenerationType.IDENTITY) //ariel quest
     private Long id;
 
+    public User() {
+    }
+
+    public User(Long id) {
+        this.id = id;
+    }
     private String firstName;
     private String lastName;
     private String username;
+
+
     private String password;
     private String email;
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {

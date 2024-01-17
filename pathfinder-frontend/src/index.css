@@ -24,9 +24,11 @@ code {
 }
 
 .map-container {
-  height: 800px;
-  width: 800px;
+  height: 100vh;
+  width: 100vw;
+  float: left;
 }
+
 
 /* .sidebar {
   background-color: rgb(35 55 75 / 90%);
@@ -60,31 +62,149 @@ code {
   /* Customize the color as needed */
   margin-top: 10px;
 }
-.map-container{
-  margin:1em;
-  height: 500px;
-  width:620px;
+
+.map-container {
+  height: 600px;
+  width: 700px;
   border-radius: 10px;
-  border:1px solid #57c0e8;
+  border: 1px solid #57c0e8;
   float: right;
-  
- 
+
+
 }
-.calendar{
-  margin:1em;
-  
+
+.calendar {
+  /* margin: 1em; */
+  position: relative;
+  right: 33%;
+
   border-radius: 10px;
-  border:1px solid #57c0e8;
+  border: 1px solid #57c0e8;
   float: right;
-  
- 
 }
-.center{
+
+/* .calendar {
+
+  position: relative;
+  right: 33%;
+  margin-right: 50%;
+  border-radius: 10px;
+  height: 50;
+  border: transparent;
+  text-align: center;
+  float: right;
+
+} */
+
+/* .map-container {
+  margin: 1em;
+  border-radius: 10px;
+  border: 1px solid #57c0e8;
+  float: right;
+  left: 60%;
+  margin-left: 50%;
+  width: 50%;
+  height: 80%;
+  transform: translate(-880px, 10px);
+  overflow-y: auto;
+
+
+} */
+
+/* .map-explore {
+  width: 100%;
+  height: 80%;
+} */
+
+
+
+.center {
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
-div.homepagebutton{
-  
+
+div.homepagebutton {
+
   right: 0;
+
+}
+
+.comments {
+  text-align: left;
+  padding: 10px;
+
+}
+
+
+/*div.homepagebutton{
+  
+  left: auto;
  
+}*/
+.display {
+  background-color: rgb(255, 255, 255);
+  border: none;
+  color: black;
+  padding: 19px 32px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 10px;
+  display: inline-flex;
+  font-size: 16px;
+  margin: 4px 2px;
+
+
+}
+
+/* 
+p {
+  font-size: large;
+} */
+
+.split {
+  height: 100%;
+  width: 25%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+
+}
+
+.right {
+  right: 0;
+}
+
+.middle {
+
+  z-index: 1;
+  padding-top: 20px;
+  left: 60%;
+}
+
+.left {
+  left: 0;
+  background: rgb(205, 200, 200);
+}
+
+.box {
+  width: fit-content;
+  height: fit-content;
+  background: #57c0e8;
+  border-radius: 10px;
+  padding: 20px;
+  transform: translate(20%, 10%);
+}
+
+.box1 {
+  width: fit-content;
+  height: fit-content;
+  background: rgb(219, 218, 218);
+  border-radius: 10px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  transform: translate(0%, -80%);
 }
