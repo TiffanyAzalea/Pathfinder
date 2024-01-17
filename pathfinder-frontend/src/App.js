@@ -23,7 +23,7 @@ import DeleteUser from './users/DeleteUser';
 import Explore from './components/Explore';
 import EditHike from './hikes/EditHike';
 import ViewHike from './hikes/ViewHike';
-
+import SearchPage from './pages/SearchPage';
 import Search from './components/Search';
 
 function App() {
@@ -46,6 +46,8 @@ function App() {
           <Route exact path="/viewhike/:id" element={<ViewHike />} />
           <Route exact path="/explore" element={<Explore />} />
           <Route exact path="/allhikes" element={<AllHikes />} />
+          <Route exact path="/search" element={<Search />} />
+          <Route exact path="/searchpage" element={<SearchPage />} />
         </Routes>
 
         <Footer />

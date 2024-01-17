@@ -51,6 +51,17 @@ function NavbarForHome() {
                Explore
               </Link>
             </li>
+
+            <li className='nav-item'>
+              <Link
+                to='/searchpage'
+                className='nav-links'
+                onClick={closeMobileMenu}
+              >
+                Search Hikes
+              </Link>
+            
+            </li>
             
             <li className='nav-item'>
               <Link
