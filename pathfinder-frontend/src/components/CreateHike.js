@@ -44,13 +44,14 @@ export default function CreateHike() {
     //   date: hikeDate.toLocaleDateString()
     // })
     // console.log(hike);
+    console.log(hikeDate)
     await axios.post("http://localhost:8080/createhike", {
       trailName: feature.properties.TRAIL_NAME,
       areaName: feature.properties.AREA_NAME,
       walkable: feature.properties.WALKING,
       bikeFriendly: feature.properties.BIKING,
       distance: feature.properties.GIS_MILES.toFixed(2),
-      date: hikeDate.toLocaleDateString()
+      date: hikeDate,
     })
     navigate("/userhomepage")
   }
@@ -124,66 +125,85 @@ export default function CreateHike() {
 
 
   // Calender code
-  function changeValue(val) {
-    changeHikeDate(val);
+  function changeValue(e) {
+    e.preventDefault();
+    changeHikeDate(e.target.value);
   }
 
   return (
 
-    <div>
-      <div className='homepagebutton'>
-        <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
-      </div>
-      {/* <div className="sidebar">
-        Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-      </div> */}
-
-      <div ref={mapContainer} className="map-container" />
-      <div className='split middle'>
-
-        {Object.keys(feature).length ? (
-          <form onSubmit={(e) => onSubmit(e)}>
-            <div className='hike-details-table'>
-              <h6>{feature.properties.TRAIL_NAME}</h6>
-              <p>{feature.properties.AREA_NAME}</p>
-              <p>{feature.properties.WALKING}</p>
-              <p>{feature.properties.BIKING}</p>
-              <p>{Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
-              <p>{hikeDate.toLocaleDateString()}</p>
-            </div>
-            <button className="btn btn-primary" type='submit' value={"createHike"}>Create Hike</button>
-          </form>
-          //<LogoutButton onClick={this.handleLogoutClick} />
-        ) : (
-          <div> </div>
-        )}
-        {/* <button type='submit' value={"createHike"}>Create Hike</button> */}
-
-      </div>
-
-      <div className='calendar'>
-        <Calendar onChange={changeValue} value={hikeDate} />
-        <p>The selected date is - {hikeDate.toLocaleDateString()}</p>
-      </div>
-      <form onSubmit={(e) => submitComment(e)}>
-        <div className='comments'>
-          <textarea style={{ width: '30%', borderRadius: '0.25em' }} onChange={(e) => onChangeComment(e)}></textarea>
-          <button type='submit'>Comment</button>
-
+    <div className="container">
+      <div className="row">
+        <div className='homepagebutton col'>
+          <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
         </div>
-      </form>
-      <div className='comments'>
-        <h6>Comments:</h6>
-        {allComments?.map((comment, index) => (
-
-          <div key={index}>
-            <h6>{comment.createdBy.firstName} {comment.createdBy.lastName} - {comment.createdDate}</h6>
-            <p>{comment.text}</p>
-          </div>
-        ))}
-
-
       </div>
+      <div className="row">
+        <div className="col">
+          <div className="row">
+            <div className="col">
+              <div className="card" style={{ height: 350 + "px" }}>
+                <div className="card-body">
+                  {Object.keys(feature).length ? (
+                    <form onSubmit={(e) => onSubmit(e)}>
+                      <div className='hike-details-table'>
+                        <h5 className="card-title">{feature.properties.TRAIL_NAME}</h5>
+                        <p className="card-text">{feature.properties.AREA_NAME}</p>
+                        <p className="card-text">{feature.properties.WALKING}</p>
+                        <p className="card-text">{feature.properties.BIKING}</p>
+                        <p className="card-text">{Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
+                        <input type='date' onChange={changeValue} value={hikeDate} className='form-control mb-6' />
+                      </div>
+                      <button className="btn btn-primary mt-3" type='submit' value={"createHike"}>Create Hike</button>
+                    </form>
+                  ) : (
+                    <div>
+                      <h5 className="card-title">Please select a hike marker in map</h5>
+                    </div>
+                  )}
+                  {/* <div className='calendar'>
+                <Calendar onChange={changeValue} value={hikeDate} />
+                <p>The selected date is - {hikeDate.toLocaleDateString()}</p>
+              </div> */}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <div class="card">
+                <div class="card-body">
+                  <form onSubmit={(e) => submitComment(e)}>
+                    <div className='comments'>
+
+                      <div class="mb-3">
+                        <label for="commentArea" class="form-label">Trail comments</label>
+                        <textarea class="form-control" id="commentArea" rows="3" onChange={(e) => onChangeComment(e)}></textarea>
+                      </div>
+                      <button className="btn btn-primary" type='submit'>Comment</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col">
+          <div ref={mapContainer} className="map-container" />
+        </div>
+      </div>
+      <div className="row">
+        <div className='col comments'>
+          <h6>Comments:</h6>
+          {allComments?.map((comment, index) => (
+            <div key={index}>
+              <h6>{comment.createdBy.firstName} {comment.createdBy.lastName} - {comment.createdDate}</h6>
+              <p>{comment.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 }

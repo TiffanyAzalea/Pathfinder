@@ -1,5 +1,5 @@
-import React, {useState } from 'react';
-import { Link} from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import NavbarBS from '../layout/NavbarBS';
 
@@ -14,25 +14,30 @@ export default function UserHomePage() {
     distance: "",
     date: ""
   })
-  const { trailName, areaName, walkable, bikeFriendly, distance, date } = hike
-     
-  // function onClickHandle() {
-  //   setFutureHikes(true);
-  // }
+
   const loadAllHikes = async () => {
     const result = await axios.get("http://localhost:8080/allhikes");
-    setFutureHikes(result.data);
+    console.log(result)
+    const sortedResult = result.data.sort((a, b) => {
+      if (a.date > b.date) {
+        return -1
+      }
+      if (a.date < b.date) {
+        return 1
+      }
+      return 0
+    })
+    setFutureHikes(sortedResult);
   }
- 
+
 
   return (
 
     <div className='section'>
-      <NavbarBS/>
+      <NavbarBS />
       {/* <a className="btn btn-primary" href="#" role="button">Create Hike</a> */}
       <Link className="btn btn-primary mx-2" to="/createhike">Create Hike</Link>
-      <button className="btn btn-primary mx-2" type="submit" onClick={loadAllHikes}>Future Hikes</button>
-      <button className="btn btn-primary mx-2" type="submit">Past Hikes</button>
+      <button className="btn btn-primary mx-2" type="submit" onClick={loadAllHikes}>Hikes List</button>
 
       {/* {
   futureHikes ? <div class="list-group">
@@ -45,13 +50,19 @@ export default function UserHomePage() {
 } */}
 
 
-      <table className="center">
-
+      <table className="table center" style={{ width: 600 + "px" }}>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Trail Name</th>
+            <th scope="col">Hike Date</th>
+          </tr>
+        </thead>
         <tbody>
           {futureHikes?.map((hike, index) => (
             <tr>
               <th scope="row" key={index}>{index + 1}</th>
-              <Link to={`/viewhike/${hike.id}`}><td>{hike.trailName}</td></Link>
+              <td><Link to={`/viewhike/${hike.id}`}>{hike.trailName}</Link></td>
               <td>{hike.date}</td>
 
             </tr>
@@ -60,8 +71,8 @@ export default function UserHomePage() {
 
         </tbody>
       </table>
-      
-    
+
+
       {/* <input className="btn btn-primary" type="button" value="Input"></input>
 <input className="btn btn-primary" type="submit" value="Submit"></input>
 <input className="btn btn-primary" type="reset" value="Reset"></input> */}
