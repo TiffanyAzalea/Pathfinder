@@ -6,16 +6,13 @@ import NavbarForHome from '../HomePage/NavbarForHome';
 
 function Home() {
   return (
-  <div>
-      <NavbarForHome/>
-      
+    <div>
       <HeroSection />
       <Cards />
-      
-  </div>
- );
-{/*<div>Home</div>*/}
-  
+    </div>
+  );
+  {/*<div>Home</div>*/ }
+
 }
 
 export default Home;
