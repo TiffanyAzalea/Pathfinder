@@ -20,7 +20,7 @@ public class User {
     private String lastName;
     private String username;
 
-    @JsonIgnore
+//    @JsonIgnore
     private String password;
     private String email;
 
