@@ -130,9 +130,10 @@ export default function CreateHike() {
     changeHikeDate(e.target.value);
   }
 
-  return (
-
+  return (<div>
+    <NavbarBS />
     <div className="container">
+
       <div className="row">
         <div className='homepagebutton col'>
           <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
@@ -205,5 +206,6 @@ export default function CreateHike() {
       </div>
 
     </div>
+  </div>
   );
 }
