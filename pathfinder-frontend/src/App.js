@@ -31,27 +31,26 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        
+
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/adduser" element={<AddUser />} />
           <Route exact path="/login" element={<Login />} />
-          <Route exact path="/logout" element={<Logout/>} />
-           <Route exact path="/edituser/:id" element={<EditUser />} />
-           <Route exact path="/viewuser/:id" element={<ViewUser />} />
-           <Route exact path="/deleteuser/:id" element={<DeleteUser />} />
+          <Route exact path="/logout" element={<Logout />} />
+          <Route exact path="/edituser/:id" element={<EditUser />} />
+          <Route exact path="/viewuser/:id" element={<ViewUser />} />
+          <Route exact path="/deleteuser/:id" element={<DeleteUser />} />
           <Route exact path="/userhomepage" element={<UserHomePage />} />
           <Route exact path="/createhike" element={<CreateHike />} />
           <Route exact path="/edithike/:id" element={<EditHike />} />
           <Route exact path="/viewhike/:id" element={<ViewHike />} />
-          <Route exact path="/explore" element={<Explore/>} />
-          <Route exact path="/allhikes" element={<AllHikes/>} />
-      
+          <Route exact path="/explore" element={<Explore />} />
+          <Route exact path="/allhikes" element={<AllHikes />} />
         </Routes>
-        
-        <Footer/>
+
+        <Footer />
       </BrowserRouter>
-      
+
       {/* <NavbarForHome /> */}
       {/* <UserHomePage /> */}
 

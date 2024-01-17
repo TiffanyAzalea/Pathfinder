@@ -6,7 +6,6 @@ import "react-calendar/dist/Calendar.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import Search from '../components/Search'
 import NavbarBS from '../layout/NavbarBS';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpdHRpYWthc2F0dGkiLCJhIjoiY2xwenY1cmVtMTBzZDJrcW5yb2Y5cjRzNSJ9.SYzooukcLn0gjeS-VTjdgw';
@@ -21,49 +20,61 @@ export default function CreateHike() {
   const [zoom, setZoom] = useState(9);
   const [hikeDate, changeHikeDate] = useState(new Date());
   const [feature, setFeature] = useState({});
-  const [hike, setHike] = useState({
-    trailName: "",
-    areaName: "",
-    walkable: "",
-    bikeFriendly: "",
-    distance: "",
-    date: ""
-  })
-  const { trailName, areaName, walkable, bikeFriendly, distance, date } = hike
+  const [comment, setComment] = useState();
+  const [trailName, setTrailName] = useState();
+  const [allComments, setAllComments] = useState();
+  let newDate = new Date()
+
+
+  const onChangeComment = (e) => {
+    setComment(e.target.value);
+  }
+
   const onInputChange = (e) => {
 
   }
   const onSubmit = async (e) => {
     e.preventDefault();
-    
-    if (feature && feature.properties) {
-      const { TRAIL_NAME, AREA_NAME, WALKING, BIKING, GIS_MILES } = feature.properties;
-  
-      await axios.post("http://localhost:8080/createhike", {
-        trailName: TRAIL_NAME || "",
-        areaName: AREA_NAME || "",
-        walkable: WALKING || "",
-        bikeFriendly: BIKING || "",
-        distance: (GIS_MILES || 0).toFixed(2),
-        date: hikeDate.toLocaleDateString() || ""
-      });
-  
-      navigate("/userhomepage");
-    } else {
-      // Handle the case where feature or its properties are undefined/null
-      console.error("Cannot submit, feature or its properties are undefined or null");
-    }
-
+    // await setHike({
+    //   trailName: feature.properties.TRAIL_NAME,
+    //   areaName: feature.properties.AREA_NAME,
+    //   walkable: feature.properties.WALKING,
+    //   bikable: feature.properties.BIKING,
+    //   distance: feature.properties.GIS_MILES,
+    //   date: hikeDate.toLocaleDateString()
+    // })
+    // console.log(hike);
+    await axios.post("http://localhost:8080/createhike", {
+      trailName: feature.properties.TRAIL_NAME,
+      areaName: feature.properties.AREA_NAME,
+      walkable: feature.properties.WALKING,
+      bikeFriendly: feature.properties.BIKING,
+      distance: feature.properties.GIS_MILES.toFixed(2),
+      date: hikeDate.toLocaleDateString()
+    })
+    navigate("/userhomepage")
   }
 
-  const [filteredTrailResults, setFilteredTrailResults] = useState([]);
+  const submitComment = async function (e) {
+    e.preventDefault();
 
-  const handleSearchResults = (results) => {
-    setFilteredTrailResults(results);
-  };
+    await axios.post("http://localhost:8080/comments", {
+      trailName: feature.properties.TRAIL_NAME,
+      text: comment,
+      createdBy: 102,
+      createdDate: new Date().toLocaleDateString()
+    })
+
+    axios.get("http://localhost:8080/comments/" + feature.properties.TRAIL_NAME)
+      .then((response) => {
+        setAllComments(response.data);
+      })
+      .catch(error => console.log(error))
+  }
+
 
   useEffect(() => {
-    if (!map.current) {
+    if (map.current === null) {
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
         style: 'mapbox://styles/chittiakasatti/clq45nc7s01a701p79yzjbjre',
@@ -76,7 +87,6 @@ export default function CreateHike() {
         setLng(map.current.getCenter().lng.toFixed(4));
         setLat(map.current.getCenter().lat.toFixed(4));
         setZoom(map.current.getZoom().toFixed(2));
-        console.log(map.current.getStyle().layers)
       });
 
 
@@ -84,27 +94,33 @@ export default function CreateHike() {
         const features = map.current.queryRenderedFeatures(event.point, {
           layers: ['mo-trails-parsed-filtered']
         });
-        if (!features.length) {
-          return;
-        }
-        const feature = features[0];
-        //setSelectedCoordinates(feature.geometry.coordinates)
-        setFeature(feature);
+        if (features.length > 0) {
+          const feature = features[0];
+          //setSelectedCoordinates(feature.geometry.coordinates)
+          setFeature(feature);
+          axios.get("http://localhost:8080/comments/" + feature.properties.TRAIL_NAME)
+            .then((response) => {
+              setAllComments(response.data);
+            })
+            .catch(error => console.log(error))
 
-        const popup = new mapboxgl.Popup({ offset: [0, -15] })
-          .setLngLat(feature.geometry.coordinates)
-          .setHTML(
-            `<h6>${feature.properties.TRAIL_NAME}</h6>
-          <p style="margin-bottom: 0" >${feature.properties.AREA_NAME}</p>
-          <p style="margin-bottom: 0" >${feature.properties.WALKING}</p>
-          <p style="margin-bottom: 0" >${feature.properties.BIKING}</p>
-          <p style="margin-bottom: 0" >${Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p> `
-          )
-          .addTo(map.current);
-        <h1>Trail Details</h1>
+
+
+          const popup = new mapboxgl.Popup({ offset: [0, -15] })
+            .setLngLat(feature.geometry.coordinates)
+            .setHTML(
+              `<h6>${feature.properties.TRAIL_NAME}</h6>
+              <p style="margin-bottom: 0" >${feature.properties.AREA_NAME}</p>
+              <p style="margin-bottom: 0" >${feature.properties.WALKING}</p>
+              <p style="margin-bottom: 0" >${feature.properties.BIKING}</p>
+              <p style="margin-bottom: 0" >${Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
+          `
+            )
+            .addTo(map.current);
+        }
       });
     }
-  }, [filteredTrailResults] );
+  });
 
 
   // Calender code
@@ -113,47 +129,61 @@ export default function CreateHike() {
   }
 
   return (
-    
-    <div className='section'>
-    <NavbarBS/>
-    <div className='hero-container'>
-    <div className='homepagebutton'>
-    <Search />  
-    <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
-    </div>
-    {/* <div className="sidebar">
-      Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-    </div> */}
-    
-    <div ref={mapContainer} className="map-container" />
-    <div className='split middle'>
-     
-      {Object.keys(feature).length || (filteredTrailResults.length > 0) ? (
-        <form onSubmit={(e) => onSubmit(e)}>
-          <div className='hike-details-table'>
-          <h1>Trail Details</h1>
-            <h6 value={trailName} onChange={(e) => onInputChange(e)}>{feature.properties?.TRAIL_NAME || filteredTrailResults[0]?.properties?.TRAIL_NAME}</h6>
-            <p value={areaName} onChange={(e) => onInputChange(e)}>{feature.properties?.AREA_NAME || filteredTrailResults[0]?.properties?.AREA_NAME}</p>
-            <p value={walkable} onChange={(e) => onInputChange(e)}>{feature.properties?.WALKING || filteredTrailResults[0]?.properties?.WALKING}</p>
-            <p value={bikeFriendly} onChange={(e) => onInputChange(e)}>{feature.properties?.BIKING || filteredTrailResults[0]?.properties?.BIKING}</p>
-            <p value={distance} onChange={(e) => onInputChange(e)}>{(feature.properties?.GIS_MILES || filteredTrailResults[0]?.properties?.GIS_MILES)?.toFixed(2)} miles</p>
-            <p value={date} onChange={(e) => onInputChange(e)}>{hikeDate.toLocaleDateString()}</p>
+
+    <div>
+      <div className='homepagebutton'>
+        <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
+      </div>
+      {/* <div className="sidebar">
+        Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+      </div> */}
+
+      <div ref={mapContainer} className="map-container" />
+      <div className='split middle'>
+
+        {Object.keys(feature).length ? (
+          <form onSubmit={(e) => onSubmit(e)}>
+            <div className='hike-details-table'>
+              <h6>{feature.properties.TRAIL_NAME}</h6>
+              <p>{feature.properties.AREA_NAME}</p>
+              <p>{feature.properties.WALKING}</p>
+              <p>{feature.properties.BIKING}</p>
+              <p>{Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
+              <p>{hikeDate.toLocaleDateString()}</p>
+            </div>
+            <button className="btn btn-primary" type='submit' value={"createHike"}>Create Hike</button>
+          </form>
+          //<LogoutButton onClick={this.handleLogoutClick} />
+        ) : (
+          <div> </div>
+        )}
+        {/* <button type='submit' value={"createHike"}>Create Hike</button> */}
+
+      </div>
+
+      <div className='calendar'>
+        <Calendar onChange={changeValue} value={hikeDate} />
+        <p>The selected date is - {hikeDate.toLocaleDateString()}</p>
+      </div>
+      <form onSubmit={(e) => submitComment(e)}>
+        <div className='comments'>
+          <textarea style={{ width: '30%', borderRadius: '0.25em' }} onChange={(e) => onChangeComment(e)}></textarea>
+          <button type='submit'>Comment</button>
+
+        </div>
+      </form>
+      <div className='comments'>
+        <h6>Comments:</h6>
+        {allComments?.map((comment, index) => (
+
+          <div key={index}>
+            <h6>{comment.createdBy.firstName} {comment.createdBy.lastName} - {comment.createdDate}</h6>
+            <p>{comment.text}</p>
           </div>
-          <button className="btn btn-primary" type='submit' value={"createHike"}>Create Hike</button>
-        </form>
-        //<LogoutButton onClick={this.handleLogoutClick} />
-      ) : (
-        <div> </div>
-      )}
-      {/* <button type='submit' value={"createHike"}>Create Hike</button> */}
+        ))}
 
-    </div>
 
-    <div className='calendar'>
-      <Calendar onChange={changeValue} value={hikeDate} />
-      <p>The selected date is - {hikeDate.toLocaleDateString()}</p>
+      </div>
     </div>
-  </div>
-  </div>
-);
+  );
 }

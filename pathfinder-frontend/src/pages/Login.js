@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useContext } from 'react';
+import NavbarForHome from '../HomePage/NavbarForHome'
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthProvider';
 import axios from 'axios';
@@ -58,9 +59,11 @@ const Login = () => {
     }
 
     return (
-        <section>
-            <div className='d-flex justify-content-center align-items-center bg-primary vh-100'>
-                <div className='big-white p-3 rounded w-25'>
+
+        <section >
+            <NavbarForHome />
+            <div className='d-flex justify-content-center align-items-center vh-100'>
+                <div className='w-25 box1'>
                     <div>
                         <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     </div>
