@@ -19,17 +19,14 @@ export default function EditUser() {
     email: ""
   });
 
-  // useEffect(() => {
-  //     const loggedInUser = localStorage.getItem("user");
-  //     const loggedInToken = localStorage.getItem("token");
-  //     if (loggedInToken === "token123") {
-  //         const foundUser = loggedInUser;
-  //         console.log(localStorage.getItem('user'));
-  //         console.log(loggedInUser);
-  //         console.log(foundUser);
-  //         setUserAuth(foundUser);
-  //     }
-  // }, []);
+  const [editUser, setEditUser] = useState({
+    id: "",
+    firstName: "",
+    lastName: "",
+    username: "",
+    password: "",
+    email: ""
+  });
 
   const loadLogin = useLogin();
 
@@ -43,40 +40,37 @@ export default function EditUser() {
         const response = await axios.get(
           `http://localhost:8080/user/${userAuth}`
         );
-        console.log(response?.data);
         setUser(response?.data);
-        console.log(user);
       } catch (error) {
         console.log(error);
       }
     })();
   }, [user, userAuth]);
 
-  //   useEffect(()=>{
-  //     loadUser()
-  // },[]) 
+  const loadUser = () => {
+    setEditUser(user);
+  }
 
-  // const loadUser = async ()=>{
-  //     const result = await axios.get(`http://localhost:8080/user/${userAuth}`)
-  //     console.log(result?.data);
-  //     setUser(JSON.stringify(result?.data));
-  // }
+  useEffect(() => {
+    loadUser();
+  }, [])
 
   let navigate = useNavigate();
 
   const { id, firstName, lastName, username, password, email } = user;
 
   const onInputChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setEditUser({ ...editUser, [e.target.name]: e.target.value });
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:8080/user/${user.id}`, user,
+    const response = await axios.put(`http://localhost:8080/user/${user.id}`, editUser,
       {
         headers: { 'Content-Type': 'application/json' },
       }
     );
+    console.log(JSON.stringify(response?.data));
     navigate("/viewuser");
   };
 
@@ -94,9 +88,9 @@ export default function EditUser() {
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Change your First name here"
+                placeholder={user.firstName}
                 name="firstName"
-                value={firstName}
+                value={editUser.firstName}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -107,9 +101,9 @@ export default function EditUser() {
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Change your Last name here"
+                placeholder={user.lastName}
                 name="lastName"
-                value={lastName}
+                value={editUser.lastName}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -134,10 +128,10 @@ export default function EditUser() {
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Change your Password here"
+                placeholder={user.password}
                 name="password"
                 autoComplete="off"
-                value={user.password}
+                value={editUser.password}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -151,7 +145,7 @@ export default function EditUser() {
                 placeholder="Change your E-mail here"
                 name="email"
                 autoComplete="off"
-                value={user.email}
+                value={editUser.email}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
