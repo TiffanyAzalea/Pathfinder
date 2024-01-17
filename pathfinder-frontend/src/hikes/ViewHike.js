@@ -4,8 +4,6 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import './ViewHike.css'
 import NavbarBS from "../layout/NavbarBS";
 import Calendar from "react-multi-date-picker";
-import DatePicker from "react-multi-date-picker"
-import DatePanel from "react-multi-date-picker/plugins/date_panel";
 import {
     FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, PinterestShareButton,
     PinterestIcon, InstapaperIcon, InstapaperShareButton, EmailShareButton, EmailIcon
@@ -17,6 +15,10 @@ export default function ViewHike() {
     const [hikeDate, changeHikeDate] = useState(new Date());
     const [feature, setFeature] = useState({});
     let navigate = useNavigate();
+    const [comment, setComment] = useState();
+  const [allComments, setAllComments] = useState();
+  let newDate = new Date()
+
     const [allhikes, setAllHikes] = useState({
         trailName: "",
         areaName: "",
@@ -27,7 +29,26 @@ export default function ViewHike() {
     })
     const { trailName, areaName, walkable, bikeFriendly, distance, date } = allhikes
 
-
+    const submitComment = async function (e) {
+        e.preventDefault();
+    
+        await axios.post("http://localhost:8080/comments", {
+          trailName: feature.properties.TRAIL_NAME,
+          text: comment,
+          createdBy: 102,
+          createdDate: new Date().toLocaleDateString()
+        })
+    
+        axios.get("http://localhost:8080/comments/" + feature.properties.TRAIL_NAME)
+          .then((response) => {
+            setAllComments(response.data);
+          })
+          .catch(error => console.log(error))
+      }
+      const onChangeComment = (e) => {
+        setComment(e.target.value);
+      }
+    
     const onInputChange = (e) => {
         setAllHikes({ ...allhikes, [e.target.name]: e.target.value });
     }
@@ -147,16 +168,46 @@ export default function ViewHike() {
                         </EmailShareButton>
                     </div><br />
                     <div className="split-right">
-                        <div className="box-share">
-                            <h3 className="headind3">Reviews:</h3>
+                      
+                            <div className="row">
+            <div className="col">
+              <div class="card">
+                <div class="card-body">
+                  <form onSubmit={(e) => submitComment(e)}>
+                    <div className='comments'>
+
+                      <div class="mb-3">
+                        <label for="commentArea" class="form-label">Trail comments</label>
+                        <textarea class="form-control" id="commentArea" rows="3" onChange={(e) => onChangeComment(e)}></textarea>
+                      </div>
+                      <button className="btn btn-primary" type='submit'>Comment</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+        <div className='col comments'>
+          <h6>Comments:</h6>
+          {allComments?.map((comment, index) => (
+            <div key={index}>
+              <h6>{comment.createdBy.firstName} {comment.createdBy.lastName} - {comment.createdDate}</h6>
+              <p>{comment.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+          </div>
+        </div>
+        
+      </div>
+      
+
+    </div>
 
 
                         </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
+                 
+               
     );
 }

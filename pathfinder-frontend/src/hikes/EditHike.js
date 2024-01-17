@@ -1,15 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import './EditHike.css'
+import './EditHike.css';
 import NavbarBS from "../layout/NavbarBS";
 import Calendar from "react-multi-date-picker";
 import DatePicker from "react-multi-date-picker"
 import DatePanel from "react-multi-date-picker/plugins/date_panel";
-import {
-    FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, PinterestShareButton,
-    PinterestIcon, InstapaperIcon, InstapaperShareButton, EmailShareButton, EmailIcon
-} from "react-share";
+
 
 
 export default function EditHike() {
@@ -42,11 +39,7 @@ export default function EditHike() {
         const result = await axios.get(`http://localhost:8080/viewhike/${id}`);
         setAllHikes(result.data);
     }
-    const deletehike = async (id) => {
-        const result = await axios.delete(`http://localhost:8080/deletehike/${id}`)
-        setAllHikes(result.data);
-        navigate("/userhomepage")
-    }
+   
 
 
     const { id } = useParams();
@@ -125,7 +118,7 @@ export default function EditHike() {
                            />   
                         </div>
                                 
-                        <button type="submit" className="btn btn-primary  mx-3">Update</button>
+                        <button type="submit" className="btn btn-primary  mx-2">Update</button>
                         <Link className="btn btn-primary mx-2" to={`/viewhike/${allhikes.id}`}>Cancel</Link>
 
                     <Link className="btn btn-primary mx-2" to="/userhomepage">Back</Link>

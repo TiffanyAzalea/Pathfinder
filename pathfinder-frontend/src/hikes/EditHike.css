@@ -1,5 +1,5 @@
 .split-left{
-  height: 95%;
+  height: 98%;
   width: 30%;
   border-radius: 10px;
   background: rgb(223, 222, 222);
@@ -9,13 +9,13 @@
 }
 
 .split-right{
-  height: 95%;
+  height: 97%;
   width: 69%;
   right: 0%;
   border-radius: 10px;
   background: rgb(223, 222, 222);
   text-align: center;
-  transform: translate(45%, -99%);
+  transform: translate(45%, -100%);
   
 }
   .split-center{

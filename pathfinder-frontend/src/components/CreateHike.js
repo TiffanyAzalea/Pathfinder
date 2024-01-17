@@ -132,7 +132,7 @@ export default function CreateHike() {
 
   return (
 
-    <div className="container">
+    <div className="section">
       <div className="row">
         <div className='homepagebutton col'>
           <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
