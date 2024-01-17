@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect,useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import '../App.css';
 import NavbarBS from "../layout/NavbarBS";
 
@@ -70,11 +70,11 @@ export default function EditUser() {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-   /* if(validateForm){
+   //if(validateForm){
       console.log(user);
       await axios.post("http://localhost:8080/user", user);
-      navigate("/userhomepage");
-    }*/
+      navigate(`/viewuser/${user.id}`);
+   // }
   };
   const {id}=useParams();
 
@@ -88,7 +88,7 @@ export default function EditUser() {
     }
   
   return (
-    <div className="section1">
+    <div className="section">
     <NavbarBS/>
     <div className="container ">
     <div className="row ">
@@ -146,7 +146,7 @@ export default function EditUser() {
                 Password
               </label>
               <input
-                type={"text"}
+                type="password"
                 className="form-control"
                 placeholder="Change your Password here"
                 name="password"
@@ -174,9 +174,9 @@ export default function EditUser() {
           <button type="submit" className="btn btn-primary mx-2">
             Update
           </button>
-          <button type="submit" className="btn btn-primary mx-2">
+          <Link to="/userhomepage" className="btn btn-primary mx-2">
               Cancel
-            </button>
+            </Link>
         </form>
       </div>
     </div>

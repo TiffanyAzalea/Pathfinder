@@ -115,7 +115,7 @@ export default function AddUser() {
                 Password
               </label>
               <input
-                type={"text"}
+                type="password"
                 className="form-control"
                 placeholder="icl1mb3verest"
                 name="password"
