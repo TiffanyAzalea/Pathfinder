@@ -22,7 +22,7 @@ export default function EditUser() {
     email: ""
   });
   const { firstName, lastName, username, password, email } = user;
-/*  function validateForm(){
+/* function validateForm(){
     let valid =true;
     const errorsCopy = {... errors}
     if(firstName.trim()){
@@ -70,11 +70,11 @@ export default function EditUser() {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    //if(validateForm){
+   /* if(validateForm){
       console.log(user);
       await axios.post("http://localhost:8080/user", user);
       navigate("/userhomepage");
-    //}
+    }*/
   };
   const {id}=useParams();
 

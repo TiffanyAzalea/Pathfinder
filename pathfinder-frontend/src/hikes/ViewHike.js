@@ -168,8 +168,16 @@ export default function ViewHike() {
                         </EmailShareButton>
                     </div><br />
                     <div className="split-right">
-                      
-                            <div className="row">
+                    <div className="row">
+            <div className="col">
+              <div class="card">
+                <div class="card-body">
+                    <div className='comments'>
+                        <h3 className="headind3">Photos:</h3>
+                      </div>
+                      </div>
+                      </div></div></div>
+            <div className="row">
             <div className="col">
               <div class="card">
                 <div class="card-body">
