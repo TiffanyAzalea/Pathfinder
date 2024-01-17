@@ -34,7 +34,6 @@ export default function UserHomePage() {
   return (
 
     <div className='section'>
-      <NavbarBS />
       {/* <a className="btn btn-primary" href="#" role="button">Create Hike</a> */}
       <Link className="btn btn-primary mx-2" to="/createhike">Create Hike</Link>
       <button className="btn btn-primary mx-2" type="submit" onClick={loadAllHikes}>Hikes List</button>

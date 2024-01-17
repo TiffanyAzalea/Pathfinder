@@ -39,7 +39,6 @@ export default function AllHikes() {
     };
     return (
         <section className='section'>
-            <NavbarBS />
             <div >
                 <div className='py-4'>
                     <h1 align="center">Saved Hikes</h1>
