@@ -58,7 +58,6 @@ export default function AddUser() {
 
   return (
     <section className="section">
-    <NavbarForHome/>
     <div className="container">
       <div className="row">
       

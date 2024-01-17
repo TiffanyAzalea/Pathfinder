@@ -10,7 +10,7 @@ export default function ViewUser() {
     const loadLogin = useLogin();
 
     useEffect(() => {
-        setUserAuth("pants");
+        setUserAuth(loadLogin);
     }, [loadLogin]);
 
     const [user, setUser] = useState({
