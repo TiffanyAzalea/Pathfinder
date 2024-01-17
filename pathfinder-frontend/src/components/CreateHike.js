@@ -177,8 +177,8 @@ export default function CreateHike() {
                     <div className='comments'>
 
                       <div class="mb-3">
-                        <label for="commentArea" class="form-label" onChange={(e) => onChangeComment(e)}>Trail comments</label>
-                        <textarea class="form-control" id="commentArea" rows="3"></textarea>
+                        <label for="commentArea" class="form-label">Trail comments</label>
+                        <textarea class="form-control" id="commentArea" rows="3" onChange={(e) => onChangeComment(e)}></textarea>
                       </div>
                       <button className="btn btn-primary" type='submit'>Comment</button>
                     </div>

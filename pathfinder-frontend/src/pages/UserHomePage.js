@@ -14,14 +14,20 @@ export default function UserHomePage() {
     distance: "",
     date: ""
   })
-  const { trailName, areaName, walkable, bikeFriendly, distance, date } = hike
 
-  // function onClickHandle() {
-  //   setFutureHikes(true);
-  // }
   const loadAllHikes = async () => {
     const result = await axios.get("http://localhost:8080/allhikes");
-    setFutureHikes(result.data);
+    console.log(result)
+    const sortedResult = result.data.sort((a, b) => {
+      if (a.date > b.date) {
+        return -1
+      }
+      if (a.date < b.date) {
+        return 1
+      }
+      return 0
+    })
+    setFutureHikes(sortedResult);
   }
 
 
@@ -31,8 +37,7 @@ export default function UserHomePage() {
       <NavbarBS />
       {/* <a className="btn btn-primary" href="#" role="button">Create Hike</a> */}
       <Link className="btn btn-primary mx-2" to="/createhike">Create Hike</Link>
-      <button className="btn btn-primary mx-2" type="submit" onClick={loadAllHikes}>Future Hikes</button>
-      <button className="btn btn-primary mx-2" type="submit">Past Hikes</button>
+      <button className="btn btn-primary mx-2" type="submit" onClick={loadAllHikes}>Hikes List</button>
 
       {/* {
   futureHikes ? <div class="list-group">
@@ -45,7 +50,7 @@ export default function UserHomePage() {
 } */}
 
 
-      <table className="table center" style={{ width: 500 + "px" }}>
+      <table className="table center" style={{ width: 600 + "px" }}>
         <thead>
           <tr>
             <th scope="col">#</th>
