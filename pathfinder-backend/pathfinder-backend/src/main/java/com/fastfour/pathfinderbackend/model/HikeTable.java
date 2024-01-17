@@ -10,8 +10,8 @@ public class HikeTable {
     @GeneratedValue
     private Long id;
     
-    // @Column(name = "user_id")
-    // Long userId;
+    //@Column(name = "user_id")
+    //Long userId;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
