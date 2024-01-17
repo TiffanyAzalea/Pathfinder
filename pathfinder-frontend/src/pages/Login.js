@@ -99,4 +99,4 @@ const Login = () => {
         </section >
     )
 }
-export default LogIn
+export default Login

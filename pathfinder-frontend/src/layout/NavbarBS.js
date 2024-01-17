@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import React from 'react';
 import useLogin from '../hooks/useLogin';
+import logo from '../img/logo1.jpg';
 
 function NavbarBS() {
 
@@ -32,6 +33,36 @@ function NavbarBS() {
     }
   }
 
+  const loginMenu = () => {
+    if (user === null || user === "") {
+      return (
+        <NavDropdown
+          id="nav-dropdown-dark-example"
+          title="Menu"
+          menuVariant="dark"
+          align="end"
+        >
+          <NavDropdown.Item as={Link} to="/">Home</NavDropdown.Item>
+          <NavDropdown.Item as={Link} to="/adduser">Create Account</NavDropdown.Item>
+          <NavDropdown.Item as={Link} to="/login">Log In</NavDropdown.Item>
+        </NavDropdown>
+      )
+    } else {
+      return <NavDropdown
+        id="nav-dropdown-dark-example"
+        title="Menu"
+        menuVariant="dark"
+        align="end"
+      >
+        <NavDropdown.Item as={Link} to="/">Home</NavDropdown.Item>
+        <NavDropdown.Item as={Link} to="/viewuser">View Your Details</NavDropdown.Item>
+        <NavDropdown.Item as={Link} to="/edituser">Edit Your Details</NavDropdown.Item>
+        <NavDropdown.Item as={Link} to="/createhike">Find a Hike</NavDropdown.Item>
+        <NavDropdown.Item as={Link} to="/allhikes">View Your Hikes</NavDropdown.Item>
+      </NavDropdown>
+    }
+  }
+
   return (
     <Navbar variant="dark" bg="dark" expand="lg">
       <Container fluid>
@@ -43,17 +74,7 @@ function NavbarBS() {
             {authButton()}
           </Form>
           <Nav>
-            <NavDropdown
-              id="nav-dropdown-dark-example"
-              title="Menu"
-              menuVariant="dark"
-              align="end"
-
-            >
-              <NavDropdown.Item as={Link} to="/">Home</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/edituser">Edit User Details</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/login">Log In</NavDropdown.Item>
-            </NavDropdown>
+            {loginMenu()}
           </Nav>
         </Navbar.Collapse>
       </Container>
