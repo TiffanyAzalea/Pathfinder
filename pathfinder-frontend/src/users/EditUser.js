@@ -1,14 +1,17 @@
 import axios from "axios";
-import React, { useEffect,useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import '../App.css';
-import NavbarBS from "../layout/NavbarBS";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import useLogin from "../hooks/useLogin";
 
 
 export default function EditUser() {
-  let navigate = useNavigate();
 
+  const [userAuth, setUserAuth] = useState();
+
+  // need to duplicate use of this object w/ diff. name for the
+  // put function so it doesn't continuously update from get function
   const [user, setUser] = useState({
+    id: "",
     firstName: "",
     lastName: "",
     username: "",
@@ -16,7 +19,52 @@ export default function EditUser() {
     email: ""
   });
 
-  const { firstName, lastName, username, password, email } = user;
+  // useEffect(() => {
+  //     const loggedInUser = localStorage.getItem("user");
+  //     const loggedInToken = localStorage.getItem("token");
+  //     if (loggedInToken === "token123") {
+  //         const foundUser = loggedInUser;
+  //         console.log(localStorage.getItem('user'));
+  //         console.log(loggedInUser);
+  //         console.log(foundUser);
+  //         setUserAuth(foundUser);
+  //     }
+  // }, []);
+
+  const loadLogin = useLogin();
+
+  useEffect(() => {
+    setUserAuth(loadLogin);
+  }, [loadLogin]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/user/${userAuth}`
+        );
+        console.log(response?.data);
+        setUser(response?.data);
+        console.log(user);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [user, userAuth]);
+
+  //   useEffect(()=>{
+  //     loadUser()
+  // },[]) 
+
+  // const loadUser = async ()=>{
+  //     const result = await axios.get(`http://localhost:8080/user/${userAuth}`)
+  //     console.log(result?.data);
+  //     setUser(JSON.stringify(result?.data));
+  // }
+
+  let navigate = useNavigate();
+
+  const { id, firstName, lastName, username, password, email } = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -24,58 +72,48 @@ export default function EditUser() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8080/user", user);
-    navigate("/userhomepage");
+    await axios.put(`http://localhost:8080/user/${user.id}`, user,
+      {
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+    navigate("/viewuser");
   };
-  const {id}=useParams();
 
-    useEffect(()=>{
-        loadUser()
-    },[])
-
-    const loadUser= async ()=>{
-        const result=await axios.get(`http://localhost:8080/user/${id}`)
-        setUser(result.data)
-    }
-  
   return (
-    <div className="section1">
-    <NavbarBS/>
-    <div className="container ">
-    <div className="row ">
-      <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-      
-        <h2 >Save Changes!</h2>
-        <form onSubmit={(e) => onSubmit(e)}>
-          <div className="mb-3">
-            <label htmlFor="firstName" className="form-label">
-              First Name
-            </label>
-            <input
-              type={"text"}
-              className="form-control"
-              placeholder="Change your First name here"
-              name="firstName"
-              autoComplete="off"
-              value={user.firstName}
-              onChange={(e) => onInputChange(e)}
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="lastName" className="form-label">
-              Last Name
-            </label>
-            <input
-              type={"text"}
-              className="form-control"
-              placeholder="Change your Last name here"
-              name="lastName"
-              autoComplete="off"
-              value={user.lastName}
-              onChange={(e) => onInputChange(e)}
-            />
-          </div>
-          <div className="mb-3">
+    <div className="container">
+      <div className="row">
+        <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
+
+          <h2 className="text-center">Save Changes!</h2>
+          <form onSubmit={(e) => onSubmit(e)}>
+            <div className="mb-3">
+              <label htmlFor="firstName" className="form-label">
+                First Name
+              </label>
+              <input
+                type={"text"}
+                className="form-control"
+                placeholder="Change your First name here"
+                name="firstName"
+                value={firstName}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="lastName" className="form-label">
+                Last Name
+              </label>
+              <input
+                type={"text"}
+                className="form-control"
+                placeholder="Change your Last name here"
+                name="lastName"
+                value={lastName}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+            {/* <div className="mb-3">
             <label htmlFor="username" className="form-label">
               Username
             </label>
@@ -88,8 +126,8 @@ export default function EditUser() {
               value={user.username}
               onChange={(e) => onInputChange(e)}
             />
-          </div>
-          <div className="mb-3">
+          </div> */}
+            <div className="mb-3">
               <label htmlFor="password" className="form-label">
                 Password
               </label>
@@ -117,17 +155,12 @@ export default function EditUser() {
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-          <button type="submit" className="button">
-            Submit
-          </button>
-          <button type="submit" className="button1 mx-2">
-              Cancel
-            </button>
-        </form>
+            <button type="submit" className="btn btn-outline-primary">Submit</button>
+            <Link className="btn btn-outline-danger mx-2" to="/viewuser">Cancel</Link>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-  </div>
   );
 }
 
