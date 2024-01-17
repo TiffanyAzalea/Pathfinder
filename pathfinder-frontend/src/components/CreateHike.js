@@ -8,7 +8,9 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import NavbarBS from '../layout/NavbarBS';
 import Search from '../components/Search'
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpdHRpYWthc2F0dGkiLCJhIjoiY2xwenY1cmVtMTBzZDJrcW5yb2Y5cjRzNSJ9.SYzooukcLn0gjeS-VTjdgw';
+
 export default function CreateHike() {
   let navigate = useNavigate()
   const mapContainer = useRef(null);
@@ -22,10 +24,14 @@ export default function CreateHike() {
   const [comment, setComment] = useState();
   const [userId, setUserId] = useState();
   const [allComments, setAllComments] = useState();
+
+
   const onChangeComment = (e) => {
     setComment(e.target.value);
   }
+
   const onInputChange = (e) => {
+
   }
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -50,30 +56,35 @@ export default function CreateHike() {
     })
     navigate("/userhomepage")
   }
-  // const handleSearchResults = (results) => {
-  //   setFeature(results[0]);
-  //   if (feature.properties) {
-  //     axios.get("http://localhost:8080/comments/" + feature.properties.TRAIL_NAME)
-  //       .then((response) => {
-  //         setAllComments(response.data);
-  //       })
-  //       .catch(error => console.log(error));
-  //   }
-  // };
+  const handleSearchResults = (results) => {
+    setFeature(results[0]);
+    if (feature.properties) {
+      axios.get("http://localhost:8080/comments/" + feature.properties.TRAIL_NAME)
+        .then((response) => {
+          setAllComments(response.data);
+        })
+        .catch(error => console.log(error));
+    }
+  };
+
   const submitComment = async function (e) {
     e.preventDefault();
+
     await axios.post("http://localhost:8080/comments", {
       trailName: feature.properties.TRAIL_NAME,
       text: comment,
       createdBy: userId,
       createdDate: new Date().toLocaleDateString()
     })
+
     axios.get("http://localhost:8080/comments/" + feature.properties.TRAIL_NAME)
       .then((response) => {
         setAllComments(response.data);
       })
       .catch(error => console.log(error))
   }
+
+
   useEffect(() => {
     if (map.current === null) {
       map.current = new mapboxgl.Map({
@@ -82,15 +93,20 @@ export default function CreateHike() {
         center: [lng, lat],
         zoom: zoom,
       });
+
       const username = localStorage.getItem("user");
       axios.get("http://localhost:8080/user/" + username).then(res => {
         setUserId(res.data.id);
       })
+
+
       map.current.on('move', () => {
         setLng(map.current.getCenter().lng.toFixed(4));
         setLat(map.current.getCenter().lat.toFixed(4));
         setZoom(map.current.getZoom().toFixed(2));
       });
+
+
       map.current.on('click', (event) => {
         const features = map.current.queryRenderedFeatures(event.point, {
           layers: ['mo-trails-parsed-filtered']
@@ -104,6 +120,9 @@ export default function CreateHike() {
               setAllComments(response.data);
             })
             .catch(error => console.log(error));
+
+
+
           const popup = new mapboxgl.Popup({ offset: [0, -15] })
             .setLngLat(feature.geometry.coordinates)
             .setHTML(
@@ -119,14 +138,19 @@ export default function CreateHike() {
       });
     }
   });
+
+
   // Calender code
   function changeValue(e) {
     e.preventDefault();
     changeHikeDate(e.target.value);
   }
+
   return (<div>
+
     <div className="container">
-      {/* <Search onSearchResults={handleSearchResults} /> */}
+      <Search onSearchResults={handleSearchResults} />
+
       <div className="row">
         <div className='homepagebutton col'>
           <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
@@ -169,6 +193,7 @@ export default function CreateHike() {
                 <div className="card-body">
                   <form onSubmit={(e) => submitComment(e)}>
                     <div className='comments'>
+
                       <div className="mb-3">
                         <label for="commentArea" className="form-label">Trail comments</label>
                         <textarea className="form-control" id="commentArea" rows="3" onChange={(e) => onChangeComment(e)}></textarea>
@@ -196,15 +221,11 @@ export default function CreateHike() {
           ))}
         </div>
       </div>
+
     </div>
   </div>
   );
 }
-
-
-
-
-
 
 
 
