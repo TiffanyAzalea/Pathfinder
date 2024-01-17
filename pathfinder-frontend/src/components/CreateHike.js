@@ -41,7 +41,7 @@ export default function CreateHike() {
     //   walkable: feature.properties.WALKING,
     //   bikable: feature.properties.BIKING,
     //   distance: feature.properties.GIS_MILES,
-    //   date: hikeDate.toLocaleDateString()
+    //   date: hikeDate.toLocaleDateString()g
     // })
     // console.log(hike);
     console.log(hikeDate)
@@ -56,16 +56,16 @@ export default function CreateHike() {
     })
     navigate("/userhomepage")
   }
-  // const handleSearchResults = (results) => {
-  //   setFeature(results[0]);
-  //   if (feature.properties) {
-  //     axios.get("http://localhost:8080/comments/" + feature.properties.TRAIL_NAME)
-  //       .then((response) => {
-  //         setAllComments(response.data);
-  //       })
-  //       .catch(error => console.log(error));
-  //   }
-  // };
+  const handleSearchResults = (results) => {
+    setFeature(results[0]);
+    if (feature.properties) {
+      axios.get("http://localhost:8080/comments/" + feature.properties.TRAIL_NAME)
+        .then((response) => {
+          setAllComments(response.data);
+        })
+        .catch(error => console.log(error));
+    }
+  };
 
   const submitComment = async function (e) {
     e.preventDefault();
@@ -149,7 +149,7 @@ export default function CreateHike() {
   return (<div>
 
     <div className="container">
-      {/* <Search onSearchResults={handleSearchResults} /> */}
+      <Search onSearchResults={handleSearchResults} />
 
       <div className="row">
         <div className='homepagebutton col'>
