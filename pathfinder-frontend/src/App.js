@@ -1,4 +1,4 @@
-
+import { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom";
 import Navbar from './layout/Navbar';
@@ -17,33 +17,28 @@ import AllHikes from './pages/AllHikes';
 import React from 'react';
 import Login from './pages/Login';
 import ViewUser from './users/ViewUser';
-import RequireAuth from './components/RequireAuth';
 import Layout from './components/Layout';
 import AmILoggedIn from './pages/AmILoggedIn';
+
 
 function App() {
 
   return (
-    <div className="App">
-      <NavbarBS />
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          {/* public routes */}
-          <Route path="/" element={<Home />} />
-          <Route path="/adduser" element={<AddUser />} />
-          <Route path="/login" element={<Login />} />
+    <div className="App">
+      <NavbarBS />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/adduser" element={<AddUser />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/amiloggedin" element={<AmILoggedIn />} />
-
-          {/* protected routes */}
-          <Route element={<RequireAuth />}>
-            <Route path="/edituser/:id" element={<EditUser />} />
-            <Route path="/viewuser/:id" element={<ViewUser />} />
-            <Route path="/userhomepage" element={<UserHomePage />} />
-            <Route path="/createhike" element={<CreateHike />} />
-          </Route>
-          <Route path="/allhikes" element={<AllHikes />} />
-        </Route>
-      </Routes>
+          <Route path="/edituser" element={<EditUser />} />
+          <Route path="/viewuser" element={<ViewUser />} />
+          <Route path="/userhomepage" element={<UserHomePage />} />
+          <Route path="/createhike" element={<CreateHike />} />
+          <Route path="/allhikes" element={<AllHikes />} />
+        </Route>
+      </Routes>
       {/* <NavbarForHome /> */}
       {/* <UserHomePage /> */}
 

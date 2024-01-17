@@ -1,10 +1,8 @@
-import { useState, useRef, useEffect, useContext } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import AuthContext from '../context/AuthProvider';
+import { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Login = () => {
-    const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
@@ -12,14 +10,12 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
 
-
     let navigate = useNavigate();
-    const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
         userRef.current.focus();
     }, [])
+
     useEffect(() => {
         setErrMsg('');
     }, [username, password])
@@ -34,17 +30,12 @@ const Login = () => {
                     headers: { 'Content-Type': 'application/json' },
                 }
             );
-            console.log(JSON.stringify(response?.data));
-            console.log(JSON.stringify(response));
-            console.log(JSON.stringify(response?.data?.username));
-            console.log(JSON.stringify(response?.status));
             localStorage.setItem('user', response?.data?.username);
             localStorage.setItem('token', response?.data?.token);
-            console.log(localStorage.getItem('user'));
-            setAuth({ username });
             setUsername('');
             setPassword('');
-            navigate(from, { replace: true });
+            navigate("/");
+            window.location.reload(false);
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No server response.');
