@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import moTrailsData from '../data/MO_Trails_geo.json';
-import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -133,6 +132,7 @@ export default function CreateHike() {
   return (
 
     <div className="section">
+      <NavbarBS/>
       <div className="row">
         <div className='homepagebutton col'>
           <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
