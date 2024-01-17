@@ -1,6 +1,5 @@
 package com.fastfour.pathfinderbackend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,22 +9,39 @@ public class User {
     @GeneratedValue//(strategy = GenerationType.IDENTITY) //ariel quest
     private Long id;
 
-    public User() {
-    }
-
-    public User(Long id) {
-        this.id = id;
-    }
     private String firstName;
     private String lastName;
     private String username;
-
-
     private String password;
     private String email;
+    @OneToOne(mappedBy = "user")
+    HikeTable hikeTable;
+
+    public HikeTable getHikeTable() {
+        return hikeTable;
+    }
+
+    public void setHikeTable(HikeTable hikeTable) {
+        this.hikeTable = hikeTable;
+    }
+
+    @OneToOne(mappedBy = "user")
+    Comments comment;
+
+    public Comments getComment() {
+        return comment;
+    }
+
+    public void setComment(Comments comment) {
+        this.comment = comment;
+    }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
