@@ -1,13 +1,11 @@
 import axios from "axios";
 import React, { useEffect,useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import './ViewHike.css'
+import './EditHike.css'
 import NavbarBS from "../layout/NavbarBS";
 import Calendar from "react-multi-date-picker";
 import DatePicker from "react-multi-date-picker"
 import DatePanel from "react-multi-date-picker/plugins/date_panel";
-import {FacebookShareButton,FacebookIcon,TwitterShareButton, TwitterIcon,PinterestShareButton,
-    PinterestIcon,InstapaperIcon,InstapaperShareButton,EmailShareButton,EmailIcon} from "react-share";
 
 
 export default function EditHike() {
@@ -61,7 +59,7 @@ export default function EditHike() {
         <NavbarBS/>
         <div className="section">
             <div className="split-left">
-            <h1>View Hike Details</h1>
+            <h1>Update Hike Details</h1>
                     
                         <div className="mb-3">
                         <label>Trail Name: </label>
@@ -113,43 +111,22 @@ export default function EditHike() {
                         /></div>
                         <div className="mb-3">
                         <label>Date:</label>
-                        <Calendar onChange={changeValue} value={hikeDate} disabled={true}/>
-                            
+                        <DatePicker
+                           multiple
+                           value={hikeDate}
+                           onChange={changeValue}
+                           plugins={[
+                              <DatePanel />
+                           ]}
+                           />   
                         </div>
                                 
-                        <button type="submit" className="btn btn-primary  mx-3">Edit</button>
-                   
-                    <button className='btn btn-primary mx-3'onClick={()=>deletehike(allhikes.id)}>Delete</button>
+                        <button type="submit" className="btn btn-primary  mx-3">Update</button>
+                        <Link className="btn btn-primary mx-2" to={`/viewhike/${allhikes.id}`}>Cancel</Link>
 
-                    <Link className="btn btn-primary mx-2" to="/userhomepage">Cancel</Link>
-        
-              
-                
-                <div class="box-share">
-                <h3 className="headind3">Share:</h3>
-                    <FacebookShareButton
-                        url="https://www.facebook.com/groups/hikingforadventure">
-                            <FacebookIcon size ={40} round={true} color="#4968ad"/>
-                    </FacebookShareButton>&nbsp;
-                    <TwitterShareButton url="https://twitter.com/TheHikingGuide">
-                        <TwitterIcon size={40} round={true} />
-                    </TwitterShareButton>&nbsp;
-                    {/*<PinterestShareButton url="">
-                    <PinterestIcon size={40} round={true} />
-  </PinterestShareButton>&nbsp;*/}
-                    <InstapaperShareButton url="https://www.instagram.com/hiking.guide/">
-                    <InstapaperIcon size={40} round={true} />
-                    </InstapaperShareButton>&nbsp;
-                    <EmailShareButton url ="">
-                    <EmailIcon size={40} round={true} />
-                    </EmailShareButton>
-                </div><br/>
-            <div class="box-share">
-                <h3 className="headind3">Reviews:</h3>
-                
+                    <Link className="btn btn-primary mx-2" to="/userhomepage">Back</Link>
+        </div>
 
-            </div>
-            </div>
             <div className="split-right" >
                 <h2>Edit Suggestions</h2>
                <div className="box-share">
@@ -181,7 +158,7 @@ export default function EditHike() {
                 </div>            
             </div>
         </div>
-        
+       
     </div>
   );
 }

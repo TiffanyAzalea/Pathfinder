@@ -9,15 +9,12 @@ export default function DeleteUser() {
   let navigate = useNavigate();
 
   const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
     username: "",
-    password: "",
-    email: ""
+   
   });
 
   const {id}=useParams();
-  const { firstName, lastName, username, password, email } = user;
+  const { username} = user;
 
 
 
@@ -49,10 +46,10 @@ const loadUser= async ()=>{
             <h5>Are you sure {user.username}, Do you want to delete your account?</h5>
               </label>
                 <div className="mb-3">
-                <button type="submit" to={"/"} className="button1 btn-danger ">
+                <button type="submit" to={"/"} className="btn btn-primary mx-2">
             Delete
           </button>
-                    <Link to={`/viewuser/${user.id}`} className="button mx-2">
+                    <Link to={`/viewuser/${user.id}`} className="btn btn-primary mx-2">
                     Cancel
                 </Link>
                 </div>

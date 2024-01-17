@@ -4,8 +4,6 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import './ViewHike.css'
 import NavbarBS from "../layout/NavbarBS";
 import Calendar from "react-multi-date-picker";
-import DatePicker from "react-multi-date-picker"
-import DatePanel from "react-multi-date-picker/plugins/date_panel";
 import {FacebookShareButton,FacebookIcon,TwitterShareButton, TwitterIcon,PinterestShareButton,
     PinterestIcon,InstapaperIcon,InstapaperShareButton,EmailShareButton,EmailIcon} from "react-share";
 

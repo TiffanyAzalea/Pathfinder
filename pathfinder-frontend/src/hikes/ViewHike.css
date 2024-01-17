@@ -28,13 +28,13 @@
   }
 
 .split-right{
-    height: 95%;
-    width: 210%;
+    height: 102%;
+    width: 225%;
     right: 0%;
     border-radius: 10px;
-    background: rgb(143, 48, 48);
+    background: rgb(223, 222, 222);
     text-align: center;
-    transform: translate(50%, -64%);
+    transform: translate(45%, -60%);
     
   }
   .split-center{

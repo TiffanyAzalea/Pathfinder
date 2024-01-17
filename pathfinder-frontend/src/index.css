@@ -80,6 +80,7 @@ code {
   border-radius: 10px;
   border: 1px solid #57c0e8;
   float: right;
+
 }
 
 /* .map-container {
@@ -153,6 +154,15 @@ div.homepagebutton {
 
 }
 
+.split-left{
+  height: 95%;
+  width: 30%;
+  border-radius: 10px;
+  background: rgb(223, 222, 222);
+  text-align: left;
+  transform: translate(3%, 1%);
+  border-color: black;
+}
 /* 
 p {
   font-size: large;
@@ -188,7 +198,7 @@ p {
 .box {
   width: fit-content;
   height: fit-content;
-  background: #57c0e8;
+  background: #ffffff;
   border-radius: 10px;
   padding: 20px;
   transform: translate(20%, 10%);

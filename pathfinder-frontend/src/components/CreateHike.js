@@ -130,7 +130,8 @@ export default function CreateHike() {
 
   return (
 
-    <div>
+    <div className='section'>
+      <NavbarBS/>
       <div className='homepagebutton'>
         <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
       </div>
@@ -139,10 +140,11 @@ export default function CreateHike() {
       </div> */}
 
       <div ref={mapContainer} className="map-container" />
-      <div className='split middle'>
+      <div className='box'>
 
         {Object.keys(feature).length ? (
           <form onSubmit={(e) => onSubmit(e)}>
+            <h1>Trail Details</h1>
             <div className='hike-details-table'>
               <h6>{feature.properties.TRAIL_NAME}</h6>
               <p>{feature.properties.AREA_NAME}</p>
@@ -164,7 +166,7 @@ export default function CreateHike() {
       <div className='calendar'>
         <Calendar onChange={changeValue} value={hikeDate} />
         <p>The selected date is - {hikeDate.toLocaleDateString()}</p>
-      </div>
+        </div>
       <form onSubmit={(e) => submitComment(e)}>
         <div className='comments'>
           <textarea style={{ width: '30%', borderRadius: '0.25em' }} onChange={(e) => onChangeComment(e)}></textarea>
@@ -185,5 +187,6 @@ export default function CreateHike() {
 
       </div>
     </div>
+    
   );
 }

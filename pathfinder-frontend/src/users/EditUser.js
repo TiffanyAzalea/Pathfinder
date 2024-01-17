@@ -7,7 +7,13 @@ import NavbarBS from "../layout/NavbarBS";
 
 export default function EditUser() {
   let navigate = useNavigate();
-
+  const [errors,setErrors] =useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+    password: "",
+    email: ""
+  });
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -15,8 +21,47 @@ export default function EditUser() {
     password: "",
     email: ""
   });
-
   const { firstName, lastName, username, password, email } = user;
+/*  function validateForm(){
+    let valid =true;
+    const errorsCopy = {... errors}
+    if(firstName.trim()){
+      errorsCopy.firstName = '';
+    }else{
+      errorsCopy.firstName = 'First Name is required';
+      valid = false;
+    }
+    if(lastName.trim()){
+      errorsCopy.lastName = '';
+    }else{
+      errorsCopy.lastName = 'Last Name is required';
+      valid = false;
+    }
+    if(username.trim()){
+      errorsCopy.username = '';
+    }else{
+      errorsCopy.username = 'Username is required';
+      valid = false;
+    }
+    if(email.trim()){
+      errorsCopy.email = '';
+    }else{
+      errorsCopy.email = 'Email is required';
+      valid = false;
+    }
+    
+    if(password.trim()){
+      errorsCopy.password = '';
+    }else{
+      errorsCopy.password = 'Password is required';
+      valid = false;
+    }
+    setErrors(errorsCopy);
+
+    return valid;
+  }
+*/
+  
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -24,8 +69,12 @@ export default function EditUser() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8080/user", user);
-    navigate("/userhomepage");
+
+    //if(validateForm){
+      console.log(user);
+      await axios.post("http://localhost:8080/user", user);
+      navigate("/userhomepage");
+    //}
   };
   const {id}=useParams();
 
@@ -58,6 +107,7 @@ export default function EditUser() {
               name="firstName"
               autoComplete="off"
               value={user.firstName}
+              required
               onChange={(e) => onInputChange(e)}
             />
           </div>
@@ -72,6 +122,7 @@ export default function EditUser() {
               name="lastName"
               autoComplete="off"
               value={user.lastName}
+              required
               onChange={(e) => onInputChange(e)}
             />
           </div>
@@ -86,6 +137,7 @@ export default function EditUser() {
               name="username"
               autoComplete="off"
               value={user.username}
+              required
               onChange={(e) => onInputChange(e)}
             />
           </div>
@@ -100,6 +152,7 @@ export default function EditUser() {
                 name="password"
                 autoComplete="off"
                 value={user.password}
+                required
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -114,13 +167,14 @@ export default function EditUser() {
                 name="email"
                 autoComplete="off"
                 value={user.email}
+                required
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-          <button type="submit" className="button">
-            Submit
+          <button type="submit" className="btn btn-primary mx-2">
+            Update
           </button>
-          <button type="submit" className="button1 mx-2">
+          <button type="submit" className="btn btn-primary mx-2">
               Cancel
             </button>
         </form>
