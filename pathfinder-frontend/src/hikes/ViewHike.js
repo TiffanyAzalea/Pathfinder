@@ -72,12 +72,6 @@ export default function ViewHike() {
 
     const { id } = useParams();
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        await axios.get(`http://localhost:8080/allhikes`);
-        navigate("/userhomepage")
-    };
-
     return (
 
         <div >
@@ -135,7 +129,7 @@ export default function ViewHike() {
                         /></div>
                     <div className="mb-3">
                         <label>Date:</label>
-                        <Calendar onChange={changeValue} value={hikeDate} disabled={true} />
+                        <Calendar onChange={changeValue} value={allhikes.date} disabled={true}/>
 
                     </div>
 
