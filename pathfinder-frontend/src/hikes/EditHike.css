@@ -7,15 +7,26 @@
   transform: translate(3%, 1%);
   border-color: black;
 }
-
+.vl {
+  border-left: 2px solid green;
+  height: 500px;
+  position: absolute;
+  left: 50%;
+  margin-left: -3px;
+  top: 0;
+}
+.left {
+  left: 0;
+  text-align: left;
+  background: rgb(205, 200, 200);
+}
 .split-right{
   height: 97%;
-  width: 69%;
-  right: 0%;
+  width: 30%;
   border-radius: 10px;
   background: rgb(223, 222, 222);
-  text-align: center;
-  transform: translate(45%, -100%);
+  text-align: left;
+  transform: translate(30%, 1%);
   
 }
   .split-center{

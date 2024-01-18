@@ -54,7 +54,7 @@ function NavbarBS() {
         menuVariant="dark"
         align="end"
       >
-        <NavDropdown.Item as={Link} to="/">Home</NavDropdown.Item>
+        <NavDropdown.Item as={Link} to="/userhomepage">Home</NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/viewuser">View Your Details</NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/edituser">Edit Your Details</NavDropdown.Item>
         <NavDropdown.Item as={Link} to="/userhomepage">User Home Page</NavDropdown.Item>
