@@ -139,7 +139,7 @@ export default function CreateHike() {
 
       <div className="row">
         <div className='homepagebutton col'>
-          <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
+          {/* <Link className="btn btn-primary" to="/userhomepage">Home page</Link> */}
         </div>
       </div>
       <div className="row">
@@ -148,6 +148,7 @@ export default function CreateHike() {
             <div className="col">
               <div className="card" style={{ height: 350 + "px" }}>
                 <div className="card-body">
+                  <h2>Trail Details</h2>
                   {feature && feature.properties ? (
                     <form onSubmit={(e) => onSubmit(e)}>
                       <div className='hike-details-table'>
@@ -156,7 +157,7 @@ export default function CreateHike() {
                         <p className="card-text">{feature.properties.WALKING}</p>
                         <p className="card-text">{feature.properties.BIKING}</p>
                         <p className="card-text">{Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
-                        <input type='date' onChange={changeValue} value={hikeDate} className='form-control mb-6' />
+                        <input type='date' onChange={changeValue} value={hikeDate} />
                       </div>
                       <button className="btn btn-primary mt-3" type='submit' value={"createHike"}>Create Hike</button>
                     </form>

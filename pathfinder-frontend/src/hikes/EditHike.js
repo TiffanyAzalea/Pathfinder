@@ -148,7 +148,7 @@ export default function EditHike() {
                     </form>  
                         
             </div>
-            <div >
+            <div className="cards">
                     <div className="row">
             <div className="col">
               <div class="card">
