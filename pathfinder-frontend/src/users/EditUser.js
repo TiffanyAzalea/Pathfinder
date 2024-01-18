@@ -142,6 +142,7 @@ export default function EditUser() {
               </label>
               <input
                 type={"text"}
+                required
                 className="form-control"
                 placeholder="Change your E-mail here"
                 name="email"
@@ -150,8 +151,9 @@ export default function EditUser() {
                 onChange={(e) => onInputChange(e)}
               />
             </div>
-            <button type="submit" className="btn btn-outline-primary">Submit</button>
-            <Link className="btn btn-outline-danger mx-2" to="/viewuser">Cancel</Link>
+            <button type="submit" className="btn btn-outline-warning">Submit</button>
+            <Link className="btn btn-outline-primary mx-2" to="/viewuser">Cancel</Link>
+            <Link className="btn btn-outline-danger " to={`/deleteuser`}>Delete</Link>
           </form>
         </div>
       </div>

@@ -1,9 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import useLogin from "../hooks/useLogin";
 
 export default function DeleteUser() {
   let navigate = useNavigate();
+  const [userAuth, setUserAuth] = useState();
+
+  const loadLogin = useLogin();
+
+  useEffect(() => {
+      setUserAuth(loadLogin);
+  }, [userAuth, loadLogin]);
 
   const [user, setUser] = useState({
     username: "",
@@ -21,10 +29,10 @@ export default function DeleteUser() {
 
   useEffect(() => {
     loadUser()
-  }, [])
+  }, [[loadLogin, userAuth]])
 
   const loadUser = async () => {
-    const result = await axios.get(`http://localhost:8080/user/${id}`)
+    const result = await axios.get(`http://localhost:8080/user/${userAuth}`)
     setUser(result.data)
   }
 
@@ -37,13 +45,13 @@ export default function DeleteUser() {
             <form onSubmit={(e) => onSubmit(e)}>
               <div className="mb-3"></div>
               <label htmlFor="username" className="form-label" >
-                <h5>Are you sure {user.username}, Do you want to delete your account?</h5>
+                <h5>Are you sure " {user.username} ", Do you want to delete your account?</h5>
               </label>
               <div className="mb-3">
-                <button type="submit" to={"/"} className="button1 btn-danger ">
+                <button type="submit" to={"/"} className="btn btn-danger ">
                   Delete
                 </button>
-                <Link to={`/viewuser/${user.id}`} className="button mx-2">
+                <Link to={`/viewuser`} className="btn btn-primary mx-2">
                   Cancel
                 </Link>
               </div>

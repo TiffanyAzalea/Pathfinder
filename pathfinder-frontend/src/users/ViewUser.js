@@ -51,8 +51,8 @@ export default function ViewUser() {
                             No. miles hiked:
                         </li>
                     </ul>
-                    <Link className="btn btn-outline-primary" to={`/edituser`}>Edit details</Link>
-
+                    <Link className="btn btn-outline-warning mx-2" to={`/edituser`}>Edit details</Link>
+                    <Link className="btn btn-outline-primary" to={`/userhomepage`}>Back</Link>
                 </div>
             </div>
         </div>
