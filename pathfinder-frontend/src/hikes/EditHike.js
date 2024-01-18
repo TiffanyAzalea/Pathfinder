@@ -48,8 +48,14 @@ export default function EditHike() {
   return(
 
     <div >
-        <div className="section">
-            <div className="left">
+        <div>
+        <div className="center">
+                        <button type="submit" className="btn btn-primary mx-2">Update</button>
+                        <Link className="btn btn-primary mx-2" to={`/viewhike/${allhikes.id}`}>Cancel</Link>
+
+                        <Link className="btn btn-primary mx-2" to="/userhomepage">Back</Link>
+                    </div>
+            <div className="split-left">
             <h1>Update Hike Details</h1><hr/>
                     <form onSubmit={(e) => onSubmit(e)}>
                         <div className="mb-3">
@@ -136,17 +142,22 @@ export default function EditHike() {
                         <input type ="radio" name="usage" value="heavy" id="heavy" />
                         <label htmlFor="heavy"  className="mx-2">heavy</label>
                     </div>  
+                    
                     <hr/>
-                    <div className="center">
-                        <button type="submit" className="btn btn-primary mx-2">Update</button>
-                        <Link className="btn btn-primary mx-2" to={`/viewhike/${allhikes.id}`}>Cancel</Link>
-
-                        <Link className="btn btn-primary mx-2" to="/userhomepage">Back</Link>
-                    </div>
+                    
                     </form>  
                         
             </div>
-            
+            <div >
+                    <div className="row">
+            <div className="col">
+              <div class="card">
+                <div class="card-body">
+                    <div className='comments'>
+                        <h3 className="headind3">Photos:</h3>
+                      </div>
+                      </div>
+                      </div></div></div></div>
         </div>
         
     </div>

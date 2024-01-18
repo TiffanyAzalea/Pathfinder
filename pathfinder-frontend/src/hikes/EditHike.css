@@ -7,6 +7,14 @@
   transform: translate(3%, 1%);
   border-color: black;
 }
+.box-photos {
+  width: fit-content;
+  height: fit-content;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  transform: translate(20%, 10%);
+}
 .vl {
   border-left: 2px solid green;
   height: 500px;
@@ -22,11 +30,12 @@
 }
 .split-right{
   height: 97%;
-  width: 30%;
+  width: 65%;
+  right: 20%;
   border-radius: 10px;
   background: rgb(223, 222, 222);
   text-align: left;
-  transform: translate(30%, 1%);
+  transform: translate(50%, -100%);
   
 }
   .split-center{
