@@ -17,8 +17,9 @@ public class CommentsController {
         return commentsRepository.save(newComment);
     }
 
-   /* @GetMapping("/comments/{trailName}")
+    @GetMapping("/comments/{trailName}")
     List<Comments> getAllCommentsByTrailName(@PathVariable String trailName ){
         return commentsRepository.findAllCommentsByTrailName(trailName);
-    }*/
+    }
+
 }

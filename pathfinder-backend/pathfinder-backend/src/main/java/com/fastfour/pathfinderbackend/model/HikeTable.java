@@ -10,8 +10,8 @@ public class HikeTable {
     @GeneratedValue
     private Long id;
     
-    //@Column(name = "user_id")
-    //Long userId;
+    // @Column(name = "user_id")
+    // Long userId;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -23,6 +23,11 @@ public class HikeTable {
     private String bikeFriendly;
     private String distance;
     private String date;
+    private String route_type;
+    private String level;
+    private String usage;
+    private String accessibility;
+
 
 
     public Long getId() {

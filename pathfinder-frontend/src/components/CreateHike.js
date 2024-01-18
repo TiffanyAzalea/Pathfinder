@@ -56,13 +56,15 @@ export default function CreateHike() {
     navigate("/userhomepage")
   }
   const handleSearchResults = (results) => {
-    setFeature(results[0]);
-    if (feature.properties) {
-      axios.get("http://localhost:8080/comments/" + feature.properties.TRAIL_NAME)
-        .then((response) => {
-          setAllComments(response.data);
-        })
-        .catch(error => console.log(error));
+    if (results.length > 0) {
+      setFeature(results[0]);
+      if (results[0].properties) {
+        axios.get("http://localhost:8080/comments/" + results[0].properties.TRAIL_NAME)
+          .then((response) => {
+            setAllComments(response.data);
+          })
+          .catch(error => console.log(error));
+      }
     }
   };
 
@@ -161,7 +163,7 @@ export default function CreateHike() {
             <div className="col">
               <div className="card" style={{ height: 350 + "px" }}>
                 <div className="card-body">
-                  {feature.properties ? (
+                  {feature && feature.properties ? (
                     <form onSubmit={(e) => onSubmit(e)}>
                       <div className='hike-details-table'>
                         <h5 className="card-title">{feature.properties.TRAIL_NAME}</h5>

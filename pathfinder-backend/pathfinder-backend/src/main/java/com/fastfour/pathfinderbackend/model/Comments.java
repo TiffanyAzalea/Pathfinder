@@ -1,6 +1,7 @@
 package com.fastfour.pathfinderbackend.model;
 
 import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.time.LocalDateTime;
 
@@ -8,41 +9,51 @@ import java.time.LocalDateTime;
 public class Comments {
 
     @Id
-    @GeneratedValue
-    @Column(name = "user_id")
-    Long userId;
-    @OneToOne
-    @PrimaryKeyJoinColumn(name = "user_id")
-    User user;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private Long commentId;
+    @Column(columnDefinition = "TEXT")
+    private String trailName;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User createdBy;
 
-    private String author;
+    private String createdDate;
+    @Column(columnDefinition = "TEXT")
     private String text;
-    private LocalDateTime date;
 
-    public Long getUserId() {
-        return userId;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getCommentId() {
-        return commentId;
+
+    public String getTrailName() {
+        return trailName;
     }
 
-    public void setCommentId(Long id) {
-        this.commentId = id;
+    public void setTrailName(String trailName) {
+        this.trailName = trailName;
     }
 
-    public String getAuthor() {
-        return author;
+    public User getCreatedBy() {
+        return createdBy;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
     }
 
     public String getText() {
@@ -51,13 +62,5 @@ public class Comments {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
     }
 }
