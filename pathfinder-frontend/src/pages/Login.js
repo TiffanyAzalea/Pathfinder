@@ -1,12 +1,10 @@
-import { useState, useRef, useEffect, useContext } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import AuthContext from '../context/AuthProvider';
 import axios from 'axios';
 import NavbarForHome from '../HomePage/NavbarForHome';
 import '../HomePage/HeroSection.css';
 
-const LogIn = () => {
-    const { setAuth } = useContext(AuthContext);
+const Login = () => {
     const userRef = useRef();
     const errRef = useRef();
 
@@ -14,19 +12,18 @@ const LogIn = () => {
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
 
-
     let navigate = useNavigate();
 
     useEffect(() => {
         userRef.current.focus();
     }, [])
+
     useEffect(() => {
         setErrMsg('');
     }, [username, password])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
 
         try {
             const response = await axios.post("http://localhost:8080/login",
@@ -35,14 +32,12 @@ const LogIn = () => {
                     headers: { 'Content-Type': 'application/json' },
                 }
             );
-            console.log(JSON.stringify(response?.data));
-            console.log(JSON.stringify(response));
-            console.log(JSON.stringify(response?.data?.username));
-            console.log(JSON.stringify(response?.status));
-            setAuth({ username, password });
+            localStorage.setItem('user', response?.data?.username);
+            localStorage.setItem('token', response?.data?.token);
             setUsername('');
             setPassword('');
             navigate("/userhomepage");
+            window.location.reload(false);
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No server response.');
@@ -62,7 +57,6 @@ const LogIn = () => {
     return (
 
         <section >
-            <NavbarForHome />
             <div className='d-flex justify-content-center align-items-center vh-100'>
                 <div className='w-25 box1'>
                     <div>
@@ -104,4 +98,4 @@ const LogIn = () => {
         </section >
     )
 }
-export default LogIn
+export default Login

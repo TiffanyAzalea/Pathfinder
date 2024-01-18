@@ -43,7 +43,7 @@ export default function AddUser() {
       // username: "",
       // password: "",
       // email: ""});
-      navigate("/userhomepage");
+      navigate("/");
   } catch (err) {
       if (!err?.response) {
           setErrMsg('No server response.');
@@ -57,7 +57,6 @@ export default function AddUser() {
 
   return (
     <section className="section">
-    <NavbarBS/>
     <div className="container">
       <div className="row">
       

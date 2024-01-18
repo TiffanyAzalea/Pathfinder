@@ -6,6 +6,8 @@ import NavbarBS from '../layout/NavbarBS';
 export default function UserHomePage() {
 
   const [futureHikes, setFutureHikes] = useState()
+
+  const [userId, setUserId] = useState();
   const [hike, setHike] = useState({
     trailName: "",
     areaName: "",
@@ -14,9 +16,13 @@ export default function UserHomePage() {
     distance: "",
     date: ""
   })
+  const username = localStorage.getItem("user");
+  axios.get("http://localhost:8080/user/" + username).then(res => {
+    setUserId(res.data.id);
+  })
 
   const loadAllHikes = async () => {
-    const result = await axios.get("http://localhost:8080/allhikes");
+    const result = await axios.get("http://localhost:8080/viewhikes/" + userId);
     console.log(result)
     const sortedResult = result.data.sort((a, b) => {
       if (a.date > b.date) {
@@ -34,7 +40,6 @@ export default function UserHomePage() {
   return (
 
     <div className='section'>
-      <NavbarBS />
       {/* <a className="btn btn-primary" href="#" role="button">Create Hike</a> */}
       <Link className="btn btn-primary mx-2" to="/createhike">Create Hike</Link>
       <button className="btn btn-primary mx-2" type="submit" onClick={loadAllHikes}>Hikes List</button>
@@ -53,7 +58,7 @@ export default function UserHomePage() {
       <table className="table center" style={{ width: 600 + "px" }}>
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">S.No</th>
             <th scope="col">Trail Name</th>
             <th scope="col">Hike Date</th>
           </tr>

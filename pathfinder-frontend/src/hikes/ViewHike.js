@@ -81,7 +81,6 @@ export default function ViewHike() {
     return (
 
         <div >
-            <NavbarBS />
             <div className="section">
                 <div className="split-left">
                     <h1>View Hike Details</h1>
