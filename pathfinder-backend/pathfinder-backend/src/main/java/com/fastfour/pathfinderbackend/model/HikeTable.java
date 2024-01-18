@@ -23,10 +23,6 @@ public class HikeTable {
     private String bikeFriendly;
     private String distance;
     private String date;
-    private String route_type;
-    private String level;
-    private String usage;
-    private String accessibility;
 
 
 

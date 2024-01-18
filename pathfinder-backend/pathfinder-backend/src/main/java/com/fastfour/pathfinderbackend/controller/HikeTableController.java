@@ -51,6 +51,7 @@ public class HikeTableController {
                     hikeTable.setBikeFriendly(newHikeTable.getBikeFriendly());
                     hikeTable.setDistance(newHikeTable.getDistance());
                     hikeTable.setDate(newHikeTable.getDate());
+
                     return hikeTableRepo.save(hikeTable);
                 }).orElseThrow(() -> new UserNotFoundException(id));
     }
