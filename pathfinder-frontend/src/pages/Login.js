@@ -1,11 +1,8 @@
-import { useState, useRef, useEffect, useContext } from 'react';
-import NavbarForHome from '../HomePage/NavbarForHome'
+import { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import AuthContext from '../context/AuthProvider';
 import axios from 'axios';
 
 const Login = () => {
-    const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
@@ -13,19 +10,18 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
 
-
     let navigate = useNavigate();
 
     useEffect(() => {
         userRef.current.focus();
     }, [])
+
     useEffect(() => {
         setErrMsg('');
     }, [username, password])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
 
         try {
             const response = await axios.post("http://localhost:8080/login",
@@ -34,14 +30,12 @@ const Login = () => {
                     headers: { 'Content-Type': 'application/json' },
                 }
             );
-            console.log(JSON.stringify(response?.data));
-            console.log(JSON.stringify(response));
-            console.log(JSON.stringify(response?.data?.username));
-            console.log(JSON.stringify(response?.status));
-            setAuth({ username, password });
+            localStorage.setItem('user', response?.data?.username);
+            localStorage.setItem('token', response?.data?.token);
             setUsername('');
             setPassword('');
-            navigate("/userhomepage");
+            navigate("/");
+            window.location.reload(false);
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No server response.');
@@ -61,7 +55,6 @@ const Login = () => {
     return (
 
         <section >
-            <NavbarForHome />
             <div className='d-flex justify-content-center align-items-center vh-100'>
                 <div className='w-25 box1'>
                     <div>
