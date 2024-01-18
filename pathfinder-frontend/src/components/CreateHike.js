@@ -1,11 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-import moTrailsData from '../data/MO_Trails_geo.json';
 import "react-calendar/dist/Calendar.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import NavbarBS from '../layout/NavbarBS';
 import Search from '../components/Search'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpdHRpYWthc2F0dGkiLCJhIjoiY2xwenY1cmVtMTBzZDJrcW5yb2Y5cjRzNSJ9.SYzooukcLn0gjeS-VTjdgw';
@@ -29,20 +27,8 @@ export default function CreateHike() {
     setComment(e.target.value);
   }
 
-  const onInputChange = (e) => {
-
-  }
   const onSubmit = async (e) => {
     e.preventDefault();
-    // await setHike({
-    //   trailName: feature.properties.TRAIL_NAME,
-    //   areaName: feature.properties.AREA_NAME,
-    //   walkable: feature.properties.WALKING,
-    //   bikable: feature.properties.BIKING,
-    //   distance: feature.properties.GIS_MILES,
-    //   date: hikeDate.toLocaleDateString()g
-    // })
-    // console.log(hike);
     console.log(hikeDate)
     await axios.post("http://localhost:8080/createhike", {
       trailName: feature.properties.TRAIL_NAME,
@@ -147,8 +133,7 @@ export default function CreateHike() {
     changeHikeDate(e.target.value);
   }
 
-  return (<div>
-
+  return (
     <div className="container">
       <Search onSearchResults={handleSearchResults} />
 
@@ -180,10 +165,6 @@ export default function CreateHike() {
                       <h5 className="card-title">Please select a hike marker in map</h5>
                     </div>
                   )}
-                  {/* <div className='calendar'>
-                <Calendar onChange={changeValue} value={hikeDate} />
-                <p>The selected date is - {hikeDate.toLocaleDateString()}</p>
-              </div> */}
                 </div>
               </div>
             </div>
@@ -224,7 +205,6 @@ export default function CreateHike() {
       </div>
 
     </div>
-  </div>
   );
 }
 
