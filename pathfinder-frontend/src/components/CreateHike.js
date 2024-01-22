@@ -56,6 +56,7 @@ export default function CreateHike() {
     })
     navigate("/userhomepage")
   }
+  //Added for Search functionality
   const handleSearchResults = (results) => {
     if (results.length > 0) {
       setFeature(results[0]);
@@ -113,7 +114,7 @@ export default function CreateHike() {
         const features = map.current.queryRenderedFeatures(event.point, {
           layers: ['mo-trails-parsed-filtered']
         });
-        if (features.length > 0) {
+        if (features.length > 0) { //Added for Search functionality
           const feature = features[0];
           //setSelectedCoordinates(feature.geometry.coordinates)
           setFeature(feature);
