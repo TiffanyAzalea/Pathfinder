@@ -1,12 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-import moTrailsData from '../data/MO_Trails_geo.json';
-import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import NavbarBS from '../layout/NavbarBS';
 import Search from '../components/Search'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hpdHRpYWthc2F0dGkiLCJhIjoiY2xwenY1cmVtMTBzZDJrcW5yb2Y5cjRzNSJ9.SYzooukcLn0gjeS-VTjdgw';
@@ -30,20 +27,8 @@ export default function CreateHike() {
     setComment(e.target.value);
   }
 
-  const onInputChange = (e) => {
-
-  }
   const onSubmit = async (e) => {
     e.preventDefault();
-    // await setHike({
-    //   trailName: feature.properties.TRAIL_NAME,
-    //   areaName: feature.properties.AREA_NAME,
-    //   walkable: feature.properties.WALKING,
-    //   bikable: feature.properties.BIKING,
-    //   distance: feature.properties.GIS_MILES,
-    //   date: hikeDate.toLocaleDateString()g
-    // })
-    // console.log(hike);
     console.log(hikeDate)
     await axios.post("http://localhost:8080/createhike", {
       trailName: feature.properties.TRAIL_NAME,
@@ -149,14 +134,13 @@ export default function CreateHike() {
     changeHikeDate(e.target.value);
   }
 
-  return (<div>
-
+  return (
     <div className="container">
       <Search onSearchResults={handleSearchResults} />
 
       <div className="row">
         <div className='homepagebutton col'>
-          <Link className="btn btn-primary" to="/userhomepage">Home page</Link>
+          {/* <Link className="btn btn-primary" to="/userhomepage">Home page</Link> */}
         </div>
       </div>
       <div className="row">
@@ -165,6 +149,7 @@ export default function CreateHike() {
             <div className="col">
               <div className="card" style={{ height: 350 + "px" }}>
                 <div className="card-body">
+                  <h2>Trail Details</h2>
                   {feature && feature.properties ? (
                     <form onSubmit={(e) => onSubmit(e)}>
                       <div className='hike-details-table'>
@@ -173,7 +158,7 @@ export default function CreateHike() {
                         <p className="card-text">{feature.properties.WALKING}</p>
                         <p className="card-text">{feature.properties.BIKING}</p>
                         <p className="card-text">{Math.round(feature.properties.GIS_MILES * 100) / 100} miles</p>
-                        <input type='date' onChange={changeValue} value={hikeDate} className='form-control mb-6' />
+                        <input type='date' onChange={changeValue} value={hikeDate} />
                       </div>
                       <button className="btn btn-primary mt-3" type='submit' value={"createHike"}>Create Hike</button>
                     </form>
@@ -182,10 +167,6 @@ export default function CreateHike() {
                       <h5 className="card-title">Please select a hike marker in map</h5>
                     </div>
                   )}
-                  {/* <div className='calendar'>
-                <Calendar onChange={changeValue} value={hikeDate} />
-                <p>The selected date is - {hikeDate.toLocaleDateString()}</p>
-              </div> */}
                 </div>
               </div>
             </div>
@@ -226,7 +207,6 @@ export default function CreateHike() {
       </div>
 
     </div>
-  </div>
   );
 }
 
