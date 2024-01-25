@@ -23,8 +23,23 @@ public class HikeTable {
     private String bikeFriendly;
     private String distance;
     private String date;
+    @Column(nullable = true,length =64)
+    private String photos;
 
 
+    @Transient
+    public String getPhotosImagePath(){
+        if(photos== null) return null;
+
+        return "/photos" + id + "/" +photos;
+    }
+    public String getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(String photos) {
+        this.photos = photos;
+    }
 
     public Long getId() {
         return id;

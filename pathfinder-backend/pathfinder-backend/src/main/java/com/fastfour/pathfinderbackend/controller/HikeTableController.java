@@ -4,6 +4,7 @@ import com.fastfour.pathfinderbackend.exception.HikeNotFoundException;
 import com.fastfour.pathfinderbackend.exception.UserNotFoundException;
 import com.fastfour.pathfinderbackend.model.HikeTable;
 import com.fastfour.pathfinderbackend.model.User;
+import com.fastfour.pathfinderbackend.repository.HikeListRepo;
 import com.fastfour.pathfinderbackend.repository.HikeTableRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ public class HikeTableController {
 
     @Autowired
     private HikeTableRepo hikeTableRepo;
+    private HikeListRepo hikeListRepo;
     @PostMapping("/createhike")
     HikeTable newHikeTable(@RequestBody HikeTable newHikeTable){
         return hikeTableRepo.save(newHikeTable);
@@ -24,6 +26,11 @@ public class HikeTableController {
     List<HikeTable> getAllHikes(){
         return hikeTableRepo.findAll();
     }
+    @GetMapping("/hikeslist")
+    List<HikeTable> getHikeList(){
+        return hikeListRepo.findAll();
+    }
+
     @GetMapping("/viewhike/{id}")
     HikeTable getHikeById(@PathVariable Long id) {
         return hikeTableRepo.findById(id)
