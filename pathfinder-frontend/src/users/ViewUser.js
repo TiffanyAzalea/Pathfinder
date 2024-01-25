@@ -44,12 +44,7 @@ export default function ViewUser() {
                         <li className="list-group-item">
                             E-mail: {user.email}
                         </li>
-                        <li className="list-group-item">
-                            No. hikes created:
-                        </li>
-                        <li className="list-group-item">
-                            No. miles hiked:
-                        </li>
+                       
                     </ul>
                     <Link className="btn btn-outline-primary" to={`/edituser`}>Edit details</Link>
 

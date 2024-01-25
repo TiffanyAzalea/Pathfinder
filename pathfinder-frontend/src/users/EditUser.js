@@ -92,6 +92,7 @@ export default function EditUser() {
                 name="firstName"
                 value={editUser.firstName}
                 onChange={(e) => onInputChange(e)}
+                required
               />
             </div>
             <div className="mb-3">
@@ -105,23 +106,10 @@ export default function EditUser() {
                 name="lastName"
                 value={editUser.lastName}
                 onChange={(e) => onInputChange(e)}
+                required
               />
             </div>
-            {/* <div className="mb-3">
-            <label htmlFor="username" className="form-label">
-              Username
-            </label>
-            <input
-              type={"text"}
-              className="form-control"
-              placeholder="Change your Username here"
-              name="username"
-              autoComplete="off"
-              value={user.username}
-              required
-              onChange={(e) => onInputChange(e)}
-            />
-          </div> */}
+          
             <div className="mb-3">
               <label htmlFor="password" className="form-label">
                 Password
@@ -134,6 +122,7 @@ export default function EditUser() {
                 autoComplete="off"
                 value={editUser.password}
                 onChange={(e) => onInputChange(e)}
+                required
               />
             </div>
             <div className="mb-3">
@@ -143,11 +132,12 @@ export default function EditUser() {
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Change your E-mail here"
+                placeholder={user.email}
                 name="email"
                 autoComplete="off"
                 value={editUser.email}
                 onChange={(e) => onInputChange(e)}
+                required
               />
             </div>
             <button type="submit" className="btn btn-outline-primary">Submit</button>

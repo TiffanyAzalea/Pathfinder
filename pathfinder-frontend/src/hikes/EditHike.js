@@ -12,6 +12,10 @@ export default function EditHike() {
     const [hikeDate, changeHikeDate] = useState(new Date());
     let navigate = useNavigate();
     const { id } = useParams();
+    const [ selectedValue, setSelectedValue ] = useState("option1");
+    const handleRadioChange = ( value ) => { 
+        setSelectedValue(value); 
+    }; 
     const [allhikes, setAllHikes] = useState({
         trailName: "",
         areaName: "",
@@ -48,7 +52,7 @@ export default function EditHike() {
   return(
 
     <div >
-        <div>
+        <div className="section">
         <div className="center">
                         <button type="submit" className="btn btn-primary mx-2">Update</button>
                         <Link className="btn btn-primary mx-2" to={`/viewhike/${allhikes.id}`}>Cancel</Link>
@@ -69,43 +73,7 @@ export default function EditHike() {
                             disabled={true}
                         />
                     </div>
-                    <div className="mb-3">
-                        <label>Area Name: </label>
-                        <input
-                            type={"text"}
-                            autoComplete="off"
-                            value={allhikes.areaName}
-                            onChange={(e) => onInputChange(e)}
-                            disabled={true}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label>Walkable</label>
-                        <input
-                            type={"text"}
-                            autoComplete="off"
-                            value={allhikes.walkable}
-                            onChange={(e) => onInputChange(e)}
-                            disabled={true}
-                        /></div>
-                    <div className="mb-3">
-                        <label>Bike Friendly</label>
-                        <input
-                            type={"text"}
-                            autoComplete="off"
-                            value={allhikes.bikeFriendly}
-                            onChange={(e) => onInputChange(e)}
-                            disabled={true}
-                        /></div>
-                    <div className="mb-3">
-                        <label>Distance</label>
-                        <input
-                            type={"text"}
-                            autoComplete="off"
-                            value={allhikes.distance}
-                            onChange={(e) => onInputChange(e)}
-                            disabled={true}
-                        /></div>
+                   
                     <div className="mb-3">
                         <label>Date:</label>
                         <DatePicker
@@ -117,7 +85,15 @@ export default function EditHike() {
                         </div>
                 <div className="box-share">
                         <h3 className="headind3">Route type: </h3>
-                        <input type ="radio" name="type" value="loop" id="loop"/>
+                        <input type ="radio" name="type" value="loop" id="loop"checked={ 
+                                selectedValue === 
+                                "loop"
+                            } 
+                            onChange={() => 
+                                handleRadioChange( 
+                                    "loop"
+                                ) 
+                            } />
                         <label htmlFor="loop"  className="mx-2">loop</label>
                         <input type ="radio" name="type" value="out&back" id="out&back" />
                         <label htmlFor="out&back"  className="mx-2">out&back</label>
@@ -148,16 +124,7 @@ export default function EditHike() {
                     </form>  
                         
             </div>
-            <div >
-                    <div className="row">
-            <div className="col">
-              <div class="card">
-                <div class="card-body">
-                    <div className='comments'>
-                        <h3 className="headind3">Photos:</h3>
-                      </div>
-                      </div>
-                      </div></div></div></div>
+           
         </div>
         
     </div>
