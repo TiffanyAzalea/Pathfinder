@@ -74,6 +74,8 @@ export default function EditUser() {
     navigate("/viewuser");
   };
 
+
+
   return (
     <div className="container">
       <div className="row">
@@ -138,12 +140,11 @@ export default function EditUser() {
                 autoComplete="off"
                 value={editUser.email}
                 onChange={(e) => onInputChange(e)}
-                required
               />
             </div>
             <button type="submit" className="btn btn-outline-warning">Submit</button>
             <Link className="btn btn-outline-primary mx-2" to="/viewuser">Cancel</Link>
-            <Link className="btn btn-outline-danger " to={`/deleteuser`}>Delete</Link>
+            {/*<Link className="btn btn-outline-danger " to={`/deleteuser`}>Delete</Link>*/}
           </form>
         </div>
       </div>

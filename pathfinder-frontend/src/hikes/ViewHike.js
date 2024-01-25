@@ -8,6 +8,8 @@ import {
     FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon, PinterestShareButton,
     PinterestIcon, InstapaperIcon, InstapaperShareButton, EmailShareButton, EmailIcon
 } from "react-share";
+import ImageUpload from "./ImageUpload";
+import DatePicker from "react-multi-date-picker";
 
 
 export default function ViewHike() {
@@ -55,8 +57,16 @@ export default function ViewHike() {
     return (
 
         <div >
-            <div className="section">
-                <div className="split-left">
+            <div> <div>
+                    <Link className="btn btn-primary mx-2" to={`/edithike/${id}`}>Edit</Link>
+
+                    <button className='btn btn-primary mx-3' onClick={() => deletehike(allhikes.id)}>Delete</button>
+
+                    <Link className="btn btn-primary mx-2" to="/userhomepage">Cancel</Link>
+
+
+</div><hr/>
+                <div >
                     <h1>View Hike Details</h1>
 
                     <div className="mb-3">
@@ -109,19 +119,18 @@ export default function ViewHike() {
                         /></div>
                     <div className="mb-3">
                         <label>Date:</label>
-                        <Calendar onChange={changeValue} value={allhikes.date} disabled={true}/>
-
-                    </div>
-
-                    <Link className="btn btn-primary mx-2" to={`/edithike/${id}`}>Edit</Link>
-
-                    <button className='btn btn-primary mx-3' onClick={() => deletehike(allhikes.id)}>Delete</button>
-
-                    <Link className="btn btn-primary mx-2" to="/userhomepage">Cancel</Link>
-
-
-
-                    <div className="box-share">
+                        <DatePicker
+                            multiple
+                           minDate="1950/01/01"
+                           maxDate="2100/01/01"
+                           value={allhikes.date}
+                           onChange={changeValue}
+                           disabled={true}
+                           />   
+                    </div><hr/>
+                    
+       
+                    <div className="box">
                         <h3 className="headind3">Share:</h3>
                         <FacebookShareButton
                             url="https://www.facebook.com/groups/hikingforadventure">
@@ -140,8 +149,11 @@ export default function ViewHike() {
                             <EmailIcon size={40} round={true} />
                         </EmailShareButton>
                     </div><hr/>
-                    </div></div></div>
+                    </div>
+                    </div>
                    
+        </div>
+                  
             
                
     );

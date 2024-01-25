@@ -4,27 +4,38 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import './EditHike.css';
 import DatePicker from "react-multi-date-picker"
 import DatePanel from "react-multi-date-picker/plugins/date_panel";
+import Search from "../components/Search";
+import ImageUpload from "./ImageUpload";
 
 
 
 export default function EditHike() {
-
+    
     const [hikeDate, changeHikeDate] = useState(new Date());
+    const [level,setLevel] = useState("");
     let navigate = useNavigate();
     const { id } = useParams();
-    const [ selectedValue, setSelectedValue ] = useState("option1");
-    const handleRadioChange = ( value ) => { 
-        setSelectedValue(value); 
-    }; 
+    
     const [allhikes, setAllHikes] = useState({
         trailName: "",
         areaName: "",
         walkable: "",
         bikeFriendly: "",
         distance: "",
-        date: ""
+        date: "",
+        levels:""
     })
-    const { trailName, areaName, walkable, bikeFriendly, distance, date } = allhikes
+    const { trailName, areaName, walkable, bikeFriendly, distance, date,levels } = allhikes
+
+    const [editHike, setEditHike] = useState({
+        trailName: "",
+        areaName: "",
+        walkable: "",
+        bikeFriendly: "",
+        distance: "",
+        date: "",
+        levels:""
+    })
 
 
     const onInputChange = (e) => {
@@ -47,21 +58,54 @@ export default function EditHike() {
         e.preventDefault();
         const result= await axios.put(`http://localhost:8080/edithike/${allhikes.id}`,allhikes);
         console.log(result);
-        navigate("/userhomepage")
+        //console.log('Selected Level:', level);
+        navigate("/hikeslist")
     }
+    const handleLevelChange = (e) => {
+        setLevel(e.target.value);
+      };
+    
+      /*const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        // Send selectedOption to the Spring Boot backend
+        // You can use Axios, Fetch, or any other HTTP library for this
+       await axios.put(`http:localhost:8080/edithike/${id}`, editHike,
+          {
+            headers:  {'Content-Type' : 'application/json'},
+          },{
+          body: JSON.stringify({ level }),
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Success:', data);
+            // Handle success response from the backend
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            // Handle error
+          });
+      };*/
+      
+     
+    
   return(
 
     <div >
+         <form onSubmit={(e) => {onSubmit(e)}}>
         <div className="section">
+           
+        
         <div className="center">
-                        <button type="submit" className="btn btn-primary mx-2">Update</button>
+                        <Link type="submit" to="/hikeslist"className="btn btn-primary mx-2">Update</Link>
                         <Link className="btn btn-primary mx-2" to={`/viewhike/${allhikes.id}`}>Cancel</Link>
 
                         <Link className="btn btn-primary mx-2" to="/userhomepage">Back</Link>
-                    </div>
-            <div className="split-left">
-            <h1>Update Hike Details</h1><hr/>
-                    <form onSubmit={(e) => onSubmit(e)}>
+                    </div><hr/>
+                    
+            <div className="center">
+            <h1>Update Hike Details</h1>
+                   
                         <div className="mb-3">
                         <label>Trail Name: </label>
                         <input
@@ -73,60 +117,76 @@ export default function EditHike() {
                             disabled={true}
                         />
                     </div>
-                   
                     <div className="mb-3">
+                        <label>Area Name: </label>
+                        <input
+                            type={"text"}
+                            autoComplete="off"
+                            value={allhikes.areaName}
+                            onChange={(e) => onInputChange(e)}
+                            disabled={true}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label>Walkable</label>
+                        <input
+                            type={"text"}
+                            autoComplete="off"
+                            value={allhikes.walkable}
+                            onChange={(e) => onInputChange(e)}
+                            disabled={true}
+                        /></div>
+                    <div className="mb-3">
+                        <label>Bike Friendly</label>
+                        <input
+                            type={"text"}
+                            autoComplete="off"
+                            value={allhikes.bikeFriendly}
+                            onChange={(e) => onInputChange(e)}
+                            disabled={true}
+                        /></div>
+                    <div className="mb-3">
+                        <label>Distance</label>
+                        <input
+                            type={"text"}
+                            autoComplete="off"
+                            value={allhikes.distance}
+                            onChange={(e) => onInputChange(e)}
+                            disabled={true}
+                        /></div>
+                    {/*<div className="mb-3">
                         <label>Date:</label>
                         <DatePicker
+                        disabled={true}
+                        multiple
                            minDate="1950/01/01"
                            maxDate="2100/01/01"
                            value={allhikes.date}
                            onChange={changeValue}
                            />   
                         </div>
-                <div className="box-share">
-                        <h3 className="headind3">Route type: </h3>
-                        <input type ="radio" name="type" value="loop" id="loop"checked={ 
-                                selectedValue === 
-                                "loop"
-                            } 
-                            onChange={() => 
-                                handleRadioChange( 
-                                    "loop"
-                                ) 
-                            } />
-                        <label htmlFor="loop"  className="mx-2">loop</label>
-                        <input type ="radio" name="type" value="out&back" id="out&back" />
-                        <label htmlFor="out&back"  className="mx-2">out&back</label>
-                        <input type ="radio" name="type" value="point-to-point" id="point-to-point" />
-                        <label htmlFor="point-to-point"  className="mx-2">point-to-point</label>
-                    </div> 
-                    <div className="box-share">
-                        <h3 className="headind3">Level:</h3>
-                        <input type ="radio" name="level" value="easy" id="easy"/>
-                        <label htmlFor="easy"  className="mx-2">easy</label>
-                        <input type ="radio" name="level" value="moderate" id="moderate" />
-                        <label htmlFor="moderate"  className="mx-2">moderate</label>
-                        <input type ="radio" name="level" value="difficulty" id="difficulty" />
-                        <label htmlFor="difficulty"  className="mx-2">difficulty</label>
-                    </div>
-                    <div className="box-share">
-                        <h3 className="headind3">Usage:</h3>
-                        <input type ="radio" name="usage" value="light" id="light"/>
-                        <label htmlFor="easy"  className="mx-2">light</label>
-                        <input type ="radio" name="usage" value="moderate" id="moderate" />
-                        <label htmlFor="moderate"  className="mx-2">moderate</label>
-                        <input type ="radio" name="usage" value="heavy" id="heavy" />
-                        <label htmlFor="heavy"  className="mx-2">heavy</label>
-                    </div>  
-                    
+                        <div className="mb-3">
+                        <label>Level: </label>
+                        <input
+
+                            type={"text"}
+                            autoComplete="off"
+                            value={allhikes.levels}
+                            onChange={(e) => onInputChange(e)}
+                            disabled={true}
+                        />
+  </div>*/}
+                
                     <hr/>
                     
-                    </form>  
+                    <div>
+                <ImageUpload/>
+            </div>
                         
             </div>
            
         </div>
-        
-    </div>
+           </form>  
+          </div>
   );
 }

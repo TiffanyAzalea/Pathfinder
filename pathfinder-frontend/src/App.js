@@ -20,8 +20,8 @@ import DeleteUser from './users/DeleteUser';
 import Explore from './components/Explore';
 import EditHike from './hikes/EditHike';
 import ViewHike from './hikes/ViewHike';
-import Search from './components/Search';
-import HikesList from './pages/HikesList';
+import HikesList from './hikes/HikesList';
+import ImageUpload from './hikes/ImageUpload';
 
 
 function App() {
@@ -45,6 +45,7 @@ function App() {
           <Route exact path="/explore" element={<Explore />} />
           <Route path="/allhikes" element={<AllHikes />} />
           <Route path="/hikeslist" element={<HikesList />} />
+          <Route path="/imageupload" element={<ImageUpload />} />
         </Route>
       </Routes>
       {/* <NavbarForHome /> */}

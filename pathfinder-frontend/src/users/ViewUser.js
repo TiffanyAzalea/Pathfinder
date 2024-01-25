@@ -44,6 +44,9 @@ export default function ViewUser() {
                         <li className="list-group-item">
                             E-mail: {user.email}
                         </li>
+                        <li className="list-group-item">
+                            Username: {user.username}
+                        </li>
                        
                     </ul>
                     <Link className="btn btn-outline-warning mx-2" to={`/edituser`}>Edit details</Link>
