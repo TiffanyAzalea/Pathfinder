@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import axios from 'axios';
 import NavbarBS from '../layout/NavbarBS';
 
@@ -22,18 +22,10 @@ export default function UserHomePage() {
   })
 
   const loadAllHikes = async () => {
-    const result = await axios.get("http://localhost:8080/viewhikes/" + userId);
-    console.log(result)
-    const sortedResult = result.data.sort((a, b) => {
-      if (a.date > b.date) {
-        return -1
-      }
-      if (a.date < b.date) {
-        return 1
-      }
-      return 0
-    })
-    setFutureHikes(sortedResult);
+   
+    const result = await axios.get("http://localhost:8080/allhikes");
+    setFutureHikes(result.data);
+    Navigate("/allHikes")
   }
 
 
@@ -42,7 +34,7 @@ export default function UserHomePage() {
     <div className='section'>
       {/* <a className="btn btn-primary" href="#" role="button">Create Hike</a> */}
       <Link className="btn btn-primary mx-2" to="/createhike">Create Hike</Link>
-      <button className="btn btn-primary mx-2" type="submit" onClick={loadAllHikes}>Hikes List</button>
+      <Link className="btn btn-primary mx-2" to="/hikeslist">Hikes List</Link>
 
       {/* {
   futureHikes ? <div class="list-group">
@@ -55,27 +47,6 @@ export default function UserHomePage() {
 } */}
 
 
-      <table className="table center" style={{ width: 600 + "px" }}>
-        <thead>
-          <tr>
-            <th scope="col">S.No</th>
-            <th scope="col">Trail Name</th>
-            <th scope="col">Hike Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {futureHikes?.map((hike, index) => (
-            <tr>
-              <th scope="row" key={index}>{index + 1}</th>
-              <td><Link to={`/viewhike/${hike.id}`}>{hike.trailName}</Link></td>
-              <td>{hike.date}</td>
-
-            </tr>
-          ))}
-
-
-        </tbody>
-      </table>
 
 
       {/* <input className="btn btn-primary" type="button" value="Input"></input>

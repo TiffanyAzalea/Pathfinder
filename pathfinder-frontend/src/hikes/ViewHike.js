@@ -29,26 +29,6 @@ export default function ViewHike() {
     })
     const { trailName, areaName, walkable, bikeFriendly, distance, date } = allhikes
 
-    const submitComment = async function (e) {
-        e.preventDefault();
-    
-        await axios.post("http://localhost:8080/comments", {
-          trailName: feature.properties.TRAIL_NAME,
-          text: comment,
-          createdBy: 102,
-          createdDate: new Date().toLocaleDateString()
-        })
-    
-        axios.get("http://localhost:8080/comments/" + feature.properties.TRAIL_NAME)
-          .then((response) => {
-            setAllComments(response.data);
-          })
-          .catch(error => console.log(error))
-      }
-      const onChangeComment = (e) => {
-        setComment(e.target.value);
-      }
-    
     const onInputChange = (e) => {
         setAllHikes({ ...allhikes, [e.target.name]: e.target.value });
     }
@@ -159,56 +139,10 @@ export default function ViewHike() {
                         <EmailShareButton url="">
                             <EmailIcon size={40} round={true} />
                         </EmailShareButton>
-                    </div><br />
-                    <div className="split-right">
-                    <div className="row">
-            <div className="col">
-              <div class="card">
-                <div class="card-body">
-                    <div className='comments'>
-                        <h3 className="headind3">Photos:</h3>
-                      </div>
-                      </div>
-                      </div></div></div>
-            <div className="row">
-            <div className="col">
-              <div class="card">
-                <div class="card-body">
-                  <form onSubmit={(e) => submitComment(e)}>
-                    <div className='comments'>
-
-                      <div class="mb-3">
-                        <label for="commentArea" class="form-label">Trail comments</label>
-                        <textarea class="form-control" id="commentArea" rows="3" onChange={(e) => onChangeComment(e)}></textarea>
-                      </div>
-                      <button className="btn btn-primary" type='submit'>Comment</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-        <div className='col comments'>
-          <h6>Comments:</h6>
-          {allComments?.map((comment, index) => (
-            <div key={index}>
-              <h6>{comment.createdBy.firstName} {comment.createdBy.lastName} - {comment.createdDate}</h6>
-              <p>{comment.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-          </div>
-        </div>
-        
-      </div>
-      
-
-    </div>
-
-
-                        </div>
-                 
+                    </div><hr/>
+                    </div></div></div>
+                   
+            
                
     );
 }
