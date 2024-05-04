@@ -59,3 +59,5 @@ export default function Search() {
     </div>
   );
 }
+
+//added the Search Page back to website
