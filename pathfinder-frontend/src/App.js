@@ -20,6 +20,7 @@ import DeleteUser from './users/DeleteUser';
 import Explore from './components/Explore';
 import EditHike from './hikes/EditHike';
 import ViewHike from './hikes/ViewHike';
+import SocialFollow from './HomePage/SocialFollow'; //aded this line (???)
 import Search from './components/Search'
 
 
@@ -43,6 +44,7 @@ function App() {
           <Route exact path="/viewhike/:id" element={<ViewHike />} />
           <Route exact path="/explore" element={<Explore />} />
           <Route path="/allhikes" element={<AllHikes />} />
+          <Route path="/socialfollow" element={<SocialFollow />} /> */added this line (???)
         </Route>
       </Routes>
       {/* <NavbarForHome /> */}
@@ -56,3 +58,4 @@ function App() {
 export default App;
 
 //Search Feature branch worked on
+//Added socials import. No socials reflected yet
